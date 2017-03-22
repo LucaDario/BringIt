@@ -8,8 +8,8 @@ Package.describe({
 Package.onUse(function(api) {
     api.versionsFrom('1.4.1.1');
     api.use([
-        'monolith'
-	'jquery',
+        'monolith',
+        'jquery',
         'coffeescript',
         'ecmascript',
         'underscore',
@@ -28,13 +28,13 @@ Package.onUse(function(api) {
 
 Package.onTest(function(api) {
     api.use([
-		'jquery',
-		'ecmascript',
+        'jquery',
+        'ecmascript',
         'practicalmeteor:mocha',
         'practicalmeteor:chai',
-        'practicalmeteor:sinon'
-   	'monolith'
-	 ]);
+        'practicalmeteor:sinon',
+        'monolith'
+    ]);
 
 });
 
