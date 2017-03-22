@@ -1,5 +1,5 @@
 Package.describe({
-    name: 'monolith',
+    name: 'bringit',
     version: '0.0.1',
     summary: '',
     git: 'https://github.com/NPE-Developers/bringit'
