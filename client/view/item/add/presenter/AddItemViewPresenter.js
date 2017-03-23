@@ -34,7 +34,7 @@ export class AddItemViewPresenter{
      * @method
      * Shows the graphics component required to input data into bringit.
      */
-    showInputItemInfoView(){
+    _showInputItemInfoView(){
 
     }
 
