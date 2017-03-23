@@ -8,9 +8,7 @@ Package.describe({
 Package.onUse(function(api) {
     api.versionsFrom('1.4.1.1');
     api.use([
-        'monolith',
         'jquery',
-        'coffeescript',
         'ecmascript',
         'underscore',
         'templating',
@@ -19,15 +17,23 @@ Package.onUse(function(api) {
         'random',
         'rocketchat:lib',
         'rocketchat:ui-message',
-        'vue:vue@1.0.8'
     ]);
 
     // api.addFiles('bringit.js');
+	api.addFiles([
+		'client/list/create/CreateListView.js',
+		'client/list/create/view/CreateListViewImpl.js',
+		'client/list/create/presenter/CreateListViewPresenter.js',
+		'client/list/input/view/input.html'
+
+	],'client')
 
 });
 
 Package.onTest(function(api) {
     api.use([
+
+    	'coffeescript',
         'jquery',
         'ecmascript',
         'practicalmeteor:mocha',
@@ -36,5 +42,6 @@ Package.onTest(function(api) {
         'monolith'
     ]);
 
+	api.use('templating', 'client');
 });
 
