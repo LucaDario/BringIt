@@ -1,5 +1,7 @@
 /**
- * Created by Francesco Bazzerla on 22/03/17.
+ * The view for AddItemViewImpl.
+ * Created by Francesco Bazzerla on 21/03/17.
+ * Version 1.0.0 -
  */
 
 export class AddItemView extends GeneralView{
@@ -11,9 +13,10 @@ export class AddItemView extends GeneralView{
     }
 
     addItem(listId,item){}
+
     /**
-     * @event onAddItemClicked
-     *It represents the view that allows you to add an item into bringit.
+     * Events
      */
+    //TODO: IMPLEMENT THIS
     onAddItemClicked(){}
 }

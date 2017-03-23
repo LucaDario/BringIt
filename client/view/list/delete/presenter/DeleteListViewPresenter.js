@@ -29,6 +29,6 @@ export class DeleteListViewPresenter{
      * @return {String}
      */
     renderView(){
-
+        // TODO: Implement this
     }
 }
