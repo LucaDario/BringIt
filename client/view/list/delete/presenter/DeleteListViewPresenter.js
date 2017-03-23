@@ -1,22 +1,25 @@
 /**
- * Created by Francesco Bazzerla on 22/03/17.
+ * The presenter of DeleteListViewImpl.
+ * Created by Francesco Bazzerla on 21/03/17.
+ * Version 1.0.0 -
  */
+
 export class DeleteListViewPresenter{
     /**
-     * @type {DeleteListView}
+     * @type {Object}: DeleteListViewImpl element for the presenter
      */
     _view;
 
     /**
-     * @type {ManageListsUseCase}
+     * @type {Object}: Component required for communication between presenter and databases.
      */
     _manageList;
 
     /**
      * @constructor
      * Constructor of DeleteListViewPresenter
-     * @param view {DeleteListView}
-     * @param useCase {ManageListsUseCase}
+     * @param view {Object}
+     * @param useCase {Object}
      */
     constructor(view,useCase){
         this._view = view;

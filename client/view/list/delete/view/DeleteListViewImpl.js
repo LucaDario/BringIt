@@ -1,5 +1,7 @@
 /**
- * Created by Francesco Bazzerla on 22/03/17.
+ * The concrete class od DeleteListViewImpl.
+ * Created by Francesco Bazzerla on 21/03/17.
+ * Version 1.0.0 -
  */
 
 import {DeleteListView} from './DeleteListView'
@@ -7,7 +9,7 @@ import {DeleteListViewPresenter} from '../presenter/DeleteListViewPresenter'
 
 export class DeleteListViewImpl extends DeleteListView{
     /**
-     * @type {DeleteListViewPresenter}
+     * @type {Object}: Presenter of DeleteListViewImpl
      */
     _presenter;
 

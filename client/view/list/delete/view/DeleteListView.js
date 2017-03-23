@@ -1,6 +1,9 @@
 /**
- * Created by Francesco Bazzerla on 22/03/17.
+ * The view for DeleteListViewImpl.
+ * Created by Francesco Bazzerla on 21/03/17.
+ * Version 1.0.0 -
  */
+
 export class DeleteListView extends GeneralView{
     constructor() {
         super();
