@@ -1,5 +1,7 @@
 /**
- * Created by Francesco Bazzerla on 22/03/17.
+ * The concrete class od AddItemViewImpl.
+ * Created by Francesco Bazzerla on 21/03/17.
+ * Version 1.0.0 -
  */
 
 import {AddItemViewPresenter} from '../presenter/AddItemViewPresenter';
@@ -7,7 +9,7 @@ import {AddItemView} from './AddItemView';
 
 export class AddItemViewImpl extends AddItemView{
     /**
-     * @type {AddItemViewPresenter}
+     * @type {Object}: Presenter of AddItemViewImpl
      */
     _presenter;
 
@@ -25,7 +27,7 @@ export class AddItemViewImpl extends AddItemView{
      *@method
      * It allows you to add a new item into bringit
      * @param listId {String}
-     * @param item {ListItem}
+     * @param item {Object}
      */
     addItem(listId,item){
         this._presenter.addItem(listId,item);

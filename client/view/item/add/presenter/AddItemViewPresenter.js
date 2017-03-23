@@ -1,28 +1,31 @@
 /**
- * Created by Francesco Bazzerla on 22/03/17.
+ * The presenter of AddItemViewImpl.
+ * Created by Francesco Bazzerla on 21/03/17.
+ * Version 1.0.0 -
  */
+
 export class AddItemViewPresenter{
     /**
-     * @type {AddItemView}
+     * @type {Object}: AddItemViewImpl element for the presenter
      */
     _view;
 
     /**
-     * @type {InputItemInfoView}
+     * @type {Object}: Graphic component for the input of data of an item into bringit.
      */
     _inputItemInfoView;
 
     /**
-     * @type {ModifyListUseCase}
+     * @type {Object}: Component required for communication between presenter and databases.
      */
     _modifyListUseCase;
 
     /**
      * @constructor
      * Constructor of AddItemViewPresenter
-     * @param view {AddItemView}
-     * @param inputView {InputItemInfoView}
-     * @param useCase {ModifyListUseCase}
+     * @param view {Object}
+     * @param inputView {Object}
+     * @param useCase {Object}
      */
     constructor(view,inputView,useCase){
         this._view = view;
@@ -42,11 +45,12 @@ export class AddItemViewPresenter{
      *@method
      * It allows you to add a new item into bringit
      * @param listId {String}
-     * @param item {ListItem}
+     * @param item {Object}
      */
     addItem(listId,item){
         this._view.addItem(listId,item);
     }
+
     /**
      * @method
      * Generates HTML CSS JS needed to display the widget.
