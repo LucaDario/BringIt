@@ -2,7 +2,7 @@
  * Base Abstract class represents the generic
  * Created by lucadario on 23/03/17.
  */
-import {CreateListViewImpl} from '../create/view/CreateListViewImpl'
+
 export class CreateListView {
 
 	/**
@@ -10,23 +10,13 @@ export class CreateListView {
 	 */
 	constructor() {
 		/*if (this instanceof CreateListView) {
-			throw new TypeError("Cannot construct CreateListView instances directly");
+			throw new TypeError("Cannot construct CreateListView instances directly"); //tmporaneamente commentato
 		}*/
 	}
 
 }
 
 
-Meteor.startup(function () {
-	Tracker.autorun(function () {
-		let view = new CreateListViewImpl();
-
-		console.log(view.renderView());
-		RocketChat.TabBar.addButton(
-			view.renderView()
-		)
-	})
-});
 
 
 
