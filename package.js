@@ -1,8 +1,14 @@
 Package.describe({
-    name: 'BringIt',
+    name: 'bringit',
     version: '0.0.1',
     summary: 'Real-time multi-user shopping list',
     git: 'https://github.com/NPE-Developers/bringit'
+});
+
+Npm.depends({
+    "can": "3.5.1",
+    "can-stache": "3.0.20",
+    "dependency-injection-es6": "1.2.1"
 });
 
 Package.onUse(function(api) {
@@ -16,10 +22,8 @@ Package.onUse(function(api) {
         'less',
         'random',
         'rocketchat:lib',
-        'rocketchat:ui-message',
+        'rocketchat:ui-message'
     ]);
-	
-		api.addFiles('bringit.js');
 	
 		// Get all the project files
 		var clientFiles=getFilesFromFolder("bringit","client");
