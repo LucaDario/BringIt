@@ -4,7 +4,7 @@
  * Version 1.0.0 -
  */
 
-import {DeleteListView} from './DeleteListView'
+import {DeleteListView} from '../DeleteListView'
 import {DeleteListViewPresenter} from '../presenter/DeleteListViewPresenter'
 
 export class DeleteListViewImpl extends DeleteListView{

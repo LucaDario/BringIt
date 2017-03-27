@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "es6-event-emitter": {
+      "version": "1.8.2",
+      "resolved": "https://registry.npmjs.org/es6-event-emitter/-/es6-event-emitter-1.8.2.tgz",
+      "from": "es6-event-emitter@1.8.2"
+    }
+  }
+}

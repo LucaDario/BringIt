@@ -4,6 +4,8 @@
  * Version 1.0.0 -
  */
 
+import {GeneralView} from "../../../GeneralView"
+
 export class DeleteListView extends GeneralView{
     constructor() {
         super();

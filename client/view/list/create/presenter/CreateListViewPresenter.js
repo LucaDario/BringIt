@@ -2,8 +2,9 @@
  * The Presenter of CreateListViewImpl
  * Created by lucadario on 23/03/17.
  */
+import {inject} from 'dependency-injection-es6';
 
-export class CreateListViewPresenter{
+export class CreateListViewPresenter {
 
     /**
 	 * @type{Object} this represents the list of the groups that have access a button
@@ -44,14 +45,14 @@ export class CreateListViewPresenter{
      */
 
 	renderView(){
-		return{
-				"groups":this._groups,
-				"id":this._id,
-				"i18nTitle": 'list',
-				"icon":this._icon,
-				"template":this._template,
-				"order":this._order
-				}
+		return {
+			"groups":this._groups,
+			"id":this._id,
+			"i18nTitle": 'list',
+			"icon":this._icon,
+			"template":this._template,
+			"order":this._order
+		}
 	}
 
 

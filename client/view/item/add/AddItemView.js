@@ -4,6 +4,8 @@
  * Version 1.0.0 -
  */
 
+import {GeneralView} from "../../../GeneralView"
+
 export class AddItemView extends GeneralView{
     constructor(){
         super();
@@ -14,9 +16,4 @@ export class AddItemView extends GeneralView{
 
     addItem(listId,item){}
 
-    /**
-     * Events
-     */
-    //TODO: IMPLEMENT THIS
-    onAddItemClicked(){}
 }

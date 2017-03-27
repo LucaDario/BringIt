@@ -5,7 +5,7 @@
  */
 
 import {AddItemViewPresenter} from '../presenter/AddItemViewPresenter';
-import {AddItemView} from './AddItemView';
+import {AddItemView} from '../AddItemView';
 
 export class AddItemViewImpl extends AddItemView{
     /**

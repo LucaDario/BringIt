@@ -8,7 +8,8 @@ Package.describe({
 Npm.depends({
     "can": "3.5.1",
     "can-stache": "3.0.20",
-    "dependency-injection-es6": "1.2.1"
+    "dependency-injection-es6": "1.2.1",
+    "es6-event-emitter" : "1.8.2",
 });
 
 Package.onUse(function(api) {
@@ -24,13 +25,14 @@ Package.onUse(function(api) {
         'rocketchat:lib',
         'rocketchat:ui-message'
     ]);
-	
-		// Get all the project files
-		var clientFiles=getFilesFromFolder("bringit","client");
-		// Add all the .js project files
-		api.add_files(clientFiles[0],"client");
-		// Add all the .html, .css project files
-		api.addAssets(clientFiles[1],"client");
+
+    // TODO: This should be replaced with manual imports
+    // Get all the project files
+    var clientFiles=getFilesFromFolder("bringit","client");
+    // Add all the .js project files
+    api.add_files(clientFiles[0],"client");
+    // Add all the .html, .css project files
+    api.addAssets(clientFiles[1],"client");
 
 });
 
@@ -87,6 +89,7 @@ function getFilesFromFolder(packageName,folder){
     var cwd=process.cwd();
     // chdir to our package directory
     process.chdir(cwd + path.sep + '..' + path.sep + packageName);
+    console.log("Installing " + packageName);
     // launch initial walk
     var result=walk(folder);
     // restore previous cwd
