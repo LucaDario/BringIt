@@ -24,22 +24,33 @@ Package.onUse(function(api) {
         'random',
         'rocketchat:lib',
         'rocketchat:ui-message',
-        'fourseven:scss@3.9.0'
+        // 'fourseven:scss'
     ]);
 
-    api.use(['templating'],
-                'client');
+    api.use(['templating'], 'client');
 
-    api.addFiles(['client/GeneralView.js',
-                    'client/view/list/create/CreateListView.js',
-                    'client/view/list/create/view/CreateListViewImpl.js',
-                    'client/view/list/create/view/CreateListViewImplContainer.js',
-                    'client/view/list/create/presenter/CreateListViewPresenter.js',
-                    'client/view/list/create/presenter/CreateListViewPresenterContainer.js',
+    // TODO: This should be replaced with manual imports
 
-                    'client/view/list/create/tabBar.js'],'client');
+    var exceptionFiles = getFilesFromFolder("bringit","exception");
+    var dataFiles = getFilesFromFolder("bringit","data");
+    var useCasesFiles = getFilesFromFolder("bringit","usecase");
 
+    var clientFiles=getFilesFromFolder("bringit","client");
+    var serverFiles = getFilesFromFolder("bringit", "server");
 
+    // Add all the .js project files
+    api.add_files(clientFiles[0],"client");
+    api.add_files(exceptionFiles[0],"client");
+    api.add_files(dataFiles[0],"client");
+    api.add_files(useCasesFiles[0],"client");
+
+    // Add all the .html, .css project files
+    api.addAssets(clientFiles[1],"client");
+
+    api.add_files(serverFiles[0],"server");
+    api.add_files(exceptionFiles[0],"server");
+    api.add_files(dataFiles[0],"server");
+    api.add_files(useCasesFiles[0],"server");
 
 });
 
@@ -56,3 +67,50 @@ Package.onTest(function(api) {
 	api.use('templating', 'client');
 });
 
+function getFilesFromFolder(packageName,folder){
+    // local imports
+    var _=Npm.require("underscore");
+    var fs=Npm.require("fs");
+    var path=Npm.require("path");
+    // helper function, walks recursively inside nested folders and return absolute filenames
+    function walk(folder){
+				var assets=[];
+        var filenames=[];
+        // get relative filenames from folder
+        var folderContent=fs.readdirSync(folder);
+        // iterate over the folder content to handle nested folders
+        _.each(folderContent,function(filename){
+            // build absolute filename
+            var absoluteFilename=folder+path.sep+filename;
+            // get file stats
+            var stat=fs.statSync(absoluteFilename);
+            if(stat.isDirectory()){
+                // directory case => add filenames fetched from recursive call
+                filenames=filenames.concat(walk(absoluteFilename)[0]);
+                assets=assets.concat(walk(absoluteFilename)[1]);
+            }
+            else{
+                // file case => simply add it
+                var extension = path.extname(absoluteFilename);
+                if (extension === '.html'){
+                    // Add static asset
+                    assets.push(absoluteFilename);
+                } else {
+                    // Add other type of file
+                    filenames.push(absoluteFilename);
+                }
+            }
+        });
+        return [filenames, assets];
+    }
+    // save current working directory (something like "/home/user/projects/my-project")
+    var cwd=process.cwd();
+    // chdir to our package directory
+    process.chdir(cwd + path.sep + '..' + path.sep + packageName);
+    // console.log("Installing " + packageName);
+    // launch initial walk
+    var result=walk(folder);
+    // restore previous cwd
+    process.chdir(cwd);
+    return result;
+}

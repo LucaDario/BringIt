@@ -1,23 +1,21 @@
 /**
- * Base Abstract class represents the generic
  * Created by lucadario on 23/03/17.
  */
 
-import {GeneralView} from "../../../GeneralView"
+import {container,inject} from 'dependency-injection-es6';
+import {GeneralView} from "../../../GeneralView";
+import {CreateListViewPresenter} from "./presenter/CreateListViewPresenter";
 
-export class CreateListView extends GeneralView{
+export class CreateListView extends GeneralView {
 
-	/**
-	 * Public constructor. If called directly it will produce an exception as this class is abstract.
-	 */
 	constructor() {
-	    super();
-		/*if (this instanceof CreateListView) {
-			throw new TypeError("Cannot construct CreateListView instances directly");
-		}*/
+        super();
+
+		// Resolve the dependency and inject the presenter
+        this._presenter = container.getInstanceOf(CreateListViewPresenter);
 	}
 
+	renderView(){
+		return this._presenter.renderView();
+	}
 }
-
-
-
