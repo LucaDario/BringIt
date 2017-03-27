@@ -5,7 +5,7 @@
 import {container, inject} from 'dependency-injection-es6';
 import {CreateListViewImpl} from './view/CreateListViewImpl';
 import {CreateListViewImplContainer} from './view/CreateListViewImplContainer';
-import {input} from '../../item/add/view/input.html';
+import {input} from '../input/view/input.html';
 
 /**
  * this script add a button for add list in RocketChat.tabBar with the config that return from CreateListViewImpl

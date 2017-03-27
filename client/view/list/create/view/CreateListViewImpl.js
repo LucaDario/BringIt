@@ -1,4 +1,5 @@
 /**
+ * Implementation a generic of CreateListView
  * Created by lucadario on 23/03/17.
  */
 

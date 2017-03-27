@@ -1,5 +1,5 @@
 /**
- * Base Abstract class represents the generic
+ * Base Abstract class represents the generic view for add a view for  create list
  * Created by lucadario on 23/03/17.
  */
 

@@ -36,7 +36,9 @@ Package.onUse(function(api) {
                     'client/view/list/create/view/CreateListViewImplContainer.js',
                     'client/view/list/create/presenter/CreateListViewPresenter.js',
                     'client/view/list/create/presenter/CreateListViewPresenterContainer.js',
-
+                    'client/view/list/input/view/stylesheets/input.scss',
+                    'client/view/list/input/view/input.js',
+                    'client/view/list/input/view/input.html',
                     'client/view/list/create/tabBar.js'],'client');
 
 
