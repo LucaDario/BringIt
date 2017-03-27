@@ -4,7 +4,7 @@
 
 import {container, inject} from 'dependency-injection-es6';
 import {CreateListViewImpl} from './view/CreateListViewImpl';
-import {CreateListViewImplContainer} from './view/CreateListViewImplContainer'
+import {CreateListViewImplContainer} from './view/CreateListViewImplContainer';
 import {input} from '../../item/add/view/input.html';
 
 /**
@@ -13,7 +13,6 @@ import {input} from '../../item/add/view/input.html';
 Meteor.startup(function () {
     Tracker.autorun(function () {
         let view = new CreateListViewImpl();
-        console.log(view);
         RocketChat.TabBar.addButton(
             view.renderView()
         )

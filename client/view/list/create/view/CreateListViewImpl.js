@@ -6,7 +6,7 @@ import {container,inject} from 'dependency-injection-es6';
 import {CreateListView} from "../CreateListView";
 import {CreateListViewPresenter} from "../presenter/CreateListViewPresenter";
 
-export default class CreateListViewImpl extends CreateListView {
+export class CreateListViewImpl extends CreateListView {
 
 	constructor() {
         super();
