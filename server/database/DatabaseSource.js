@@ -84,9 +84,15 @@ export class DatabaseSource {
         return lists;
     }
 
+    /**
+     * Returns the item which has the given id.
+     * @param itemId {string}: Id of the item to be searched for.
+     * @return {ListItem}: Item retrieved, if found.
+     */
     getItemWithId(itemId){
-        // TODO: This query does NOT work and needs to be fixed
-        return this._convertToListItem(this._listCollection.find({'_items._id' : itemId}));
+        let list = this._listCollection.findOne({'_items._id' : itemId});
+        let listData = this._convertToListData(list);
+        return listData.getItembById(itemId);
     }
 
     /**
@@ -160,21 +166,27 @@ Meteor.startup(function () {
 
     let source = container.resolve(DatabaseSource);
 
+    console.log('Clearing the database');
+    source.clear();
+
     console.log('Creating a list');
 
-    let listData = source.createListForUserWithId(1);
-    listData.setName('The best list ever made');
+    let listData = source.createListForUserWithId(1); listData.setName('The best list ever made');
     let item1 = new ListItem(); item1.setDescription("First item");
     let item2 = new ListItem(); item1.setDescription("Second item");
+    listData.addItem(item1); listData.addItem(item2);
 
-    listData.addItem(item1);
-    listData.addItem(item2);
+    let listData2 = source.createListForUserWithId(1); listData2.setName('The best list ever made 2');
+    let item11 = new ListItem(); item11.setDescription("First item");
+    let item21 = new ListItem(); item21.setDescription("Second item");
+    listData2.addItem(item11); listData2.addItem(item21);
 
     source.saveList(listData);
+    source.saveList(listData2);
 
     // Should print an object with the proper data
     console.log('List created');
-    console.log(util.inspect(source.getListWithId(listData.getId()), false, null));
+    console.log(util.inspect(source.getLists(), false, null));
 
     console.log('Retrieving an item');
     console.log(util.inspect(source.getItemWithId(item1.getId()), false, null));

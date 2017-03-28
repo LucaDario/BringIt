@@ -49,6 +49,11 @@ export class ListData {
         this._items.push(item);
     }
 
+    getItembById(itemId){
+        let position = this._getItemPositionById(itemId);
+        return this._items[position];
+    }
+
     /**
      * Removes an item from the list.
      * @param item {ListItem | Number}: Item to be removed or position of the item to be removed inside the items' list.
@@ -88,11 +93,15 @@ export class ListData {
      * @private
      */
     _getItemPosition(item){
+        return this._getItemPositionById(item.getId());
+    }
+
+    _getItemPositionById(itemId){
         let position = -1;
 
         // Iterate searching for the position where the item is inside the list
         for(let i = 0; i < this._items.length; i++) {
-            if (this._items[i].getId()._str === item.getId()._str) {
+            if (this._items[i].getId()._str === itemId._str) {
                 position = i;
             }
         }
