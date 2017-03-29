@@ -7,27 +7,6 @@ import {inject} from 'dependency-injection-es6';
 export class CreateListViewPresenter {
 
     /**
-	 * @type{Object} this represents the list of the groups that have access a button
-     */
-	_groups;
-    /**
-	 * @type{string} this represent a unique of the button
-     */
-	_id;
-    /**
-	 * @type{string} this represents a name of the icon, http://fontello.github.io/typicons.font/demo.html
-     */
-	_icon;
-    /**
-	 * @type{string} this represents a name of the template.html that should appears when click button
-     */
-	_template;
-    /**
-	 * @type{int} this represent the position the button
-     */
-	_order;
-
-    /**
      * @constructor
      * Constructor of CreateListViewPresenter
      */
