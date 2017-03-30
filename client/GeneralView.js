@@ -3,6 +3,6 @@
  */
 
 export class GeneralView {
-    constructor(){}
+    //constructor(){}
     renderView(){}
 }

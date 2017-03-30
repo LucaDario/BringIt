@@ -16,6 +16,7 @@
 import {container, singleton, inject} from 'dependency-injection-es6';
 import {ListData} from "../../data/ListData";
 import {ListItem} from "../../data/ListItem";
+import {Mongo} from 'meteor/mongo'
 
 export class DatabaseSource {
 
@@ -157,45 +158,55 @@ container.registerAsSingleton(DatabaseSource);
  * Tests.
  * TODO: Move this inside the proper testing environment
  */
-Meteor.startup(function () {
-    console.log('');
-    console.log('=== DATABASE SOURCE ===');
+if(Meteor.isServer) {
+    Meteor.startup(function () {
+        console.log('');
+        console.log('=== DATABASE SOURCE ===');
 
-    // For recursive printing
-    const util = require('util');
+        // For recursive printing
+        const util = require('util');
 
-    let source = container.resolve(DatabaseSource);
+        let source = container.resolve(DatabaseSource);
 
-    console.log('Clearing the database');
-    source.clear();
+        console.log('Clearing the database');
+        source.clear();
 
-    console.log('Creating a list');
+        console.log('Creating a list');
 
-    let listData = source.createListForUserWithId(1); listData.setName('The best list ever made');
-    let item1 = new ListItem(); item1.setDescription("First item");
-    let item2 = new ListItem(); item1.setDescription("Second item");
-    listData.addItem(item1); listData.addItem(item2);
+        let listData = source.createListForUserWithId(1);
+        listData.setName('The best list ever made');
+        let item1 = new ListItem();
+        item1.setDescription("First item");
+        let item2 = new ListItem();
+        item1.setDescription("Second item");
+        listData.addItem(item1);
+        listData.addItem(item2);
 
-    let listData2 = source.createListForUserWithId(1); listData2.setName('The best list ever made 2');
-    let item11 = new ListItem(); item11.setDescription("First item");
-    let item21 = new ListItem(); item21.setDescription("Second item");
-    listData2.addItem(item11); listData2.addItem(item21);
+        let listData2 = source.createListForUserWithId(1);
+        listData2.setName('The best list ever made 2');
+        let item11 = new ListItem();
+        item11.setDescription("First item");
+        let item21 = new ListItem();
+        item21.setDescription("Second item");
+        listData2.addItem(item11);
+        listData2.addItem(item21);
 
-    source.saveList(listData);
-    source.saveList(listData2);
+        source.saveList(listData);
+        source.saveList(listData2);
 
-    // Should print an object with the proper data
-    console.log('List created');
-    console.log(util.inspect(source.getLists(), false, null));
+        // Should print an object with the proper data
+        console.log('List created');
+        console.log(util.inspect(source.getLists(), false, null));
 
-    console.log('Retrieving an item');
-    console.log(util.inspect(source.getItemWithId(item1.getId()), false, null));
+        console.log('Retrieving an item');
+        console.log(util.inspect(source.getItemWithId(item1.getId()), false, null));
 
-    console.log('Removing the list');
-    source.removeList(listData.getId());
+        console.log('Removing the list');
+        source.removeList(listData.getId());
 
-    // Should return []
-    console.log('Current database content: ');
-    console.log(util.inspect(source.getLists(), false, null));
+        // Should return []
+        console.log('Current database content: ');
+        console.log(util.inspect(source.getLists(), false, null));
 
-});
+    });
+}

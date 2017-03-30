@@ -5,7 +5,7 @@
 
 import {GeneralView} from "../../../GeneralView"
 
-export class InputListView extends GeneralView{
+export class InputListInfoView extends GeneralView{
 
     /**
      * Public constructor. If called directly it will produce an exception as this class is abstract.
@@ -16,6 +16,9 @@ export class InputListView extends GeneralView{
          throw new TypeError("Cannot construct CreateListView instances directly");
          }*/
     }
+
+    onSaveClicked(){}
+
 
 }
 

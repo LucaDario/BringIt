@@ -20,6 +20,23 @@ export class ListData {
         this._users = [];
     }
 
+    //provvisorio
+    /*toJSONValue() {
+        return {
+            id: this._id,
+            imagePath: this._imagePath,
+            name: this._name,
+            creatorId: this._creatorId,
+            users: this._users
+
+        };
+    }
+    typeName() {
+        return 'ListData';
+    }*/
+
+
+
     setId(id){
         this._id = id;
     }
@@ -124,3 +141,13 @@ export class ListData {
     }
 
 }
+//provvisorio
+/*EJSON.addType('ListData', function fromJSONValue(json) {
+    let listData = new ListData();
+    listData.setId(json.id);
+    listData.setImagePath(json.imagePath);
+    listData.setName(json.name);
+    listData.setCreatorId(json.creatorId);
+    listData.setUser(json.users);
+    return listData;
+});*/

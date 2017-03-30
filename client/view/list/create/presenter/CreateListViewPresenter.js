@@ -1,14 +1,24 @@
-/**
- * The Presenter of CreateListViewImpl
- * Created by lucadario on 23/03/17.
+/**Description: This represents a presenter of CreateListViewImpl, this contains the parameters to
+ * config for create a button in tab-flex-bar and create a list into database in server
+ *
+ * <code>
+ *     //need import
+ *     import {container, singleton, inject} from 'dependency-injection-es6';
+ *
+ *     // This will get your instance
+ *  var createListViewPresenter = container.resolve(CreateListViewPresenter);
+ * </code>
+ * Created by lucadario on 29/03/17.
  */
-import {inject} from 'dependency-injection-es6';
+
+import {container, singleton, inject} from 'dependency-injection-es6';
+
 
 export class CreateListViewPresenter {
 
     /**
-     * @constructor
-     * Constructor of CreateListViewPresenter
+     * public @constructor
+     *
      */
 	constructor() {
 		this._groups = ['channel', 'group', 'direct'];
@@ -18,7 +28,7 @@ export class CreateListViewPresenter {
 		this._order = 5;
 	}
 
-    /**
+    /**Public
 	 * This return a Json Config for the button in RocketChat.TabBAr
      * @returns {{JSON}}
      */
@@ -34,5 +44,16 @@ export class CreateListViewPresenter {
 		}
 	}
 
+    /**Public
+	 * Subscribe method with name 'createList' with listData as a parameter
+     * @param listData {ListData}
+     */
+	createList(listData){
+		Meteor.subscribe('createList',listData);
+	}
+
 
 }
+
+// Needed registering, so that each time a user wants an instance of this class it will get every time the same instance
+container.registerAsSingleton(CreateListViewPresenter);

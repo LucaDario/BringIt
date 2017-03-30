@@ -14,8 +14,8 @@
  */
 
 import {container,inject} from 'dependency-injection-es6';
-import {DatabaseSource} from "../server/database/DatabaseSource";
-import {ListItem} from "../data/ListItem";
+import {DatabaseSource} from "../../server/database/DatabaseSource";
+import {ListItem} from "../../data/ListItem";
 
 export class GetItemInfoUseCase {
 

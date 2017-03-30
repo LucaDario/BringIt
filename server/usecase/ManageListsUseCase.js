@@ -14,8 +14,8 @@
  */
 
 import {container,inject} from 'dependency-injection-es6';
-import {DatabaseSource} from "../server/database/DatabaseSource";
-import {ListData} from "../data/ListData";
+import {DatabaseSource} from "../database/DatabaseSource";
+import {ListData} from "../../data/ListData";
 
 export class ManageListsUseCase {
 

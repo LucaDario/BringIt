@@ -24,25 +24,32 @@ Package.onUse(function(api) {
         'random',
         'rocketchat:lib',
         'rocketchat:ui-message',
-        'fourseven:scss@3.9.0'
+        'fourseven:scss@3.9.0',
+        'ejson'
     ]);
 
     api.use(['templating'],
                 'client');
 
     api.addFiles(['client/GeneralView.js',
+                    'client/event/SaveListEvent.js',
                     'client/view/list/create/CreateListView.js',
+                     'client/view/list/create/presenter/CreateListViewPresenter.js',
                     'client/view/list/create/view/CreateListViewImpl.js',
                     'client/view/list/create/view/CreateListViewImplContainer.js',
-                    'client/view/list/create/presenter/CreateListViewPresenter.js',
-                    'client/view/list/create/presenter/CreateListViewPresenterContainer.js',
+
                     'client/view/list/input/view/stylesheets/input.scss',
-                    'client/view/list/input/view/input.js',
                     'client/view/list/input/view/input.html',
+                    'client/view/list/input/view/input.js',
+                    'data/ListData.js',
+                    'data/ListItem.js',
+
+
                     'client/view/list/create/tabBar.js'],'client');
 
-
-
+    api.addFiles(['server/publications/addList.js',
+        'server/usecase/ManageListsUseCase.js',
+        'server/database/DatabaseSource.js'],'server');
 });
 
 Package.onTest(function(api) {
