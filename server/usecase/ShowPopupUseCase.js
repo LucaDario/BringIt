@@ -36,8 +36,4 @@ export class ShowPopupUseCase{
                 '</div>'+
             '</div>';
     }
-
-    getGroup(){
-        this._databaseSource;
-    }
 }
