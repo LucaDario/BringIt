@@ -12,6 +12,7 @@
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
+import { HTTP } from 'meteor/http'
 
 
 export class CreateListViewPresenter {
@@ -49,7 +50,9 @@ export class CreateListViewPresenter {
      * @param listData {ListData}
      */
 	createList(listData){
-		Meteor.subscribe('createList',listData);
+      let roomName = $('.room-title').text();
+
+		Meteor.subscribe('createList',listData,roomName);
 	}
 
 
