@@ -25,7 +25,8 @@ Package.onUse(function(api) {
         'rocketchat:lib',
         'rocketchat:ui-message',
         'fourseven:scss@3.9.0',
-        'ejson'
+        'ejson',
+        'monolith'
     ]);
 
     api.use(['templating'],

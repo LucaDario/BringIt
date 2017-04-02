@@ -158,6 +158,7 @@ container.registerAsSingleton(DatabaseSource);
  * Tests.
  * TODO: Move this inside the proper testing environment
  */
+
 if(Meteor.isServer) {
     Meteor.startup(function () {
         console.log('');

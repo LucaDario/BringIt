@@ -41,6 +41,7 @@ container.registerAsSingleton(GetItemInfoUseCase);
  * Tests.
  * TODO: Move this inside the proper testing environment
  */
+/*
 Meteor.startup(function () {
     console.log('');
     console.log('=== GET ITEM INFO USE CASE ===');
@@ -77,3 +78,4 @@ Meteor.startup(function () {
     console.log(useCase.getItemInfo(item21.getId()));
 
 });
+    */
