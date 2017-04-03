@@ -18,8 +18,20 @@ import {container,inject} from 'dependency-injection-es6';
 export class ChatSource{
     constructor(){}
 
-    sendMessageToChat(chatId, message){
-        //TODO: stub.
+    /**
+     * Send a message to rocketchat, this use a pattern Publish/Subscribe, call Meteor.SubScribe('sendMessage', function()..)
+     * @param roomName {string} name unique of room
+     * @param message {html} message to send
+     */
+    sendMessageToChat(roomName, message){
+
+        //provvisorio
+        let messageHtml = message;
+        Meteor.subscribe('sendMessage',roomName,messageHtml,{
+            onReady: () =>{
+
+            }
+        });
     }
 
     showPopup(content){
