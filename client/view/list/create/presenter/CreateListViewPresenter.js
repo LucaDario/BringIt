@@ -79,6 +79,7 @@ export class CreateListViewPresenter {
 		Meteor.subscribe('createList',listData, {
             onReady: () => {
                 let roomName = $('.room-title').text();
+
 				this._chatSourse.sendMessageToChat(roomName, listData.getName());
             }
         });
