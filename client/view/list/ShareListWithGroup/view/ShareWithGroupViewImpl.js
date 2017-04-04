@@ -12,13 +12,19 @@ export class ShareWithGroupViewImpl extends ShareWithGroupView{
 
     _presenter;
 
-    constructor(){
+    constructor() {
+        super();
         this._presenter = new ShareWithGroupViewPresenter(this);
         this._shareEvent = container.resolve(ShareEvent);
+        this._shareEvent.on('shareEvent', (list, groupId) => {
+            this._presenter.openShareWithGroupView(list, groupId);
+            //RocketChat.sendMessage(user, { msg: 'Lista della spesa ' + listName }, { _id: groupId});
+        });
     }
 
-    onClickShareWithGroup(groupId){
-        this._shareEvent.emitShareEvent(groupId);
+
+    onClickShareWithGroup(list,groupId){
+        this._shareEvent.emitShareEvent(list,groupId);
     }
 
 }

@@ -13,9 +13,17 @@ Meteor.publish('sendMessage', (roomName,message) =>{
     let roomId = getRoomId(roomName);
 
 
-    RocketChat.sendMessage(user, { msg: 'Lista della spesa ' + message }, { _id: roomId});
+    RocketChat.sendMessage(user, {
+        msg: 'Lista della spesa ' + message,
+        listData : {
+            creator: "ProvaId"
+        },
+        bubbleType: 'todo'
+    }, { _id: roomId});
 
 });
+
+
 
 /**
  * Convert name of room to Id room

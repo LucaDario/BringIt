@@ -4,7 +4,8 @@ import {GeneralView} from "../../../GeneralView";
 export class ShareWithGroupView extends GeneralView{
 
     constructor(){
-        if (this instanceof ShareWithGroupView) {
+        super();
+        if (this.constructor === ShareWithGroupView) {
             throw new TypeError("Cannot construct ShareWithGroupView instances directly");
          }
     }

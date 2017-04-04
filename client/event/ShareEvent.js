@@ -27,8 +27,8 @@ export class ShareEvent extends EventEmitter{
      *This method emit a event with 'saveEvent'
      * @param list {ListData} listData to pass pass through in emit method
      */
-    emitShareEvent(groupId){
-        this.emit('saveEvent', groupId);
+    emitShareEvent(listName,groupId){
+        this.emit('shareEvent', listName, groupId);
     }
 
 
