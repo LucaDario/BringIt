@@ -14,14 +14,14 @@ export class ShareWithGroupViewPresenter{
         this._chat = container.resolve(ChatSource);
         this._eventEmitter = container.resolve(ChooseEventEmitter);
         this._eventEmitter.on('chooseEvent', (group,list) => {
-            console.log(group);
-            //this._chat.sendMessageToChat(group);
+            //console.log(group);
+            for(let i=0; i<group.length; i++) {
+                this._chat.sendMessageToChat(group[i], list);
+            }
         });
 
     }
     openShareWithGroupView(list, groupId){
-        //alert("CIAO");
-        //RocketChat.sendMessage(user, { msg: 'Lista della spesa ' + list }, { _id: groupId});
         this._chat.sendMessageToChat(groupId,list);
     }
 }

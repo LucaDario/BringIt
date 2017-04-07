@@ -32,39 +32,30 @@ export class ShowPopupUseCase{
     /**
      * Shows a popup with the given content inside the chat.
      * @param content {string}: Content which needs to be showed inside the popup.
+     * @param html {string}: what will be shared in other channels.
      */
-    showPopup(html,list){
+    showPopupAndShare(content,html){
+
+        //necessary to use jQuery and Bootstrap
         var $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
         window.$ = $;
-        //global.bootbox = require('bootbox');
-        //var Modal = require('peppelg:bootstrap-3-modal');
-        //Modal.show('exampleModal')
 
-        var selected = '';
-
+        //calling the library bootbox to make popups
         global.bootbox = require('bootbox');
         bootbox.alert({
             size: "small",
-            message: html,
+            message: content,
             backdrop: true,
             closeButton: true,
             onEscape: false,
-            callback: function(){
+            callback: function(){ // it will be exectuted after popup's closing
                 let emitter = container.resolve(ChooseEventEmitter);
-                selected = $('#sites').val()
-                /*var brands = $('#sites option:selected');
-                for(let i=0; i<brands.length; i++){
-                    selected[i] = brands[i];
-                    console.log(selected[i]);
-                }*/
-                emitter.emitChooseEvent(selected[0],list);
+                let selected = $('#sites').val(); //get user's choice
+                emitter.emitChooseEvent(selected,html); // launch event
             }
         });
         document.getElementsByClassName('modal-dialog')[0].style.zIndex = "1500";
-        console.log("FINE");
-        return "ciao";
-        //return selected[0].label;
     }
 }
 

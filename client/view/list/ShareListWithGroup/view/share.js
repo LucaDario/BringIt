@@ -6,13 +6,10 @@
 import {ShareWithGroupViewImpl} from "./ShareWithGroupViewImpl";
 import {ShowPopupUseCase} from "../../../../usecase/ShowPopupUseCase";
 
-function sayHello(){
-    alert("HELLOOOO");
-}
-
 let share = new ShareWithGroupViewImpl();
 
 Meteor.startup (function () {
+    //add the button to share the ToDoListBubble
     RocketChat.MessageAction.addButton({
         "id": 'share-pin',
         "icon": 'icon-forward',
@@ -23,19 +20,28 @@ Meteor.startup (function () {
         ],
         "action": (event, instance) => {
             let popup = new ShowPopupUseCase();
+            //let message = $(event.currentTarget).closest('.message')[0];
             //console.log(event.currentTarget.closest);
             //console.log(instance);
             //console.log(message);
-            Meteor.call('channelsList','','',function(error1,result1){
-                if(result1) {
+
+            //this function gets the list of channels which are open in your instance of Rocket.Chat
+            Meteor.call('channelsList','','',function(error,result){
+                if(result) {
                     let message = $(event.currentTarget).closest('.message')[0];
+
+                    //make the html which will be shown inside the popup
                     let html = '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
-                    for(let i=0; i<result1.channels.length; i++){
-                        html = html + '<option data-tokens="'+result1.channels[i].name+'">'
-                            +result1.channels[i].name+'</option>';
+                    for(let i=0; i<result.channels.length; i++){
+                        html = html + '<option data-tokens="'+result.channels[i].name+'">'
+                            +result.channels[i].name+'</option>';
                     }
                     html = html + '</select>';
-                    popup.showPopup(html,message);
+
+                    popup.showPopupAndShare(html,message);
+                }
+                if(error){
+                    console.log(error);
                 }
             });
         },
