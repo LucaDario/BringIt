@@ -15,6 +15,7 @@
 import {container} from 'dependency-injection-es6';
 import {ChatSource} from "../chat/ChatSource";
 import "./popup.html";
+import {ChooseEventEmitter} from '../event/ChooseEventEmitter';
 
 //const ReactiveModal = require('');
 
@@ -32,7 +33,7 @@ export class ShowPopupUseCase{
      * Shows a popup with the given content inside the chat.
      * @param content {string}: Content which needs to be showed inside the popup.
      */
-    showPopup(html){
+    showPopup(html,list){
         var $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
         window.$ = $;
@@ -40,19 +41,7 @@ export class ShowPopupUseCase{
         //var Modal = require('peppelg:bootstrap-3-modal');
         //Modal.show('exampleModal')
 
-
-
-       /* var bootbox = require('bootbox');
-        var box = bootbox.dialog({
-            message: 'CIAO',
-            title: 'CIAO',
-            buttons: {},
-            show: false
-        });
-
-        box.modal('show');
-*/
-        var selected = new Array();
+        var selected = '';
 
         global.bootbox = require('bootbox');
         bootbox.alert({
@@ -62,49 +51,20 @@ export class ShowPopupUseCase{
             closeButton: true,
             onEscape: false,
             callback: function(){
-                var brands = $('#sites option:selected');
-                $(brands).each(function(index, brand){
-                    selected.push([$(this).val()]);
-                });
+                let emitter = container.resolve(ChooseEventEmitter);
+                selected = $('#sites').val()
+                /*var brands = $('#sites option:selected');
+                for(let i=0; i<brands.length; i++){
+                    selected[i] = brands[i];
+                    console.log(selected[i]);
+                }*/
+                emitter.emitChooseEvent(selected[0],list);
             }
         });
-       /*
-        bootbox.alert(html, function() {
-            var brands = $('#sites option:selected');
-            $(brands).each(function(index, brand){
-                selected.push([$(this).val()]);
-            });
-            // any code you want to happen after the alert is dismissed
-            console.log("Alert dismissed");
-            return selected;
-        });*/
         document.getElementsByClassName('modal-dialog')[0].style.zIndex = "1500";
         console.log("FINE");
-        return selected;
-
-        /*
-        let content = '<div id="myModal" class="modal fade" role="dialog">'+
-            '<div class="modal-dialog">'+
-            '<!-- Modal content-->'+
-            '<div class="modal-content">'+
-            '<div class="modal-header">'+
-            '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
-            '<h4 class="modal-title">Modal Header</h4>'+
-            '</div>'+
-            '<div class="modal-body">'+
-            html+
-            '</div>'+
-            '<div class="modal-footer">'+
-            '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
-            '</div>'+
-            '</div>'+
-            '</div>'+
-            '</div>';
-        //this._chatSource.showPopup(content);
-        content = $(content);
-        console.log("Mandiamo sto popup");
-        this._chatSource.sendPopup("ciao",content);
-        //return content;*/
+        return "ciao";
+        //return selected[0].label;
     }
 }
 
