@@ -36,6 +36,7 @@ export class ShowPopupUseCase{
         var $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
         window.$ = $;
+        //global.bootbox = require('bootbox');
         //var Modal = require('peppelg:bootstrap-3-modal');
         //Modal.show('exampleModal')
 
@@ -51,16 +52,34 @@ export class ShowPopupUseCase{
 
         box.modal('show');
 */
+        var selected = new Array();
+
+        global.bootbox = require('bootbox');
+        bootbox.alert({
+            size: "small",
+            message: html,
+            backdrop: true,
+            closeButton: true,
+            onEscape: false,
+            callback: function(){
+                var brands = $('#sites option:selected');
+                $(brands).each(function(index, brand){
+                    selected.push([$(this).val()]);
+                });
+            }
+        });
+       /*
         bootbox.alert(html, function() {
+            var brands = $('#sites option:selected');
+            $(brands).each(function(index, brand){
+                selected.push([$(this).val()]);
+            });
             // any code you want to happen after the alert is dismissed
             console.log("Alert dismissed");
-        });
-        var brands = $('#sites option:selected');
-        var selected = [];
-        $(brands).each(function(index, brand){
-            selected.push([$(this).val()]);
-        });
-        //console.log(selected);
+            return selected;
+        });*/
+        document.getElementsByClassName('modal-dialog')[0].style.zIndex = "1500";
+        console.log("FINE");
         return selected;
 
         /*

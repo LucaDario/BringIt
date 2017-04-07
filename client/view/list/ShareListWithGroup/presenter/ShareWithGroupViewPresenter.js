@@ -14,7 +14,7 @@ export class ShareWithGroupViewPresenter{
 
     }
     openShareWithGroupView(list, groupId){
-        alert("CIAO");
+        //alert("CIAO");
         //RocketChat.sendMessage(user, { msg: 'Lista della spesa ' + list }, { _id: groupId});
     }
 }
