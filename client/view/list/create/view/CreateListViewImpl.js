@@ -45,5 +45,22 @@ export class CreateListViewImpl extends CreateListView {
 		return this._presenter.renderView();
 	}
 
+    /**
+     * Getter presenter
+     * @returns {CreateListViewPresenter}
+     */
+    get presenter() {
+        return this._presenter;
+    }
+
+    /**
+     * Setter presenter
+     * @param presenter {CreateListViewPresenter}
+     */
+    set presenter(presenter) {
+        this._presenter = presenter;
+    }
+
+
 }
 

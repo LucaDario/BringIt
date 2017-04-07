@@ -1,5 +1,15 @@
 {
   "dependencies": {
+    "bootbox": {
+      "version": "4.4.0",
+      "resolved": "https://registry.npmjs.org/bootbox/-/bootbox-4.4.0.tgz",
+      "from": "bootbox@4.4.0"
+    },
+    "bootstrap-jquery": {
+      "version": "3.3.2",
+      "resolved": "https://registry.npmjs.org/bootstrap-jquery/-/bootstrap-jquery-3.3.2.tgz",
+      "from": "bootstrap-jquery@3.3.2"
+    },
     "can": {
       "version": "3.5.1",
       "resolved": "https://registry.npmjs.org/can/-/can-3.5.1.tgz",

@@ -10,6 +10,8 @@ Npm.depends({
     "can-stache": "3.0.20",
     "dependency-injection-es6": "1.2.1",
     "es6-event-emitter" : "1.8.2",
+    "bootstrap-jquery" : "3.3.2",
+    "bootbox" : "4.4.0"
 });
 
 Package.onUse(function(api) {
@@ -32,25 +34,33 @@ Package.onUse(function(api) {
     api.use(['templating'],
                 'client');
 
-    api.addFiles(['client/GeneralView.js',
+    api.addFiles([
+                    'client/chat/ChatSource.js',
+                    'client/GeneralView.js',
                     'client/event/SaveListEvent.js',
                     'client/view/list/create/CreateListView.js',
                      'client/view/list/create/presenter/CreateListViewPresenter.js',
                     'client/view/list/create/view/CreateListViewImpl.js',
                     'client/view/list/create/view/CreateListViewImplContainer.js',
-
                     'client/view/list/input/view/stylesheets/input.scss',
                     'client/view/list/input/view/input.html',
                     'client/view/list/input/view/input.js',
+                    'client/view/list/ShareListWithGroup/view/share.js',
+                    'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.js',
+                    'client/view/list/ShareListWithGroup/ShareWithGroupView.js',
+                    'client/view/list/ShareListWithGroup/presenter/ShareWithGroupViewPresenter.js',
+                    'client/usecase/ShowPopupUseCase.js',
+                    'client/usecase/popup.html',
                     'data/ListData.js',
                     'data/ListItem.js',
-
-
-                    'client/view/list/create/tabBar.js'],'client');
+                    'client/view/list/create/tabBar.js',
+                    ],'client');
 
     api.addFiles(['server/publications/addList.js',
-        'server/usecase/ManageListsUseCase.js',
-        'server/database/DatabaseSource.js'],'server');
+                    'server/publications/sendMessage.js',
+                    'server/usecase/ManageListsUseCase.js',
+                    'server/database/DatabaseSource.js'],
+                    'server');
 });
 
 Package.onTest(function(api) {

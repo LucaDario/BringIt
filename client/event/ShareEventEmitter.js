@@ -11,7 +11,7 @@ const EventEmitter = require('events');
 
 import {container, singleton, inject} from 'dependency-injection-es6';
 
-export class ShareEvent extends EventEmitter{
+export class ShareEventEmitter extends EventEmitter{
 
     /**
      * @constructor
@@ -27,8 +27,8 @@ export class ShareEvent extends EventEmitter{
      *This method emit a event with 'saveEvent'
      * @param list {ListData} listData to pass pass through in emit method
      */
-    emitShareEvent(groupId){
-        this.emit('saveEvent', groupId);
+    emitShareEvent(listName,groupId){
+        this.emit('shareEvent', listName, groupId);
     }
 
 
@@ -36,5 +36,5 @@ export class ShareEvent extends EventEmitter{
 }
 
 // Register the class as a singleton so that each instance that is injected is always the same
-container.registerAsSingleton(ShareEvent);
+container.registerAsSingleton(ShareEventEmitter);
 

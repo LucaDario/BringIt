@@ -11,23 +11,18 @@ import {ListData} from '../../data/ListData';
 
 
 /**
- * this Publish Save in db the listData with USeCase {ManageListData} and send message
- * in the room in which it is.
+ * this Publish Save in db the listData with USeCase {ManageListData}
  * @param listData {ListData} the information of the lst
- * @param nameRoom {string} name of the room in which it is.
  */
 
 
-Meteor.publish('createList',function (listData,roomName) {
+Meteor.publish('createList',function (listData) {
 
     let manageList = container.resolve(ManageListsUseCase);
     let list = fromJSONValue(listData);
     manageList.createList(list.getId(),list);
 
-    let user = RocketChat.models.Users.findOneById('rocket.cat');
-    //provvisorio, prima devo capire quando va a buon fine il tutto
 
-    RocketChat.sendMessage(user, { msg: 'Lista della spesa ' + list.getName() }, { _id: getRoomId(roomName)});
 
 
     this.ready();
@@ -38,7 +33,7 @@ Meteor.publish('createList',function (listData,roomName) {
 });
 
 
-//provvisorio
+
 function fromJSONValue(json) {
     let list = new ListData();
     list.setId(json._id);
@@ -49,14 +44,4 @@ function fromJSONValue(json) {
     list._users = json._users;
 
     return list;
-}
-
-function getRoomId(roomName) {
-    roomName = roomName.replace('#');
-    const room = RocketChat.models.Rooms.findOneByName(roomName, { fields: { _id: 1, t: 1 } });
-    if (room && (room.t === 'c' || room.t === 'p')) {
-        return room._id;
-    } else {
-        this.reporting = false;
-    }
 }

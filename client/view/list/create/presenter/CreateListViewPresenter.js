@@ -12,7 +12,7 @@
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
-import { HTTP } from 'meteor/http'
+import {ChatSource} from '../../../../chat/ChatSource'
 
 
 export class CreateListViewPresenter {
@@ -22,11 +22,37 @@ export class CreateListViewPresenter {
      *
      */
 	constructor() {
+
+        /**
+         	 * @type{Object} this represents the list of the groups that have access a button
+              */
 		this._groups = ['channel', 'group', 'direct'];
+
+        /**
+         	 * @type{string} this represent a unique of the button
+		 */
 		this._id = 'create-list';
+
+        /**
+         -	 * @type{string} this represents a name of the icon, http://fontello.github.io/typicons.font/demo.html
+         -     */
 		this._icon = 'icon-th-list';
+
+        /**
+         -	 * @type{string} this represents a name of the template.html that should appears when click button
+         -     */
 		this._template = 'input';
-		this._order = 5;
+
+
+        /**
+         -	 * @type{int} this represent the position the button
+         -     */
+		this._order = 11;
+
+        /**
+		 * @type{ChatSource} chat for send message and show popUp
+         */
+		this._chatSourse = container.resolve(ChatSource);
 	}
 
     /**Public
@@ -50,9 +76,13 @@ export class CreateListViewPresenter {
      * @param listData {ListData}
      */
 	createList(listData){
-      let roomName = $('.room-title').text();
+		Meteor.subscribe('createList',listData, {
+            onReady: () => {
+                let roomName = $('.room-title').text();
 
-		Meteor.subscribe('createList',listData,roomName);
+				this._chatSourse.sendMessageToChat(roomName, listData.getName());
+            }
+        });
 	}
 
 
