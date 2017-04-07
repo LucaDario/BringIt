@@ -10,6 +10,8 @@ Npm.depends({
     "can-stache": "3.0.20",
     "dependency-injection-es6": "1.2.1",
     "es6-event-emitter" : "1.8.2",
+    "bootstrap-jquery" : "3.3.2",
+    "bootbox" : "4.4.0"
 });
 
 Package.onUse(function(api) {
@@ -47,6 +49,8 @@ Package.onUse(function(api) {
                     'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.js',
                     'client/view/list/ShareListWithGroup/ShareWithGroupView.js',
                     'client/view/list/ShareListWithGroup/presenter/ShareWithGroupViewPresenter.js',
+                    'client/usecase/ShowPopupUseCase.js',
+                    'client/usecase/popup.html',
                     'data/ListData.js',
                     'data/ListItem.js',
                     'client/view/list/create/tabBar.js',

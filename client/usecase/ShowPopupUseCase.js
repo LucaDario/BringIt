@@ -14,6 +14,9 @@
 
 import {container} from 'dependency-injection-es6';
 import {ChatSource} from "../chat/ChatSource";
+import "./popup.html";
+
+//const ReactiveModal = require('');
 
 export class ShowPopupUseCase{
 
@@ -22,6 +25,7 @@ export class ShowPopupUseCase{
      */
     constructor(){
         this._chatSource = container.resolve(ChatSource);
+        this._boot = require('bootbox');
     }
 
     /**
@@ -29,6 +33,37 @@ export class ShowPopupUseCase{
      * @param content {string}: Content which needs to be showed inside the popup.
      */
     showPopup(html){
+        var $ = require('jquery');
+        global.jQuery = require("bootstrap-jquery");
+        window.$ = $;
+        //var Modal = require('peppelg:bootstrap-3-modal');
+        //Modal.show('exampleModal')
+
+
+
+       /* var bootbox = require('bootbox');
+        var box = bootbox.dialog({
+            message: 'CIAO',
+            title: 'CIAO',
+            buttons: {},
+            show: false
+        });
+
+        box.modal('show');
+*/
+        bootbox.alert(html, function() {
+            // any code you want to happen after the alert is dismissed
+            console.log("Alert dismissed");
+        });
+        var brands = $('#sites option:selected');
+        var selected = [];
+        $(brands).each(function(index, brand){
+            selected.push([$(this).val()]);
+        });
+        //console.log(selected);
+        return selected;
+
+        /*
         let content = '<div id="myModal" class="modal fade" role="dialog">'+
             '<div class="modal-dialog">'+
             '<!-- Modal content-->'+
@@ -48,8 +83,9 @@ export class ShowPopupUseCase{
             '</div>';
         //this._chatSource.showPopup(content);
         content = $(content);
-        //this._chatSource.sendMessageToChat("ciao",content);
-        //return content;
+        console.log("Mandiamo sto popup");
+        this._chatSource.sendPopup("ciao",content);
+        //return content;*/
     }
 }
 
