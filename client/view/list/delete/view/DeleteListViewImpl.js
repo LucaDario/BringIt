@@ -4,8 +4,10 @@
  * Version 1.0.0 -
  */
 
-import {DeleteListView} from '../DeleteListView'
-import {DeleteListViewPresenter} from '../presenter/DeleteListViewPresenter'
+import {container,inject} from 'dependency-injection-es6';
+import {DeleteListEventEmitter} from '../../../../event/DeleteListEventEmitter';
+import {DeleteListView} from '../DeleteListView';
+import {DeleteListViewPresenter} from '../presenter/DeleteListViewPresenter';
 
 export class DeleteListViewImpl extends DeleteListView{
     /**
@@ -14,21 +16,29 @@ export class DeleteListViewImpl extends DeleteListView{
     _presenter;
 
     /**
-     * @constructor
-     * Constructor of DeleteListViewImpl
+     * @type {Object}: The DeleteEvent instance
+     */
+    _deleteEvent;
+
+    /**
+     * Public constructor
      */
     constructor(){
         super();
         //TODO inject
-        this._presenter = new DeleteListViewPresenter(this,null);
+        this._presenter = new DeleteListViewPresenter(this);
+        this._deleteEvent = container.resolve(DeleteListEventEmitter);
+        this._deleteEvent.on('deleteEvent', (listId) => {
+            this._presenter.openDeleteListView(listId);
+        });
     }
 
     /**
-     * @method
-     *Generates HTML CSS JS needed to display the widget.
-     * @return {String}
+     * @method onDeleteListClicked
+     *It represents the view that allows you to delete a bringit list.
+     * @param listId {Object}: The id of the list that will be send with the emitter
      */
-    renderView(){
-        return this._presenter.renderView();
+    onDeleteListClicked(listId){
+        this._deleteEvent.emitDeleteEvent(listId);
     }
 }
