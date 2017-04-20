@@ -32,9 +32,9 @@ export class ShowPopupUseCase{
     /**
      * Shows a popup with the given content inside the chat.
      * @param content {string}: Content which needs to be showed inside the popup.
-     * @param html {string}: what will be shared in other channels.
+     * @param json {JSON}: what will be shared in other channels.
      */
-    showPopupAndShare(content,html){
+    showPopupAndShare(content,json){
 
         //necessary to use jQuery and Bootstrap
         var $ = require('jquery');
@@ -52,10 +52,23 @@ export class ShowPopupUseCase{
             callback: function(){ // it will be exectuted after popup's closing
                 let emitter = container.resolve(ChooseEventEmitter);
                 let selected = $('#sites').val(); //get user's choice
-                emitter.emitChooseEvent(selected,html); // launch event
+                emitter.emitChooseEvent(selected,json); // launch event
             }
         });
         document.getElementsByClassName('modal-dialog')[0].style.zIndex = "1500";
+    }
+
+    showPopup(content){
+        bootbox.alert({
+            size: "small",
+            message: content,
+            backdrop: true,
+            closeButton: true,
+            onEscape: false,
+        });
+        let elem = document.getElementsByClassName('modal-dialog');
+        let last = document.getElementsByClassName('modal-dialog')[elem.length-1];
+        last.style.zIndex = "1500";
     }
 }
 
