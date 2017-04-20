@@ -20,18 +20,12 @@ export class ChatSource{
 
     /**
      * Send a message to rocketchat, this use a pattern Publish/Subscribe, call Meteor.SubScribe('sendMessage', function()..)
-     * @param roomName {string} name unique of room
-     * @param message {html} message to send
+     * @param roomName {string} name unique of room, not the id
+     * @param json {json} json to put in the message to send
      */
-    sendMessageToChat(roomName, message){
+    sendMessageToChatWithJson(roomName, json){
 
-        //provvisorio
-        let messageHtml = message;
-        Meteor.subscribe('sendMessage',roomName,messageHtml,{
-            onReady: () =>{
-
-            }
-        });
+        Meteor.subscribe('sendMessageWithJson',roomName,json);
     }
 
     showPopup(content){

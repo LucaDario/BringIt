@@ -80,13 +80,28 @@ export class CreateListViewPresenter {
             onReady: () => {
                 let roomName = $('.room-title').text();
 
-				this._chatSourse.sendMessageToChat(roomName, listData.getName());
+				this._chatSourse.sendMessageToChatWithJson(roomName, createJsonList(listData));
             }
         });
 	}
 
 
 }
+/**
+ * Return json with a data in ListData
+ * @param listData
+ * @returns json {json}
+ */
+function createJsonList(listData) {
+    return {
+        msg:'ciao',
+        listData : {
+            name: listData.getName(),
+            creator: listData.getCreatorId(),
+        },
+        bubbleType: 'todo'
+    };
 
+}
 // Needed registering, so that each time a user wants an instance of this class it will get every time the same instance
 container.registerAsSingleton(CreateListViewPresenter);
