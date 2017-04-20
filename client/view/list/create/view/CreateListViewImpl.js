@@ -34,6 +34,7 @@ export class CreateListViewImpl extends CreateListView {
 
         //override of EventEmitter method
         this._saveEvent.on('saveEvent', callFunction.bind(this,arguments));
+
     }
 
 

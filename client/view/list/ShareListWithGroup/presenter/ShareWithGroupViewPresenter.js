@@ -16,12 +16,12 @@ export class ShareWithGroupViewPresenter{
         this._eventEmitter.on('chooseEvent', (group,list) => {
             //console.log(group);
             for(let i=0; i<group.length; i++) {
-                this._chat.sendMessageToChat(group[i], list);
+                this._chat.sendMessageToChatWithJson(group[i], list);
             }
         });
 
     }
     openShareWithGroupView(list, groupId){
-        this._chat.sendMessageToChat(groupId,list);
+        this._chat.sendMessageToChatWithJson(groupId,list);
     }
 }

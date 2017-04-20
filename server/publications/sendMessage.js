@@ -4,22 +4,16 @@
  */
 
 /**
- * @param roomName {string} name of the room
- * @param message {string} message in html to be send
+ * @param roomName {string} name of the room, not the id
+ * @param json {json} json to put in the message to send
  */
-Meteor.publish('sendMessage', (roomName,message) =>{
+Meteor.publish('sendMessageWithJson', (roomName,json) =>{
 
     let user = RocketChat.models.Users.findOneById('rocket.cat');
     let roomId = getRoomId(roomName);
 
 
-    RocketChat.sendMessage(user, {
-        msg: 'Lista della spesa ' + message,
-        listData : {
-            creator: "ProvaId"
-        },
-        bubbleType: 'todo'
-    }, { _id: roomId});
+    RocketChat.sendMessage(user, json, { _id: roomId});
 
 });
 
