@@ -34,7 +34,7 @@ export class ShowPopupUseCase{
      * @param content {string}: Content which needs to be showed inside the popup.
      * @param json {JSON}: what will be shared in other channels.
      */
-    showPopupAndShare(content,json){
+    showPopupAndSend(content,json){
 
         //necessary to use jQuery and Bootstrap
         var $ = require('jquery');
@@ -58,13 +58,14 @@ export class ShowPopupUseCase{
         document.getElementsByClassName('modal-dialog')[0].style.zIndex = "1500";
     }
 
-    showPopup(content){
+    showPopup(content, fun){
         bootbox.alert({
             size: "small",
             message: content,
             backdrop: true,
             closeButton: true,
             onEscape: false,
+            callback: fun
         });
         let elem = document.getElementsByClassName('modal-dialog');
         let last = document.getElementsByClassName('modal-dialog')[elem.length-1];

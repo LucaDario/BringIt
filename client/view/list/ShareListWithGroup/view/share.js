@@ -1,13 +1,15 @@
 /**
- * Created by liast on 03/04/2017
- * Version {VERSION} - {VERSION_NOTES}
+ * Created by Stefano Lia on 03/04/2017
+ * Version {1.0.1} - {This function adds a pin button when a message is a TodoListBubble}
  */
 
-import {ShareWithGroupViewImpl} from "./ShareWithGroupViewImpl";
 import {ShowPopupUseCase} from "../../../../usecase/ShowPopupUseCase";
 import {container, singleton, inject} from 'dependency-injection-es6';
+import {ChooseEventEmitter} from "../../../../event/ChooseEventEmitter";
 
-let share = new ShareWithGroupViewImpl();
+/**
+ * This function creates a JSON file which allows adding a pin button.
+ */
 
 Meteor.startup (function () {
     //add the button to share the ToDoListBubble
@@ -19,28 +21,28 @@ Meteor.startup (function () {
             'message',
             'message-mobile'
         ],
-        "action": (event, instance, message) => {
-            let popup = container.resolve(ShowPopupUseCase);
-            //let message = $(event.currentTarget).closest('.message')[0];
-            //console.log(event.currentTarget.closest);
-            //console.log(instance);
-            //console.log(message);
+        "action": (event, instance) => {
 
             //this function gets the list of channels which are open in your instance of Rocket.Chat
             Meteor.call('channelsList','','',function(error,result){
-                    if(result) {
+                if(result) {
                     //let message = $(event.currentTarget).closest('.message')[0];
-                    //console.log($(event.currentTarget).find('.message'));
-                    //console.log(this.message);
+                    console.log(this.message);
+
+                    // get the message
+                    let json = this.message;
+                    let popup = container.resolve(ShowPopupUseCase);
 
                     //make the html which will be shown inside the popup
-                    let html = '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
+                    let html = '<h3 style="color: #FFFFFF"> Scegli il gruppo con cui condividere la lista </h3>' +
+                        '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
                     for(let i=0; i<result.channels.length; i++){
                         html = html + '<option data-tokens="'+result.channels[i].name+'">'
                             +result.channels[i].name+'</option>';
                     }
                     html = html + '</select>';
-                    popup.showPopupAndShare(html,this.message);
+
+                    popup.showPopupAndSend(html, json);
                 }
                 if(error){
                     console.log(error);
@@ -49,16 +51,12 @@ Meteor.startup (function () {
         },
         "validation": (message) => {
             this.message = {
-                msg: message.msg,
-                listData : {
-                    name: message.listData.name,
-                    creator: message.listData.creator,
-                },
+                listData : message.listData,
                 bubbleType: message.bubbleType
             };
             let idUtente = Meteor.userId();
             if(message.listData != undefined){
-                return message.listData.creator == idUtente;
+                return message.listData.listData._creatorId == idUtente;
             }
             return false;
         }
