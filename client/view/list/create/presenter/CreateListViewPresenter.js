@@ -94,12 +94,10 @@ export class CreateListViewPresenter {
  */
 function createJsonList(listData) {
     return {
-        msg:'ciao',
         listData : {
-            name: listData.getName(),
-            creator: listData.getCreatorId(),
+            listData
         },
-        bubbleType: 'todo'
+        bubbleType:'todo'
     };
 
 }

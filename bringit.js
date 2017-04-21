@@ -2,7 +2,7 @@
  * Created by manu on 21/04/17.
  */
 
-class TestBolla extends Monolith.bubble.ToDoListBubble {
+class Bringit extends Monolith.bubble.ToDoListBubble {
     constructor(){
         super();
         this.addItem("Test1", false);
@@ -11,7 +11,14 @@ class TestBolla extends Monolith.bubble.ToDoListBubble {
 }
 
 
-Monolith.bubble.addBubble("test", function (message) {
-    const bubble = new TestBolla();
-    return bubble;
+/**
+ * Register the custom bubble 'Bringit' in monolith
+ */
+Meteor.startup(function () {
+    if(Meteor.isClient) {
+        Monolith.bubble.addBubble("Bringit", function (message) {
+            const bubble = new Bringit();
+            return bubble;
+        });
+    }
 });
