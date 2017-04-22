@@ -12,8 +12,6 @@ Meteor.startup(function () {
     if(Meteor.isClient) {
         Monolith.bubble.addBubble("Bringit", function (message) {
             const bubble = new Bringit("prova");
-            let popup = container.resolve(ShowPopupUseCase);
-            popup.showPopup('<div>Ciao</div>');
             return bubble;
         });
     }
