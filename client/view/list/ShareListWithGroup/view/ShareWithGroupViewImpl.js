@@ -13,9 +13,8 @@ export class ShareWithGroupViewImpl extends ShareWithGroupView{
     constructor() {
         super();
         this._presenter = new ShareWithGroupViewPresenter(this);
-        this._chooseEvent = container.resolve(ShareEventEmitter);
-        this._chooseEvent.on('shareEvent', (group,json) => {
-            console.log("Evento");
+        this._shareEvent = container.resolve(ShareEventEmitter);
+        this._shareEvent.on('shareEvent', (group,json) => {
             this.onClickShareWithGroup(group,json);
         });
     }
