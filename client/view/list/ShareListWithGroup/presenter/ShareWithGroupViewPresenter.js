@@ -63,8 +63,8 @@ export class ShareWithGroupViewPresenter{
                             //callback that will be executed after popup's closing
                             let f = function () {
                                 let selected = $('#sites').val(); //get user's choice
-                                console.log(json);
                                 for(let i=0; i<selected.length;i++) {
+                                    console.log(json.listData.listData._id);
                                     Meteor.subscribe('sendPermissionsContact', json.listData.listData._id, selected);
                                 }
                             }

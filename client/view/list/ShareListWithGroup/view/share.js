@@ -50,13 +50,15 @@ Meteor.startup (function () {
         },
         "validation": (message) => {
             if(message.listData != undefined){
-                // copy the message
-                this.message = {
-                    listData : message.listData,
-                    bubbleType: message.bubbleType
-                };
-                //let idUtente = Meteor.userId();
-                return message.listData.listData._creatorId == Meteor.userId();
+                if(message.listData.listData != undefined) {
+                    // copy the message
+                    this.message = {
+                        listData: message.listData,
+                        bubbleType: message.bubbleType
+                    };
+                    //let idUtente = Meteor.userId();
+                    return message.listData.listData._creatorId == Meteor.userId();
+                }
             }
             return false;
         }
