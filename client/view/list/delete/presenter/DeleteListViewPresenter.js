@@ -4,6 +4,11 @@
  * Version 1.0.0 -
  */
 
+import {DeleteListEventEmitter} from '../../../../event/DeleteListEventEmitter';
+import {DeleteListViewImpl} from '../view/DeleteListViewImpl';
+import {container, singleton, inject, dependencies} from 'dependency-injection-es6';
+import {ManageListsUseCase} from '../../../../../server/usecase/ManageListsUseCase';
+
 export class DeleteListViewPresenter{
     /**
      * @type {Object}: DeleteListViewImpl element for the presenter
@@ -19,19 +24,13 @@ export class DeleteListViewPresenter{
      * @constructor
      * Constructor of DeleteListViewPresenter
      * @param view {Object}
-     * @param useCase {Object}
      */
-    constructor(view,useCase){
+    constructor(view){
         this._view = view;
-        this._manageList = useCase;
+        this._manageList = container.resolve(ManageListsUseCase);
     }
 
-    /**
-     * @method
-     *Generates HTML CSS JS needed to display the widget.
-     * @return {String}
-     */
-    renderView(){
-        // TODO: Implement this
+    openDeleteListView(listId){
+        this._manageList.deleteList(listId);
     }
 }

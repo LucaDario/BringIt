@@ -1,34 +1,33 @@
 /**
- * Created by liast on 31/03/2017
- * Version {VERSION} - {VERSION_NOTES}
+ * A class Event, this extends from EventEmitter (es6-event-emitter). It represents the share event which is emitted when
+ * someone has chosen the group (or groups) which they want to send message to.
+ * Created by Stefano Lia on 31/03/2017
+ * Version 1.0.0 - Initial version
+ * Version 1.0.1 - added a method for the emitting
  */
-/**A class Event, this exstends from EventEmitter (es6-event-emitter) and this represents the event
- * for emit the event when click button save list
- * Created by lucadario on 29/03/17.
- */
-
-const EventEmitter = require('events');
 
 import {container, singleton, inject} from 'dependency-injection-es6';
+
+const EventEmitter = require('events');
 
 export class ShareEventEmitter extends EventEmitter{
 
     /**
-     * @constructor
-     *
+     * Public constructor
      */
     constructor() {
         super();
 
     }
 
-
-    /**Public
-     *This method emit a event with 'saveEvent'
-     * @param list {ListData} listData to pass pass through in emit method
+    /**
+     * @method
+     * this method emits a share event.
+     * @param group {array} contains the group which you want to share something to
+     * @param message {JSON} the message that you want to share
      */
-    emitShareEvent(listName,groupId){
-        this.emit('shareEvent', listName, groupId);
+    emitShareEvent(group, message){
+        this.emit('shareEvent', group, message);
     }
 
 

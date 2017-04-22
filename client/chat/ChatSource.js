@@ -14,7 +14,7 @@
  */
 
 import {container,inject} from 'dependency-injection-es6';
-
+const EventEmitter = require('events');
 export class ChatSource{
     constructor(){}
 
@@ -24,8 +24,8 @@ export class ChatSource{
      * @param json {json} json to put in the message to send
      */
     sendMessageToChatWithJson(roomName, json){
-
         Meteor.subscribe('sendMessageWithJson',roomName,json);
+
     }
 
     showPopup(content){
@@ -34,3 +34,4 @@ export class ChatSource{
 }
 
 container.registerAsSingleton(ChatSource);
+
