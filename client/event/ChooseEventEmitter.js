@@ -1,5 +1,5 @@
 /**
- * Created by liast on 07/04/2017
+ * Created by Stefano Lia on 07/04/2017
  * Version {VERSION} - {VERSION_NOTES}
  */
 
