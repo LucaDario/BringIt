@@ -68,6 +68,8 @@ Package.onUse(function(api) {
             'server/usecase/ManageListsUseCase.js',
             'server/usecase/ShareListUseCase.js',
             'server/database/DatabaseSource.js'],
+            'server/database/DatabaseSource.js',
+            'server/publications/setStatusItemInDb.js'],
         'server');
 });
 

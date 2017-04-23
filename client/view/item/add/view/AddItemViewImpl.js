@@ -30,7 +30,7 @@ export class AddItemViewImpl extends AddItemView{
      * @param item {Object}
      */
     addItem(listId,item){
-        this._presenter.addItem(listId,item);
+        this._presenter.addNewItem(listId,item);
     }
 
     /**
