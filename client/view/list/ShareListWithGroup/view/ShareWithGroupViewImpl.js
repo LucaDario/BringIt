@@ -1,6 +1,6 @@
 /**
- * Created by liast on 31/03/2017
- * Version {VERSION} - {VERSION_NOTES}
+ * Created by Stefano Lia on 31/03/2017
+ * Version {1.0.0} - {Initial version}
  */
 
 import {ShareWithGroupView} from "../ShareWithGroupView";
@@ -14,14 +14,14 @@ export class ShareWithGroupViewImpl extends ShareWithGroupView{
         super();
         this._presenter = new ShareWithGroupViewPresenter(this);
         this._shareEvent = container.resolve(ShareEventEmitter);
-        this._shareEvent.on('shareEvent', (list, groupId) => {
-            this._presenter.openShareWithGroupView(list, groupId);
+        this._shareEvent.on('shareEvent', (group,json) => {
+            this.onClickShareWithGroup(group,json);
         });
     }
 
 
-    onClickShareWithGroup(list,groupId){
-        this._shareEvent.emitShareEvent(list,groupId);
+    onClickShareWithGroup(group,json){
+        this._presenter.openShareWithGroupView(group,json);
     }
 
 }

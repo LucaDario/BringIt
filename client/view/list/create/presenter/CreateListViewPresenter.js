@@ -94,14 +94,9 @@ export class CreateListViewPresenter {
  */
 function createJsonList(listData) {
     return {
-        msg:'ciao',
-        listData : {
-            name: listData.getName(),
-            creator: listData.getCreatorId(),
-        },
-        bubbleType: 'todo'
+		listData,
+
+        bubbleType:'todo'
     };
 
 }
-// Needed registering, so that each time a user wants an instance of this class it will get every time the same instance
-container.registerAsSingleton(CreateListViewPresenter);

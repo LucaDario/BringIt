@@ -12,7 +12,6 @@ import {input} from '../../list/input/view/input.html';
 Meteor.startup(function () {
     Tracker.autorun(function () {
         let view = container.getInstanceOf(CreateListViewImpl);
-        console.log(view);
         RocketChat.TabBar.addButton(
             view.renderView()
         )
