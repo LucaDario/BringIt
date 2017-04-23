@@ -11,7 +11,7 @@
  *
  * Created by Riccardo Montagnin on 29/03/2017.
  * Version 1.0.0 - Initial version
- * Version 1.0.1 - added two methods: showPopupAndSend and showPopup - Stefano Lia
+ * Version 1.0.1 - added three methods: showPopupAndSend, showPopupWithFunction and showPopup - Stefano Lia
  */
 
 import {container} from 'dependency-injection-es6';
@@ -59,17 +59,18 @@ export class ShowPopupUseCase{
                 emitter.emitShareEvent(selected,json); // launch event
             }
         });
-        document.getElementsByClassName('modal-dialog')[0].style.zIndex = "1500";
+        let elem = document.getElementsByClassName('modal-dialog');
+        let last = document.getElementsByClassName('modal-dialog')[elem.length-1];
+        last.style.zIndex = "1500";
     }
 
     /**
      * @method
      * Show a popup with a message inside and after its closing a function will be executed in an asynchronous way.
-     * @param content {html} : the html that will be shown inside the popup.
+     * @param content {string} : the html that will be shown inside the popup.
      * @param fun {function} : this function will be executed after popup's closing.
      */
-
-    showPopup(content, fun){
+    showPopupWithFunction(content, fun){
         bootbox.alert({
             size: "small",
             message: content,
@@ -82,7 +83,27 @@ export class ShowPopupUseCase{
         let last = document.getElementsByClassName('modal-dialog')[elem.length-1];
         last.style.zIndex = "1500";
     }
+
+    /**
+     * @method
+     * Show a popup with a message inside.
+     * @param content {string} : the html that will be shown inside the popup.
+     */
+    showPopup(content){
+        bootbox.alert({
+            size: "small",
+            message: content,
+            backdrop: true,
+            closeButton: true,
+            onEscape: false
+        });
+        let elem = document.getElementsByClassName('modal-dialog');
+        let last = document.getElementsByClassName('modal-dialog')[elem.length-1];
+        last.style.zIndex = "1500";
+    }
 }
+
+
 
 // Be sure that each instance of this class that will be injected is always the same
 container.registerAsSingleton(ShowPopupUseCase);

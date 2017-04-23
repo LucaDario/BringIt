@@ -2,7 +2,7 @@
  * Created by manu on 21/04/17.
  */
 import {Bringit} from './client/bringit/Bringit'
-
+import {container, singleton, inject} from 'dependency-injection-es6';
 
 /**
  * Register the custom bubble 'Bringit' in monolith

@@ -3,20 +3,16 @@
  * Version 1.0.0 - Initial version
  */
 
-
 import {GeneralView} from "../../../GeneralView";
 
-export class ShareWithGroupView extends GeneralView{
+export class ShareWithContactView extends GeneralView{
 
-    /**
-     * Public constructor
-     */
     constructor(){
         super();
-        if (this.constructor === ShareWithGroupView) {
+        if (this.constructor === ShareWithContactView) {
             throw new TypeError("Cannot construct ShareWithGroupView instances directly");
-         }
+        }
     }
 
-    onClickShareWithGroup(){}
+    onClickShareWithContact(){}
 }

@@ -5,32 +5,31 @@
 
 import {ShowPopupUseCase} from "../../../../usecase/ShowPopupUseCase";
 import {container, singleton, inject} from 'dependency-injection-es6';
-import {ChooseEventEmitter} from "../../../../event/ChooseEventEmitter";
+import {ShareWithGroupViewImpl} from './ShareWithGroupViewImpl';
 
 /**
  * This function creates a JSON file which allows adding a pin button.
  */
 
 Meteor.startup (function () {
-    //add the button to share the ToDoListBubble
+
+    //the final receiver of the shareEvent emitted by the popup
+    let shareGroup = new ShareWithGroupViewImpl();
+
+    //add the button to share the ToDoListBubble with a group
     RocketChat.MessageAction.addButton({
         "id": 'share-pin',
         "icon": 'icon-forward',
-        "i18nLabel": 'Share your list',
+        "i18nLabel": 'Share your list with channel',
         "context": [
             'message',
             'message-mobile'
         ],
         "action": (event, instance) => {
-
             //this function gets the list of channels which are open in your instance of Rocket.Chat
             Meteor.call('channelsList','','',function(error,result){
                 if(result) {
                     //let message = $(event.currentTarget).closest('.message')[0];
-                    console.log(this.message);
-
-                    // get the message
-                    let json = this.message;
                     let popup = container.resolve(ShowPopupUseCase);
 
                     //make the html which will be shown inside the popup
@@ -42,7 +41,7 @@ Meteor.startup (function () {
                     }
                     html = html + '</select>';
 
-                    popup.showPopupAndSend(html, json);
+                    popup.showPopupAndSend(html, this.message);
                 }
                 if(error){
                     console.log(error);
@@ -50,13 +49,16 @@ Meteor.startup (function () {
             });
         },
         "validation": (message) => {
-            this.message = {
-                listData : message.listData,
-                bubbleType: message.bubbleType
-            };
-            let idUtente = Meteor.userId();
             if(message.listData != undefined){
-                return message.listData.listData._creatorId == idUtente;
+                if(message.listData.listData != undefined) {
+                    // copy the message
+                    this.message = {
+                        listData: message.listData,
+                        bubbleType: message.bubbleType
+                    };
+                    // returns true only if the current user is the creator of the list
+                    return message.listData.listData._creatorId == Meteor.userId();
+                }
             }
             return false;
         }
