@@ -61,7 +61,8 @@ Package.onUse(function(api) {
     api.addFiles(['server/publications/addList.js',
             'server/publications/sendMessage.js',
             'server/usecase/ManageListsUseCase.js',
-            'server/database/DatabaseSource.js'],
+            'server/database/DatabaseSource.js',
+            'server/publications/setStatusItemInDb.js'],
         'server');
 });
 
