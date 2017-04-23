@@ -3,7 +3,6 @@
  */
 import {Bringit} from './client/bringit/Bringit'
 import {container, singleton, inject} from 'dependency-injection-es6';
-import {ShowPopupUseCase} from 'client/usecase/ShowPopupUseCase';
 
 /**
  * Register the custom bubble 'Bringit' in monolith

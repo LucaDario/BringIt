@@ -16,11 +16,11 @@ Meteor.startup (function () {
     //the final receiver of the shareEvent emitted by the popup
     let shareGroup = new ShareWithGroupViewImpl();
 
-    //add the button to share the ToDoListBubble
+    //add the button to share the ToDoListBubble with a group
     RocketChat.MessageAction.addButton({
         "id": 'share-pin',
         "icon": 'icon-forward',
-        "i18nLabel": 'Share your list',
+        "i18nLabel": 'Share your list with channel',
         "context": [
             'message',
             'message-mobile'
@@ -56,7 +56,7 @@ Meteor.startup (function () {
                         listData: message.listData,
                         bubbleType: message.bubbleType
                     };
-                    //let idUtente = Meteor.userId();
+                    // returns true only if the current user is the creator of the list
                     return message.listData.listData._creatorId == Meteor.userId();
                 }
             }
