@@ -50,15 +50,12 @@ Meteor.startup (function () {
         },
         "validation": (message) => {
             if(message.listData != undefined){
-                if(message.listData.listData != undefined) {
-                    // copy the message
-                    this.message = {
-                        listData: message.listData,
-                        bubbleType: message.bubbleType
-                    };
-                    // returns true only if the current user is the creator of the list
-                    return message.listData.listData._creatorId == Meteor.userId();
-                }
+                // copy the message
+                this.message = {
+                    listData: message.listData,
+                    bubbleType: message.bubbleType
+                };
+                return message.listData._creatorId == Meteor.userId();
             }
             return false;
         }

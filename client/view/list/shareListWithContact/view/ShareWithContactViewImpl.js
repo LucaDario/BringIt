@@ -14,6 +14,7 @@ export class ShareWithContactViewImpl extends ShareWithContactView{
      */
     constructor(){
         super();
+        this._presenter = new ShareWithContactViewPresenter(this);
     }
 
     onClickShareWithContact(){}

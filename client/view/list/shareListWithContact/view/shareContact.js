@@ -5,14 +5,14 @@
 
 import {ShareWithContactViewImpl} from './ShareWithContactViewImpl';
 
-Meteor.startup (function () {
+/*Meteor.startup (function () {
 
     //the final receiver of the shareEvent emitted by the popup
 
     //add the button to share the ToDoListBubble with a group
     RocketChat.MessageAction.addButton({
         "id": 'share-pin',
-        "icon": 'icon-forward',
+        "icon": 'icon-user',
         "i18nLabel": 'Share your list with user',
         "context": [
             'message',
@@ -23,16 +23,15 @@ Meteor.startup (function () {
         },
         "validation": (message) => {
             if(message.listData != undefined){
-                if(message.listData.listData != undefined) {
-                    // copy the message
-                    this.message = {
-                        listData: message.listData,
-                        bubbleType: message.bubbleType
-                    };
-                    return message.listData.listData._creatorId == Meteor.userId();
-                }
+                // copy the message
+                this.message = {
+                    listData: message.listData,
+                    bubbleType: message.bubbleType
+                };
+                return message.listData._creatorId == Meteor.userId();
             }
             return false;
         }
     })
 })
+*/
