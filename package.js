@@ -62,20 +62,28 @@ Package.onUse(function(api) {
         'client/view/list/shareListWithContact/ShareWithContactView.js',
         'client/view/list/shareListWithContact/presenter/ShareWithContactViewPresenter.js',
         'client/usecase/ShowPopupUseCase.js',
+        'client/view/list/delete/DeleteListView.js',
+        'client/view/list/delete/presenter/DeleteListViewPresenter.js',
+        'client/view/list/delete/view/delete.js',
+        'client/view/list/delete/view/DeleteListViewImpl.js',
         'client/usecase/popup.html',
         'data/ListData.js',
         'data/ListItem.js',
-        'client/view/list/create/tabBar.js',
+        'client/view/list/create/tabBar.js'
     ],'client');
 
-    api.addFiles(['server/publications/addList.js',
+    api.addFiles([
+            'server/publications/addList.js',
             'server/publications/sendMessage.js',
             'server/publications/sharePermissionsContact.js',
             'server/usecase/ManageListsUseCase.js',
             'server/usecase/ShareListUseCase.js',
+            'server/publications/sendMessageToUser.js',
+            'server/methods/getUsers.js',
             'server/database/DatabaseSource.js',
-            'server/database/DatabaseSource.js',
-            'server/publications/setStatusItemInDb.js'],
+            'server/publications/setStatusItemInDb.js',
+            'server/publications/deleteList.js'
+        ],
         'server');
 });
 

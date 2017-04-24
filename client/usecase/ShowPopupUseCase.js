@@ -17,6 +17,7 @@
 import {container} from 'dependency-injection-es6';
 import {ChatSource} from "../chat/ChatSource";
 import "./popup.html";
+import {DeleteListEventEmitter} from '../event/DeleteListEventEmitter';
 import {ShareEventEmitter} from '../event/ShareEventEmitter';
 
 //const ReactiveModal = require('');
@@ -40,7 +41,7 @@ export class ShowPopupUseCase{
     showPopupAndSend(content,json){
 
         //necessary to use jQuery and Bootstrap
-        var $ = require('jquery');
+        const $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
         window.$ = $;
 
@@ -69,17 +70,20 @@ export class ShowPopupUseCase{
      * Show a popup with a message inside and after its closing a function will be executed in an asynchronous way.
      * @param content {string} : the html that will be shown inside the popup.
      * @param fun {function} : this function will be executed after popup's closing.
-     * @param indice  : this indice set the type of modal .
+     * @param index  : this indice set the type of modal .
 
      */
-    showPopupWithFunction(content, fun, indice=0){
-        var $ = require('jquery');
+    showPopupWithFunction(content, fun, index = 0){
+        //necessary to use jQuery and Bootstrap
+        const $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
         window.$ = $;
+
+        //calling the library bootbox to make popups
         global.bootbox = require('bootbox');
 
 
-        if (indice==0) {
+        if (index === 0) {
             bootbox.alert({
                 size: "small",
                 message: content,
@@ -89,7 +93,7 @@ export class ShowPopupUseCase{
                 callback: fun
             });
         }
-        if (indice==1) {
+        if (index === 1) {
             bootbox.confirm({
 
                 size: "small",
@@ -102,12 +106,56 @@ export class ShowPopupUseCase{
                 closeButton: false,
                 onEscape: false,
                 callback: function(result) {
-                    console.log(result + "DIOCANE");
-                    if (result==true)
+                    if (result === true)
                     {
                         fun();
                     }
 
+                }
+            });
+        }
+        //List Deleted
+        if (index === 2) {
+            global.jQuery = require('bootstrap-jquery');
+            window.$ = $;
+            let title = 'Lista' + content;
+            let message = 'Eliminata con successo';
+            global.bootbox = require('bootbox');
+            bootbox.alert({
+                size: "small",
+                title: title,
+                message: message,
+                backdrop: true,
+                closeButton: true,
+                onEscape: false
+            });
+            document.getElementsByClassName('modal-dialog')[0].style.zIndex = "1500";
+            document.getElementsByClassName('modal-content')[0].style.color = "#fff";
+            document.getElementsByClassName('modal-header')[0].style.backgroundColor = "#0b406a";
+            document.getElementsByClassName('modal-body')[0].style.backgroundColor = "#044b76";
+            document.getElementsByClassName('modal-footer')[0].style.backgroundColor = "#044b76";
+            document.getElementsByClassName('bootbox-body')[0].style.opacity = "0.6";
+        }
+        if (index === 3) {
+            global.jQuery = require('bootstrap-jquery');
+            window.$ = $;
+            global.bootbox = require('bootbox');
+            bootbox.confirm({
+                size: "small",
+                title: 'Elimina lista' + content,
+                message: 'Sei sicuro?',
+                buttons: {
+                    confirm: {
+                        label: 'Sì',
+                        className: 'btn btn-success'
+                    }
+                },
+                closeButton: false,
+                onEscape: false,
+                callback: function(result) {
+                    if (result === true){
+                        fun();
+                    }
                 }
             });
         }
@@ -122,6 +170,15 @@ export class ShowPopupUseCase{
      * @param content {string} : the html that will be shown inside the popup.
      */
     showPopup(content){
+
+        //necessary to use jQuery and Bootstrap
+        const $ = require('jquery');
+        global.jQuery = require("bootstrap-jquery");
+        window.$ = $;
+
+        //calling the library bootbox to make popups
+        global.bootbox = require('bootbox');
+
         bootbox.alert({
             size: "small",
             message: content,

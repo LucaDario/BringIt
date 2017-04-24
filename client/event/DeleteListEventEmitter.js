@@ -22,10 +22,11 @@ export class DeleteListEventEmitter extends EventEmitter{
     /**
      *@method
      *This method emit a event with 'deleteEvent'
-     * @param listId {Object} listId to pass pass through in emit method
+     * @param listId {Object}: listId to pass through in emit method
+     * @param nameList {string}: listName to pass through in emit method
      */
-    emitDeleteEvent(listId){
-        this.emit('deleteEvent', listId);
+    emitDeleteEvent(listId,nameList){
+        this.emit('deleteEvent', listId,nameList);
     }
 }
 
