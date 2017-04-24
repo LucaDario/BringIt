@@ -3,7 +3,7 @@
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
-
+import {showpopupitemad} from '../../client/view/list/InputItem/view/inputitemscript';
 
 export class Bringit extends Monolith.bubble.BaseBubble {
 
@@ -49,6 +49,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this.addNewItem('martei');
         console.log('addNewItem');
         //per nico qui chiamerai il tuo popup per l'addNewItem
+        showpopupitemad();
 
     }
 

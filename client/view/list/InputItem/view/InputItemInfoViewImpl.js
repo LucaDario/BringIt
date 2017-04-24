@@ -29,5 +29,6 @@ export class InputItemInfoViewImpl extends InputItemInfoView {
     onSaveClicked(name,quantity,description,mesaurement,image){
         let item = this._presenter.createListItem(name,quantity,description,mesaurement,image);
         this._saveEvent.emitSaveEventItem(item);
+        console.log("porcodio");
     }
 }
