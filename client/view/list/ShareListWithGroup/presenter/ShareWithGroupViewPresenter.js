@@ -45,7 +45,8 @@ export class ShareWithGroupViewPresenter{
                             let show = container.resolve(ShowPopupUseCase);
 
                             //html of the popup
-                            let html = '<h3 style="color: #FFFFFF">Selezione il membro a cui dare i permessi</h3>' +
+                            let html = '<h3 style="color: #FFFFFF">Choose a member who give permission to modify ' +
+                                'the list to</h3>' +
                                 '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
                             for(let i=0; i<result2.records.length; i++){
 
@@ -64,8 +65,8 @@ export class ShareWithGroupViewPresenter{
                             let f = function () {
                                 let selected = $('#sites').val(); //get user's choice
                                 for(let i=0; i<selected.length;i++) {
-                                    console.log(json.listData.listData._id);
-                                    Meteor.subscribe('sendPermissionsContact', json.listData.listData._id, selected);
+                                    console.log(json.listData._id);
+                                    Meteor.subscribe('sendPermissionsContact', json.listData._id, selected);
                                 }
                             }
 

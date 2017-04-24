@@ -18,7 +18,7 @@ Meteor.startup (function () {
 
     //add the button to share the ToDoListBubble with a group
     RocketChat.MessageAction.addButton({
-        "id": 'share-pin',
+        "id": 'shareGroup-pin',
         "icon": 'icon-forward',
         "i18nLabel": 'Share your list with channel',
         "context": [
@@ -33,7 +33,7 @@ Meteor.startup (function () {
                     let popup = container.resolve(ShowPopupUseCase);
 
                     //make the html which will be shown inside the popup
-                    let html = '<h3 style="color: #FFFFFF"> Scegli il gruppo con cui condividere la lista </h3>' +
+                    let html = '<h3 style="color: #FFFFFF"> Choose a channel </h3>' +
                         '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
                     for(let i=0; i<result.channels.length; i++){
                         html = html + '<option data-tokens="'+result.channels[i].name+'">'
@@ -49,16 +49,14 @@ Meteor.startup (function () {
             });
         },
         "validation": (message) => {
+            console.log(message);
             if(message.listData != undefined){
-                if(message.listData.listData != undefined) {
-                    // copy the message
-                    this.message = {
-                        listData: message.listData,
-                        bubbleType: message.bubbleType
-                    };
-                    // returns true only if the current user is the creator of the list
-                    return message.listData.listData._creatorId == Meteor.userId();
-                }
+                // copy the message
+                this.message = {
+                    listData: message.listData,
+                    bubbleType: message.bubbleType
+                };
+                return message.listData._creatorId == Meteor.userId();
             }
             return false;
         }

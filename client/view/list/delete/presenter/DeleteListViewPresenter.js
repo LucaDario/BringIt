@@ -4,10 +4,10 @@
  * Version 1.0.0 -
  */
 
+import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
 import {DeleteListEventEmitter} from '../../../../event/DeleteListEventEmitter';
 import {DeleteListViewImpl} from '../view/DeleteListViewImpl';
-import {container, singleton, inject, dependencies} from 'dependency-injection-es6';
-import {ManageListsUseCase} from '../../../../../server/usecase/ManageListsUseCase';
+import {container,inject} from 'dependency-injection-es6';
 
 export class DeleteListViewPresenter{
     /**
@@ -16,9 +16,9 @@ export class DeleteListViewPresenter{
     _view;
 
     /**
-     * @type {Object}: Component required for communication between presenter and databases.
+     * @type {Object}: A ShowPopupUseCase object used to create a new modal
      */
-    _manageList;
+    _popup;
 
     /**
      * @constructor
@@ -27,10 +27,12 @@ export class DeleteListViewPresenter{
      */
     constructor(view){
         this._view = view;
-        this._manageList = container.resolve(ManageListsUseCase);
+        this._popup = container.resolve(ShowPopupUseCase);
     }
 
-    openDeleteListView(listId){
-        this._manageList.deleteList(listId);
+    openDeleteListView(listId,nameList){
+        const popup = container.resolve(ShowPopupUseCase);
+        const fun = this._view.getDeleteEvent().emitDeleteEvent(listId,nameList);
+        popup.showPopupWithFunction(nameList,fun,3);
     }
 }

@@ -40,6 +40,7 @@ Package.onUse(function(api) {
         'client/chat/ChatSource.js',
         'client/GeneralView.js',
         'client/event/SaveListEvent.js',
+        'client/event/SaveItemEvent.js',
         'client/view/list/create/CreateListView.js',
         'client/view/list/create/presenter/CreateListViewPresenter.js',
         'client/view/list/create/view/CreateListViewImpl.js',
@@ -47,23 +48,42 @@ Package.onUse(function(api) {
         'client/view/list/input/view/stylesheets/input.scss',
         'client/view/list/input/view/input.html',
         'client/view/list/input/view/input.js',
+        'client/view/list/InputItem/view/inputItem.html',
+        'client/view/list/InputItem/view/InputItemInfoViewImpl.js',
+        'client/view/list/InputItem/InputItemInfoView.js',
+        'client/view/list/InputItem/presenter/InputItemInfoViewPresenter.js',
+        'client/view/list/InputItem/view/inputitemscript.js',
         'client/view/list/ShareListWithGroup/view/share.js',
         'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.js',
         'client/view/list/ShareListWithGroup/ShareWithGroupView.js',
         'client/view/list/ShareListWithGroup/presenter/ShareWithGroupViewPresenter.js',
+        'client/view/list/shareListWithContact/view/shareContact.js',
+        'client/view/list/shareListWithContact/view/ShareWithContactViewImpl.js',
+        'client/view/list/shareListWithContact/ShareWithContactView.js',
+        'client/view/list/shareListWithContact/presenter/ShareWithContactViewPresenter.js',
         'client/usecase/ShowPopupUseCase.js',
+        'client/view/list/delete/DeleteListView.js',
+        'client/view/list/delete/presenter/DeleteListViewPresenter.js',
+        'client/view/list/delete/view/delete.js',
+        'client/view/list/delete/view/DeleteListViewImpl.js',
         'client/usecase/popup.html',
         'data/ListData.js',
         'data/ListItem.js',
-        'client/view/list/create/tabBar.js',
+        'client/view/list/create/tabBar.js'
     ],'client');
 
     api.addFiles([
             'server/publications/addList.js',
             'server/publications/sendMessage.js',
+            'server/publications/sharePermissionsContact.js',
             'server/usecase/ManageListsUseCase.js',
+            'server/usecase/ShareListUseCase.js',
+            'server/publications/sendMessageToUser.js',
+            'server/methods/getUsers.js',
             'server/database/DatabaseSource.js',
-            'server/publications/setStatusItemInDb.js'],
+            'server/publications/setStatusItemInDb.js',
+            'server/publications/deleteList.js'
+        ],
         'server');
 });
 

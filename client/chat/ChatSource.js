@@ -28,6 +28,11 @@ export class ChatSource{
 
     }
 
+    sendMessageToUser(user, json){
+        console.log("sendMessageToUser");
+        Meteor.subscribe('sendMessageToChat',user,json);
+    }
+
     showPopup(content){
         //TODO: stub.
     }
