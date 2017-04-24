@@ -15,6 +15,8 @@ def productionBranch = 'master'
 
 node(targetNode) {
 
+    sendSlackMessage("Inizio Job #${env.BUILD_NUMBER} per il progetto ${projectName} nel ramo ${env.BRANCH_NAME}", 'good')
+
     stage("fetching source"){
         checkout scm
     }
@@ -33,4 +35,19 @@ node(targetNode) {
         }
     }
 
+    sendSlackMessage("Job #${env.BUILD_NUMBER} per ${projectName} nel ramo ${env.BRANCH_NAME} terminato", 'good')
+
+}
+
+/**
+ * Sends a message to slack
+ * @param text: String representing the message that will be sended.
+ * @param statusColor:  This value is used to color the border along the left side of the message attachment,
+ *          can either be one of good, warning, danger, or any hex color code (eg. #439FE0).
+ */
+void sendSlackMessage(text, statusColor) {
+    withCredentials([[$class: 'StringBinding', credentialsId: 'NpeSlackToken',
+                      variable: 'TOKEN']]) {
+        slackSend channel: '#ci', color: statusColor, message: text, teamDomain: 'npedevelopers', token: '$TOKEN'
+    }
 }
