@@ -28,6 +28,16 @@ export class DeleteListEventEmitter extends EventEmitter{
     emitDeleteEvent(listId,nameList){
         this.emit('deleteEvent', listId,nameList);
     }
+
+    /**
+     *@method
+     *This method emit a event with 'deleteEvent'
+     * @param listId {Object}: listId to pass through in emit method
+     * @param nameList {string}: listName to pass through in emit method
+     */
+    emitDeleteThis(listId,nameList){
+        this.emit('deleteThisEvent', listId,nameList);
+    }
 }
 
 // Register the class as a singleton so that each instance that is injected is always the same

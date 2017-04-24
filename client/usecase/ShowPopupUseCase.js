@@ -78,8 +78,6 @@ export class ShowPopupUseCase{
         global.jQuery = require("bootstrap-jquery");
         window.$ = $;
         global.bootbox = require('bootbox');
-
-
         if (index === 0) {
             bootbox.alert({
                 size: "small",
@@ -126,12 +124,6 @@ export class ShowPopupUseCase{
                 closeButton: true,
                 onEscape: false
             });
-            document.getElementsByClassName('modal-dialog')[0].style.zIndex = "1500";
-            document.getElementsByClassName('modal-content')[0].style.color = "#fff";
-            document.getElementsByClassName('modal-header')[0].style.backgroundColor = "#0b406a";
-            document.getElementsByClassName('modal-body')[0].style.backgroundColor = "#044b76";
-            document.getElementsByClassName('modal-footer')[0].style.backgroundColor = "#044b76";
-            document.getElementsByClassName('bootbox-body')[0].style.opacity = "0.6";
         }
         if (index === 3) {
             global.jQuery = require('bootstrap-jquery');
@@ -157,8 +149,17 @@ export class ShowPopupUseCase{
             });
         }
         let elem = document.getElementsByClassName('modal-dialog');
-        let last = document.getElementsByClassName('modal-dialog')[elem.length-1];
-        last.style.zIndex = "1500";
+        elem[elem.length-1].style.zIndex = "1500";
+        let elem2 = document.getElementsByClassName('modal-content');
+        elem2[elem2.length-1].style.color = "#fff";
+        let elem3 = document.getElementsByClassName('modal-header');
+        elem3[elem3.length-1].style.backgroundColor = "#0b406a";
+        let elem4 = document.getElementsByClassName('modal-body');
+        elem4[elem4.length-1].style.backgroundColor = "#044b76";
+        let elem5 = document.getElementsByClassName('modal-footer');
+        elem5[elem5.length-1].style.backgroundColor = "#044b76";
+        let elem6 = document.getElementsByClassName('bootbox-body');
+        elem6[elem6.length-1].style.opacity = "0.6";
     }
 
     /**

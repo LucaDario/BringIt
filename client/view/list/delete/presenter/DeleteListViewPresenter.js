@@ -32,7 +32,9 @@ export class DeleteListViewPresenter{
 
     openDeleteListView(listId,nameList){
         const popup = container.resolve(ShowPopupUseCase);
-        const fun = this._view.getDeleteEvent().emitDeleteEvent(listId,nameList);
+        const fun = (viewDel = this._view)=>{
+            viewDel.getDeleteEvent().emitDeleteEvent(listId,nameList)
+        };
         popup.showPopupWithFunction(nameList,fun,3);
     }
 }

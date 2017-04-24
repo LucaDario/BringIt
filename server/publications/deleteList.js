@@ -7,6 +7,7 @@
 
 import {container,inject} from 'dependency-injection-es6';
 import {ManageListsUseCase} from '../usecase/ManageListsUseCase';
+import {DatabaseSource} from '../database/DatabaseSource';
 
 /**
  * this Publish delete from db the listData with USeCase {ManageListData}
@@ -15,10 +16,8 @@ import {ManageListsUseCase} from '../usecase/ManageListsUseCase';
 
 
 Meteor.publish('deleteList',function (listId) {
-
+    let id = listId;
     let manageList = container.resolve(ManageListsUseCase);
     manageList.deleteList(listId);
-
-    this.ready();
-
+    this.ready(id);
 });
