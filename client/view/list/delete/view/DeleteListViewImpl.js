@@ -15,13 +15,29 @@ export class DeleteListViewImpl extends DeleteListView{
      */
     _presenter;
 
+    _deleteEvent;
+
+    _popup;
+
     /**
      * Public constructor
      */
     constructor(){
         super();
         //TODO inject
+        this._popup = container.resolve(ShowPopupUseCase);
+        this._deleteEvent.on('deleteEvent', (listId,nameList) => {
+            Meteor.subscribe('deleteList',listId,nameList, {
+                onReady: () => {
+                    this._popup.showPopupWithFunction(nameList,()=>{},2);
+                }
+            });
+        });
         this._presenter = new DeleteListViewPresenter(this);
+    }
+
+    getDeleteEvent(){
+        return this._deleteEvent;
     }
 
     openDeleteListView(listId,nameList){

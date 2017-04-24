@@ -19,13 +19,9 @@ Meteor.startup (function () {
         "action": (event, instance) => {
             this._deleteEvent = container.resolve(DeleteListEventEmitter);
             let deleteList = new DeleteListViewImpl();
-            this._deleteEvent.on('deleteEvent', (listId) => {
-                Meteor.subscribe('deleteList',listId, {
-                    onReady: () => {
-
-                    }
-                });
-            });
+            let listId;
+            let nameList;
+            deleteList.openDeleteListView(listId,nameList);
         },
         "validation": (message) => {
             console.log(message);

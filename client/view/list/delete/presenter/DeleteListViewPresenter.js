@@ -7,7 +7,7 @@
 import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
 import {DeleteListEventEmitter} from '../../../../event/DeleteListEventEmitter';
 import {DeleteListViewImpl} from '../view/DeleteListViewImpl';
-import {container, singleton, inject, dependencies} from 'dependency-injection-es6';
+import {container,inject} from 'dependency-injection-es6';
 
 export class DeleteListViewPresenter{
     /**
@@ -27,10 +27,12 @@ export class DeleteListViewPresenter{
      */
     constructor(view){
         this._view = view;
-        this._popup = container.resolve(ShowPopupUseCase)
+        this._popup = container.resolve(ShowPopupUseCase);
     }
 
     openDeleteListView(listId,nameList){
-
+        const popup = container.resolve(ShowPopupUseCase);
+        const fun = this._view.getDeleteEvent().emitDeleteEvent(listId,nameList);
+        popup.showPopupWithFunction(nameList,fun,3);
     }
 }
