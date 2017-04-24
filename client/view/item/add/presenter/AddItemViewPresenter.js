@@ -48,7 +48,7 @@ export class AddItemViewPresenter{
      * @param item {Object}
      */
     addItem(listId,item){
-        this._view.addNewItem(listId,item);
+        this._view.addNewBringitItem(listId,item);
     }
 
     /**

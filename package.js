@@ -58,7 +58,8 @@ Package.onUse(function(api) {
         'client/view/list/create/tabBar.js',
     ],'client');
 
-    api.addFiles(['server/publications/addList.js',
+    api.addFiles([
+            'server/publications/addList.js',
             'server/publications/sendMessage.js',
             'server/usecase/ManageListsUseCase.js',
             'server/database/DatabaseSource.js',

@@ -3,6 +3,7 @@
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
+import {ListData} from '../../data/ListData'
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
@@ -14,7 +15,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         if(listId == undefined) {
             listId = ('_' + Math.random().toString(36).substr(2, 9)).toString();
         }
-        this._id = listId
+        this._id = listId;
         //create and set the tittle of the list
         this._textNameList = new Monolith.widgets.TextWidget;
         this._textNameList.setText(listName);
@@ -37,39 +38,93 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
         super.addComponent(this._addItemButton);
 
-        this.addNewItem('martei');
-
 
 
 
 
     }
+
 
     showInputAddItem(){
-        this.addNewItem('martei');
-        console.log('addNewItem');
-        //per nico qui chiamerai il tuo popup per l'addNewItem
+        this.addNewBringitItem('martei');
+        console.log('addNewBringitItem');
+        //per nico qui chiamerai il tuo popup per l'addNewBringitItem
 
     }
 
-    addNewItem(item, check = false) {
-        let opt = new Monolith.widgets.checklist.ChecklistWidgetItem(item,check);
-        this._checklist.push(opt);
-        let index = this._checklist.indexOf(opt);
-        this._checklist[index].setOnClick(() => {
-            this.setStatusItemInDb(this._id, this._checklist[index].getId());
+    addNewBringitItem() {
+        let itemCheck = new Monolith.widgets.checklist.ChecklistWidgetItem('');
+        let itemImage = new Monolith.widgets.ImageWidget;
+        let itemText = new Monolith.widgets.TextWidget;
+
+        let layoutContainer = new Monolith.layout.HorizontalLayoutView;
+        layoutContainer.addItem(itemCheck);
+        layoutContainer.addItem(itemImage);
+        layoutContainer.addItem(itemText);
+
+
+        this._checklist.push(layoutContainer);
+
+
+        itemCheck.setOnClick(() => {
+            this.setStatusItemInDb(this._id, itemCheck.getId());
 
         });
-        super.addComponent(this._checklist[index]);
+
+        itemCheck.setOnLongClick(() => {
+
+        });
+
+        super.addComponent(layoutContainer);
     }
 
-    setStatusItemInDb(listId, itemId, status){
-        Meteor.subscribe('setStatusItemInDb',listId,itemId,status)
+    addImage(itemContainer,path){
+        let listItem = itemContainer.getItems();
+        for(let obj in listItem){
+            if(obj instanceof Monolith.widgets.ImageWidget){
+                obj.setImage(path);
+            }
+        }
 
     }
+
+    addText(itemContainer,text){
+        let listItem = itemContainer.getItems();
+        for(let obj in listItem){
+            if(obj instanceof Monolith.widgets.TextWidget){
+                obj.setText(text);
+            }
+        }
+
+    }
+
+    addCheckDetails(itemContainer,check, name = ''){
+        let listItem = itemContainer.getItems();
+        for(let obj in listItem){
+            if(obj instanceof Monolith.widgets.TextWidget){
+                obj.setText(text);
+                obj.setChecked(check);
+
+            }
+        }
+    }
+
+    setStatusItemInDb(itemId, status){
+        Meteor.subscribe('setStatusItemInDb',this._id,itemId,status);
+
+    }
+
 
     cloneListItem(listItemJson){
 
+    }
+
+    deleteList(){
+        Meteor.subscribe('deleteList',this._id);
+    }
+
+    deleteItem(itemId){
+        Meteor.subscribe('deleteItem',this._id,itemId);
     }
 
 
