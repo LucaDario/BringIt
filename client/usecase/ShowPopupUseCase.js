@@ -11,7 +11,7 @@
  *
  * Created by Riccardo Montagnin on 29/03/2017.
  * Version 1.0.0 - Initial version
- * Version 1.0.1 - added two methods: showPopupAndSend and showPopup - Stefano Lia
+ * Version 1.0.1 - added three methods: showPopupAndSend, showPopupWithFunction and showPopup - Stefano Lia
  */
 
 import {container} from 'dependency-injection-es6';
@@ -59,7 +59,9 @@ export class ShowPopupUseCase{
                 emitter.emitShareEvent(selected,json); // launch event
             }
         });
-        document.getElementsByClassName('modal-dialog')[0].style.zIndex = "1500";
+        let elem = document.getElementsByClassName('modal-dialog');
+        let last = document.getElementsByClassName('modal-dialog')[elem.length-1];
+        last.style.zIndex = "1500";
     }
 
     /**

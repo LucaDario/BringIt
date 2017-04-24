@@ -51,6 +51,10 @@ Package.onUse(function(api) {
         'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.js',
         'client/view/list/ShareListWithGroup/ShareWithGroupView.js',
         'client/view/list/ShareListWithGroup/presenter/ShareWithGroupViewPresenter.js',
+        'client/view/list/shareListWithContact/view/shareContact.js',
+        'client/view/list/shareListWithContact/view/ShareWithContactViewImpl.js',
+        'client/view/list/shareListWithContact/ShareWithContactView.js',
+        'client/view/list/shareListWithContact/presenter/ShareWithContactViewPresenter.js',
         'client/usecase/ShowPopupUseCase.js',
         'client/usecase/popup.html',
         'data/ListData.js',
@@ -60,8 +64,12 @@ Package.onUse(function(api) {
 
     api.addFiles(['server/publications/addList.js',
             'server/publications/sendMessage.js',
+            'server/publications/sharePermissionsContact.js',
             'server/usecase/ManageListsUseCase.js',
-            'server/database/DatabaseSource.js'],
+            'server/usecase/ShareListUseCase.js',
+            'server/database/DatabaseSource.js',
+            'server/database/DatabaseSource.js',
+            'server/publications/setStatusItemInDb.js'],
         'server');
 });
 

@@ -13,4 +13,6 @@ export class ShareWithContactView extends GeneralView{
             throw new TypeError("Cannot construct ShareWithGroupView instances directly");
         }
     }
+
+    onClickShareWithContact(){}
 }

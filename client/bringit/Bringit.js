@@ -4,12 +4,17 @@
 
 import {container, singleton, inject} from 'dependency-injection-es6';
 
+
 export class Bringit extends Monolith.bubble.BaseBubble {
 
-    constructor(listName){
+    constructor(listName, listId = undefined){
         super();
+
         //create unique id list
-        this._id = ('_' + Math.random().toString(36).substr(2, 9)).toString();
+        if(listId == undefined) {
+            listId = ('_' + Math.random().toString(36).substr(2, 9)).toString();
+        }
+        this._id = listId
         //create and set the tittle of the list
         this._textNameList = new Monolith.widgets.TextWidget;
         this._textNameList.setText(listName);
@@ -32,6 +37,8 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
         super.addComponent(this._addItemButton);
 
+        this.addNewItem('martei');
+
 
 
 
@@ -39,20 +46,32 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     }
 
     showInputAddItem(){
-        this.addItem('martei');
-        console.log('addItem');
-        //per nico qui chiamerai il tuo popup per l'addItem
+        this.addNewItem('martei');
+        console.log('addNewItem');
+        //per nico qui chiamerai il tuo popup per l'addNewItem
 
     }
 
-    addItem(item,check = false) {
+    addNewItem(item, check = false) {
         let opt = new Monolith.widgets.checklist.ChecklistWidgetItem(item,check);
         this._checklist.push(opt);
         let index = this._checklist.indexOf(opt);
         this._checklist[index].setOnClick(() => {
+            this.setStatusItemInDb(this._id, this._checklist[index].getId());
 
         });
         super.addComponent(this._checklist[index]);
     }
+
+    setStatusItemInDb(listId, itemId, status){
+        Meteor.subscribe('setStatusItemInDb',listId,itemId,status)
+
+    }
+
+    cloneListItem(listItemJson){
+
+    }
+
+
 
 }
