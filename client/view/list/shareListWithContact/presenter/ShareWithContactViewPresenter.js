@@ -4,6 +4,8 @@
  */
 import {ChatSource} from "../../../../chat/ChatSource";
 import {container,inject} from 'dependency-injection-es6';
+import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
+import {ShareEventEmitter} from '../../../../event/ShareEventEmitter'
 
 export class ShareWithContactViewPresenter{
 
@@ -14,5 +16,11 @@ export class ShareWithContactViewPresenter{
     constructor(view){
         this._view = view;
         this._chat = container.resolve(ChatSource);
+
     }
+
+    shareWithContact(person, json){
+        this._chat.sendMessageToUser(person,json);
+    }
+
 }

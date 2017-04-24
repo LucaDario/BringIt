@@ -77,7 +77,8 @@ Package.onUse(function(api) {
             'server/publications/sharePermissionsContact.js',
             'server/usecase/ManageListsUseCase.js',
             'server/usecase/ShareListUseCase.js',
-            'server/database/DatabaseSource.js',
+            'server/publications/sendMessageToUser.js',
+            'server/methods/getUsers.js',
             'server/database/DatabaseSource.js',
             'server/publications/setStatusItemInDb.js',
             'server/publications/deleteList.js'

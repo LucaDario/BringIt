@@ -9,7 +9,6 @@ import {container,inject} from 'dependency-injection-es6';
 Meteor.publish('sendPermissionsContact', (idList,idContact) =>{
 
     console.log("Ora l'utente ha i permessi");
-    alert("CIAO");
     let sharePermission = container.resolve(ShareListUseCase);
     sharePermission.shareListWithContact(idList, idContact);
 
