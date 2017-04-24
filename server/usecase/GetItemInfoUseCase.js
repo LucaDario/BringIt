@@ -58,16 +58,16 @@ Meteor.startup(function () {
     let item1 = new ListItem(); item1.setDescription("First item");
     let item2 = new ListItem(); item1.setDescription("Second item");
 
-    listData.addNewItem(item1);
-    listData.addNewItem(item2);
+    listData.addNewBringitItem(item1);
+    listData.addNewBringitItem(item2);
 
     let listData2 = useCase._databaseSource.createListForUserWithId(3);
     listData.setName('The best list ever made 2');
     let item11 = new ListItem(); item1.setDescription("First item 2");
     let item21 = new ListItem(); item1.setDescription("Second item 2");
 
-    listData2.addNewItem(item11);
-    listData2.addNewItem(item21);
+    listData2.addNewBringitItem(item11);
+    listData2.addNewBringitItem(item21);
 
     useCase._databaseSource.saveList(listData);
     useCase._databaseSource.saveList(listData2);
@@ -79,3 +79,4 @@ Meteor.startup(function () {
 
 });
     */
+

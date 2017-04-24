@@ -74,9 +74,12 @@ export class ShowPopupUseCase{
 
      */
     showPopupWithFunction(content, fun, index = 0){
+        //necessary to use jQuery and Bootstrap
         const $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
         window.$ = $;
+
+        //calling the library bootbox to make popups
         global.bootbox = require('bootbox');
         if (index === 0) {
             bootbox.alert({
@@ -168,6 +171,15 @@ export class ShowPopupUseCase{
      * @param content {string} : the html that will be shown inside the popup.
      */
     showPopup(content){
+
+        //necessary to use jQuery and Bootstrap
+        const $ = require('jquery');
+        global.jQuery = require("bootstrap-jquery");
+        window.$ = $;
+
+        //calling the library bootbox to make popups
+        global.bootbox = require('bootbox');
+
         bootbox.alert({
             size: "small",
             message: content,
