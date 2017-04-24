@@ -41,7 +41,6 @@ Package.onUse(function(api) {
         'client/GeneralView.js',
         'client/event/SaveListEvent.js',
         'client/event/SaveItemEvent.js',
-        'client/bringit/modal.html',
         'client/view/list/create/CreateListView.js',
         'client/view/list/create/presenter/CreateListViewPresenter.js',
         'client/view/list/create/view/CreateListViewImpl.js',

@@ -12,8 +12,8 @@ export class InputItemInfoViewPresenter {
      * public constructor
      *
      */
-    constructor() {
-
+    constructor(view) {
+        this._view= view;
     }
 
     createListItem(name, image, quantity, long_description, mesaurement_unit) {
