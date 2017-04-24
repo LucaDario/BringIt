@@ -11,6 +11,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     constructor(listName, listId = undefined){
         super();
 
+
         //create unique id list
         if(listId == undefined) {
             listId = ('_' + Math.random().toString(36).substr(2, 9)).toString();
