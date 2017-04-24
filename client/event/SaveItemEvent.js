@@ -6,7 +6,7 @@ const EventEmitter = require('events');
 
 import {container, singleton, inject} from 'dependency-injection-es6';
 
-export class SaveItemEventEvent extends EventEmitter{
+export class SaveItemEvent extends EventEmitter{
 
     /**
      * @constructor
@@ -31,5 +31,5 @@ export class SaveItemEventEvent extends EventEmitter{
 }
 
 // Register the class as a singleton so that each instance that is injected is always the same
-container.registerAsSingleton(SaveItemEventEvent);
+container.registerAsSingleton(SaveItemEvent);
 

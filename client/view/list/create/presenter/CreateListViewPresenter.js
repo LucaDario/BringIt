@@ -95,8 +95,7 @@ export class CreateListViewPresenter {
 function createJsonList(listData) {
     return {
 		listData,
-
-        bubbleType:'todo'
+        bubbleType:'Bringit'
     };
 
 }

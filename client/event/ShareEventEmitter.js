@@ -7,8 +7,6 @@
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
-import {ShareWithGroupViewImpl} from '../view/list/ShareListWithGroup/view/ShareWithGroupViewImpl';
-import {ShareWithGroupView} from '../view/list/ShareListWithGroup/ShareWithGroupView';
 
 const EventEmitter = require('events');
 

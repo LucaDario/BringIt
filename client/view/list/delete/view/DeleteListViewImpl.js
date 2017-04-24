@@ -15,10 +15,9 @@ export class DeleteListViewImpl extends DeleteListView{
      */
     _presenter;
 
-    /**
-     * @type {Object}: The DeleteEvent instance
-     */
     _deleteEvent;
+
+    _popup;
 
     /**
      * Public constructor
@@ -26,19 +25,22 @@ export class DeleteListViewImpl extends DeleteListView{
     constructor(){
         super();
         //TODO inject
-        this._presenter = new DeleteListViewPresenter(this);
-        this._deleteEvent = container.resolve(DeleteListEventEmitter);
-        this._deleteEvent.on('deleteEvent', (listId) => {
-            this._presenter.openDeleteListView(listId);
+        this._popup = container.resolve(ShowPopupUseCase);
+        this._deleteEvent.on('deleteEvent', (listId,nameList) => {
+            Meteor.subscribe('deleteList',listId,nameList, {
+                onReady: () => {
+                    this._popup.showPopupWithFunction(nameList,()=>{},2);
+                }
+            });
         });
+        this._presenter = new DeleteListViewPresenter(this);
     }
 
-    /**
-     * @method onDeleteListClicked
-     *It represents the view that allows you to delete a bringit list.
-     * @param listId {Object}: The id of the list that will be send with the emitter
-     */
-    onDeleteListClicked(listId){
-        this._deleteEvent.emitDeleteEvent(listId);
+    getDeleteEvent(){
+        return this._deleteEvent;
+    }
+
+    openDeleteListView(listId,nameList){
+        this._presenter.openDeleteListView(listId,nameList);
     }
 }

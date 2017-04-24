@@ -17,7 +17,7 @@ export class InputItemInfoViewPresenter {
     }
 
     createListItem(name, image, quantity, long_description, mesaurement_unit) {
-        let ListItem = new ListItem();
+        let listItem = new ListItem();
 
         //let widget_immagine= new Monolith.widgets.ImageWidget();
 
