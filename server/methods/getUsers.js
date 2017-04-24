@@ -15,23 +15,3 @@ Meteor.methods({
         return users;
     }
 });
-
-
-
-/*Meteor.publish('getUsers', function() {
-    if (!this.userId) {
-        return this.ready();
-    }
-
-    let users = RocketChat.models.Users.findUsersNotOffline({
-        fields: {
-            username: 1,
-            status: 1,
-            utcOffset: 1
-        }
-    }).fetch();
-    console.log(users);
-
-    return users;
-});
-*/
