@@ -16,29 +16,15 @@ export class DeleteListViewImpl extends DeleteListView{
     _presenter;
 
     /**
-     * @type {Object}: The DeleteEvent instance
-     */
-    _deleteEvent;
-
-    /**
      * Public constructor
      */
     constructor(){
         super();
         //TODO inject
         this._presenter = new DeleteListViewPresenter(this);
-        this._deleteEvent = container.resolve(DeleteListEventEmitter);
-        this._deleteEvent.on('deleteEvent', (listId) => {
-            this._presenter.openDeleteListView(listId);
-        });
     }
 
-    /**
-     * @method onDeleteListClicked
-     *It represents the view that allows you to delete a bringit list.
-     * @param listId {Object}: The id of the list that will be send with the emitter
-     */
-    onDeleteListClicked(listId){
-        this._deleteEvent.emitDeleteEvent(listId);
+    openDeleteListView(listId,nameList){
+        this._presenter.openDeleteListView(listId,nameList);
     }
 }

@@ -56,10 +56,14 @@ Package.onUse(function(api) {
         'client/view/list/shareListWithContact/ShareWithContactView.js',
         'client/view/list/shareListWithContact/presenter/ShareWithContactViewPresenter.js',
         'client/usecase/ShowPopupUseCase.js',
+        'client/view/list/delete/DeleteListView.js',
+        'client/view/list/delete/presenter/DeleteListViewPresenter.js',
+        'client/view/list/delete/view/delete.js',
+        'client/view/list/delete/view/DeleteListViewImpl.js',
         'client/usecase/popup.html',
         'data/ListData.js',
         'data/ListItem.js',
-        'client/view/list/create/tabBar.js',
+        'client/view/list/create/tabBar.js'
     ],'client');
 
     api.addFiles(['server/publications/addList.js',
