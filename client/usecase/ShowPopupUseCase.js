@@ -69,16 +69,48 @@ export class ShowPopupUseCase{
      * Show a popup with a message inside and after its closing a function will be executed in an asynchronous way.
      * @param content {string} : the html that will be shown inside the popup.
      * @param fun {function} : this function will be executed after popup's closing.
+     * @param indice  : this indice set the type of modal .
+
      */
-    showPopupWithFunction(content, fun){
-        bootbox.alert({
-            size: "small",
-            message: content,
-            backdrop: true,
-            closeButton: true,
-            onEscape: false,
-            callback: fun
-        });
+    showPopupWithFunction(content, fun, indice=0){
+        var $ = require('jquery');
+        global.jQuery = require("bootstrap-jquery");
+        window.$ = $;
+        global.bootbox = require('bootbox');
+
+
+        if (indice==0) {
+            bootbox.alert({
+                size: "small",
+                message: content,
+                backdrop: true,
+                closeButton: true,
+                onEscape: false,
+                callback: fun
+            });
+        }
+        if (indice==1) {
+            bootbox.confirm({
+
+                size: "small",
+                message: content,
+                buttons: {
+                    confirm: {
+                        label: 'Vuoi confermare questo item',
+                        className: 'btn-success'
+                    }},
+                closeButton: false,
+                onEscape: false,
+                callback: function(result) {
+                    console.log(result + "DIOCANE");
+                    if (result==true)
+                    {
+                        fun();
+                    }
+
+                }
+            });
+        }
         let elem = document.getElementsByClassName('modal-dialog');
         let last = document.getElementsByClassName('modal-dialog')[elem.length-1];
         last.style.zIndex = "1500";
