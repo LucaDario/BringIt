@@ -5,7 +5,7 @@ def projectKey = 'swe-bringit'
 def projectName = 'Bringit'
 
 // Node where this job can run
-def targetNode = 'master'
+def targetNode = 'Rocketchat-000 || Rocketchat-001'
 
 // Define if at the of the job should start the deploying procedure
 def deployOnProduction = false
