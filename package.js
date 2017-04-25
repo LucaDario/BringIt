@@ -37,6 +37,7 @@ Package.onUse(function(api) {
     api.addFiles([
         'client/bringit/Bringit.js',
         'bringit.js',
+        'client/modal.css',
         'client/chat/ChatSource.js',
         'client/GeneralView.js',
         'client/event/SaveListEvent.js',

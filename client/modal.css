@@ -1,0 +1,19 @@
+.modal-dialog{
+    z-index : 1500;
+}
+.modal-content{
+    color : #fff;
+    background-color: #0b406a;
+}
+.modal-content .modal-header{
+    font-weight: bold;
+}
+.modal-content .modal-body{
+    background-color: #044b76;
+}
+.modal-content .modal-footer, .modal-content .modal-header{
+    background-color: #0b406a;
+}
+.modal-body #sites{
+    background-color: #fff;
+}

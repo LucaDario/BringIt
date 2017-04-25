@@ -19,6 +19,7 @@ import {ChatSource} from "../chat/ChatSource";
 import "./popup.html";
 import {DeleteListEventEmitter} from '../event/DeleteListEventEmitter';
 import {ShareEventEmitter} from '../event/ShareEventEmitter';
+import "../modal.css";
 
 //const ReactiveModal = require('');
 
@@ -47,22 +48,26 @@ export class ShowPopupUseCase{
 
         //calling the library bootbox to make popups
         global.bootbox = require('bootbox');
-        bootbox.alert({
+        bootbox.confirm({
             size: "small",
+            title: "Choose a channel",
             message: content,
-            backdrop: true,
-            closeButton: true,
+            buttons: {
+                confirm: {
+                    label: 'Share',
+                }
+            },
+            closeButton: false,
             onEscape: false,
-            callback: function(){ // it will be executed after popup's closing
-                let emitter = container.resolve(ShareEventEmitter);
-                let selected = $('#sites').val(); //get user's choice
-                console.log(emitter);
-                emitter.emitShareEvent(selected,json); // launch event
+            callback: function(result){ // it will be executed after popup's closing
+                if(result === true) {
+                    let emitter = container.resolve(ShareEventEmitter);
+                    let selected = $('#sites').val(); //get user's choice
+                    console.log(emitter);
+                    emitter.emitShareEvent(selected, json); // launch event
+                }
             }
         });
-        let elem = document.getElementsByClassName('modal-dialog');
-        let last = document.getElementsByClassName('modal-dialog')[elem.length-1];
-        last.style.zIndex = "1500";
     }
 
     /**
@@ -134,12 +139,11 @@ export class ShowPopupUseCase{
             global.bootbox = require('bootbox');
             bootbox.confirm({
                 size: "small",
-                title: 'Elimina lista' + content,
-                message: 'Sei sicuro?',
+                title: 'Delete list ' + content,
+                message: 'Are you sure?',
                 buttons: {
                     confirm: {
-                        label: 'Sì',
-                        className: 'btn btn-success'
+                        label: 'Yes',
                     }
                 },
                 closeButton: false,
@@ -151,18 +155,6 @@ export class ShowPopupUseCase{
                 }
             });
         }
-        let elem = document.getElementsByClassName('modal-dialog');
-        elem[elem.length-1].style.zIndex = "1500";
-        let elem2 = document.getElementsByClassName('modal-content');
-        elem2[elem2.length-1].style.color = "#fff";
-        let elem3 = document.getElementsByClassName('modal-header');
-        elem3[elem3.length-1].style.backgroundColor = "#0b406a";
-        let elem4 = document.getElementsByClassName('modal-body');
-        elem4[elem4.length-1].style.backgroundColor = "#044b76";
-        let elem5 = document.getElementsByClassName('modal-footer');
-        elem5[elem5.length-1].style.backgroundColor = "#044b76";
-        let elem6 = document.getElementsByClassName('bootbox-body');
-        elem6[elem6.length-1].style.opacity = "0.6";
     }
 
     /**
@@ -187,9 +179,6 @@ export class ShowPopupUseCase{
             closeButton: true,
             onEscape: false
         });
-        let elem = document.getElementsByClassName('modal-dialog');
-        let last = document.getElementsByClassName('modal-dialog')[elem.length-1];
-        last.style.zIndex = "1500";
     }
 }
 

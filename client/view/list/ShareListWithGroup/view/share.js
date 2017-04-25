@@ -31,8 +31,7 @@ Meteor.startup (function () {
                     let popup = container.resolve(ShowPopupUseCase);
 
                     //make the html which will be shown inside the popup
-                    let html = '<h3 style="color: #FFFFFF"> Choose a channel </h3>' +
-                        '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
+                    let html = '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
                     for(let i=0; i<result.channels.length; i++){
                         html = html + '<option data-tokens="'+result.channels[i].name+'">'
                             +result.channels[i].name+'</option>';
