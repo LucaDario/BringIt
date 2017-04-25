@@ -1,15 +1,13 @@
 /**
  * Created by Stefano Lia on 03/04/2017
- * Version {1.0.1} - {This function adds a pin button when a message is a TodoListBubble}
+ * Version {1.0.1} - {This function adds a button when a message contains a listData field}
+ * Description: At the beginning of the application's start this function adds a button which is visible when you click the
+ * 'option' button above a message.
  */
 
 import {ShowPopupUseCase} from "../../../../usecase/ShowPopupUseCase";
 import {container, singleton, inject} from 'dependency-injection-es6';
 import {ShareWithGroupViewImpl} from './ShareWithGroupViewImpl';
-
-/**
- * This function creates a JSON file which allows adding a pin button.
- */
 
 Meteor.startup (function () {
 
@@ -49,7 +47,7 @@ Meteor.startup (function () {
             });
         },
         "validation": (message) => {
-            console.log(message);
+            //shows the button only if the message contains a listData field
             if(message.listData != undefined){
                 // copy the message
                 this.message = {
