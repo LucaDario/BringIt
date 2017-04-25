@@ -122,7 +122,7 @@ export class ShowPopupUseCase{
             global.jQuery = require('bootstrap-jquery');
             window.$ = $;
             let title = 'List ' + content;
-            let message = 'Successfully deleted';
+            let message = 'Successfully deleted!';
             global.bootbox = require('bootbox');
             bootbox.alert({
                 size: "small",
