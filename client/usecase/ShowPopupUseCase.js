@@ -38,19 +38,18 @@ export class ShowPopupUseCase{
      * Shows a popup with a message inside and sends a message.
      * @param content {string}: Content which needs to be shown inside the popup.
      * @param json {JSON}: what will be shared in other channels.
+     * @param title {string}: the title of the modal
      */
-    showPopupAndSend(content,json){
-
-        //necessary to use jQuery and Bootstrap
+    showPopupAndSend(title,content,json){
         const $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
         window.$ = $;
-
+        //necessary to use jQuery and Bootstrap
         //calling the library bootbox to make popups
         global.bootbox = require('bootbox');
         bootbox.confirm({
             size: "small",
-            title: "Choose a channel",
+            title: title,
             message: content,
             buttons: {
                 confirm: {
@@ -59,8 +58,8 @@ export class ShowPopupUseCase{
             },
             closeButton: false,
             onEscape: false,
-            callback: function(result){ // it will be executed after popup's closing
-                if(result === true) {
+            callback: function (result) { // it will be executed after popup's closing
+                if (result === true) {
                     let emitter = container.resolve(ShareEventEmitter);
                     let selected = $('#sites').val(); //get user's choice
                     console.log(emitter);

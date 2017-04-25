@@ -38,7 +38,7 @@ Meteor.startup (function () {
                     }
                     html = html + '</select>';
 
-                    popup.showPopupAndSend(html, this.message);
+                    popup.showPopupAndSend('Choose a channel',html, this.message);
                 }
                 if(error){
                     console.log(error);

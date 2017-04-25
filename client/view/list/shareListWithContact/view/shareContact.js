@@ -30,8 +30,7 @@ Meteor.startup (function () {
                 let cond = false; //true if there are users available
                 let pop = container.resolve(ShowPopupUseCase);
                 // this html will be shown inside the popup
-                let html = '<h3 style="color: #FFFFFF"> Choose a User </h3>' +
-                    '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
+                let html = '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
                 //check the found users
                 for (let i = 0; i < result.length; i++) {
                     if(result[i].username != Meteor.user().username && result[i].username != 'rocket.cat') {
@@ -44,10 +43,10 @@ Meteor.startup (function () {
                 }
                 html = html + '</select>';
                 if(cond) {
-                    pop.showPopupAndSend(html, this.message);
+                    pop.showPopupAndSend('Choose a user',html, this.message);
                 }
                 else{
-                    pop.showPopup('Error','No Users available');
+                    pop.showPopup('Choose a user','No Users available');
                 }
             });
         },
