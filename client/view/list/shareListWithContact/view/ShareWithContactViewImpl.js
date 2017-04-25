@@ -20,8 +20,10 @@ export class ShareWithContactViewImpl extends ShareWithContactView{
         this._presenter = new ShareWithContactViewPresenter(this);
         this._shareEmitter = container.resolve(ShareEventEmitter);
         // this statement is used to catch the 'share event'
-        this._shareEmitter.on('shareEvent', (person,json) => {
-            this.onClickShareWithContact(person,json);
+        this._shareEmitter.on('shareEvent', (person,json,title) => {
+            if(title === 'Choose a user') {
+                this.onClickShareWithContact(person, json);
+            }
         });
     }
 

@@ -5,6 +5,7 @@
  */
 import {ChatSource} from "../../../../chat/ChatSource";
 import {container,inject} from 'dependency-injection-es6';
+import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
 
 export class ShareWithContactViewPresenter{
 
@@ -15,6 +16,7 @@ export class ShareWithContactViewPresenter{
     constructor(view){
         this._view = view;
         this._chat = container.resolve(ChatSource);
+        this._popup = container.resolve(ShowPopupUseCase);
 
     }
     /**
@@ -24,6 +26,13 @@ export class ShareWithContactViewPresenter{
      */
     onClickShareWithContact(person, json){
         this._chat.sendMessageToUser(person,json);
+
+        let f = function (person){
+            Meteor.subscribe('sendPermissionsContact', json.listData._id, person);
+        }
+
+        this._popup.showPopupWithFunction('<h3> Do you want to give the permissions to modify the list ' +
+            'to the user? </h3>',f(person),1);
     }
 
 }

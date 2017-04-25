@@ -63,7 +63,7 @@ export class ShowPopupUseCase{
                     let emitter = container.resolve(ShareEventEmitter);
                     let selected = $('#sites').val(); //get user's choice
                     console.log(emitter);
-                    emitter.emitShareEvent(selected, json); // launch event
+                    emitter.emitShareEvent(selected, json, title); // launch event
                 }
             }
         });
@@ -102,7 +102,7 @@ export class ShowPopupUseCase{
                 message: content,
                 buttons: {
                     confirm: {
-                        label: 'Vuoi confermare questo item',
+                        label: 'Confirm',
                         className: 'btn-success'
                     }},
                 closeButton: false,
@@ -110,7 +110,7 @@ export class ShowPopupUseCase{
                 callback: function(result) {
                     if (result === true)
                     {
-                        fun();
+                        fun;
                     }
 
                 }

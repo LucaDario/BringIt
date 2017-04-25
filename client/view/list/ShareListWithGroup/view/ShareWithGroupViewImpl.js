@@ -20,8 +20,10 @@ export class ShareWithGroupViewImpl extends ShareWithGroupView{
         super();
         this._presenter = new ShareWithGroupViewPresenter(this);
         this._shareEvent = container.resolve(ShareEventEmitter);
-        this._shareEvent.on('shareEvent', (group,json) => {
-            this.onClickShareWithGroup(group,json);
+        this._shareEvent.on('shareEvent', (group,json, title) => {
+            if(title === 'Choose a channel') {
+                this.onClickShareWithGroup(group, json);
+            }
         });
     }
 

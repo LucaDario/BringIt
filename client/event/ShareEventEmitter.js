@@ -27,8 +27,8 @@ export class ShareEventEmitter extends EventEmitter{
      * @param group {array} contains the group which you want to share something to
      * @param message {JSON} the message that you want to share
      */
-    emitShareEvent(group, message){
-        this.emit('shareEvent', group, message);
+    emitShareEvent(group, message, title){
+        this.emit('shareEvent', group, message, title);
     }
 
 
