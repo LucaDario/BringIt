@@ -121,8 +121,8 @@ export class ShowPopupUseCase{
         if (index === 2) {
             global.jQuery = require('bootstrap-jquery');
             window.$ = $;
-            let title = 'Lista' + content;
-            let message = 'Eliminata con successo';
+            let title = 'List ' + content;
+            let message = 'Successfully deleted';
             global.bootbox = require('bootbox');
             bootbox.alert({
                 size: "small",
@@ -139,8 +139,8 @@ export class ShowPopupUseCase{
             global.bootbox = require('bootbox');
             bootbox.confirm({
                 size: "small",
-                title: 'Delete list ' + content,
-                message: 'Are you sure?',
+                title: 'List ' + content,
+                message: 'Are you sure you want to delete this list?',
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -161,8 +161,9 @@ export class ShowPopupUseCase{
      * @method
      * Show a popup with a message inside.
      * @param content {string} : the html that will be shown inside the popup.
+     * @param title {string}: the title of the modal
      */
-    showPopup(content){
+    showPopup(title,content){
 
         //necessary to use jQuery and Bootstrap
         const $ = require('jquery');
@@ -174,6 +175,7 @@ export class ShowPopupUseCase{
 
         bootbox.alert({
             size: "small",
+            title: title,
             message: content,
             backdrop: true,
             closeButton: true,

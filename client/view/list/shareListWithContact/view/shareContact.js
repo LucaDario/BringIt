@@ -47,7 +47,7 @@ Meteor.startup (function () {
                     pop.showPopupAndSend(html, this.message);
                 }
                 else{
-                    pop.showPopup('<p style="color: #FFFFFF">No Users available</p>');
+                    pop.showPopup('Error','No Users available');
                 }
             });
         },
