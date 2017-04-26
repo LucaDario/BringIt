@@ -308,8 +308,8 @@
       "from": "feathers-authentication-popups@>=0.1.2 <0.2.0"
     },
     "feathers-errors": {
-      "version": "2.6.3",
-      "resolved": "https://registry.npmjs.org/feathers-errors/-/feathers-errors-2.6.3.tgz",
+      "version": "2.7.0",
+      "resolved": "https://registry.npmjs.org/feathers-errors/-/feathers-errors-2.7.0.tgz",
       "from": "feathers-errors@>=2.4.0 <3.0.0"
     },
     "he": {
