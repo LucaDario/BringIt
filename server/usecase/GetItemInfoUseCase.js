@@ -14,8 +14,8 @@
  */
 
 import {container,inject} from 'dependency-injection-es6';
-import {DatabaseSource} from "../../server/database/DatabaseSource";
-import {ListItem} from "../../data/ListItem";
+import {DatabaseSource} from "../server/database/DatabaseSource";
+import {ListItem} from "../data/ListItem";
 
 export class GetItemInfoUseCase {
 
@@ -41,7 +41,6 @@ container.registerAsSingleton(GetItemInfoUseCase);
  * Tests.
  * TODO: Move this inside the proper testing environment
  */
-/*
 Meteor.startup(function () {
     console.log('');
     console.log('=== GET ITEM INFO USE CASE ===');
@@ -58,16 +57,16 @@ Meteor.startup(function () {
     let item1 = new ListItem(); item1.setDescription("First item");
     let item2 = new ListItem(); item1.setDescription("Second item");
 
-    listData.addNewItem(item1);
-    listData.addNewItem(item2);
+    listData.addItem(item1);
+    listData.addItem(item2);
 
     let listData2 = useCase._databaseSource.createListForUserWithId(3);
     listData.setName('The best list ever made 2');
     let item11 = new ListItem(); item1.setDescription("First item 2");
     let item21 = new ListItem(); item1.setDescription("Second item 2");
 
-    listData2.addNewItem(item11);
-    listData2.addNewItem(item21);
+    listData2.addItem(item11);
+    listData2.addItem(item21);
 
     useCase._databaseSource.saveList(listData);
     useCase._databaseSource.saveList(listData2);
@@ -78,4 +77,3 @@ Meteor.startup(function () {
     console.log(useCase.getItemInfo(item21.getId()));
 
 });
-    */

@@ -13,9 +13,9 @@
  */
 
 import {container,inject} from 'dependency-injection-es6';
-import {DatabaseSource} from "../server/database/DatabaseSource";
-import {ListItem} from "../data/ListItem";
-import {ListData} from "../data/ListData";
+import {DatabaseSource} from '../server/database/DatabaseSource';
+import {ListItem} from '../data/ListItem';
+import {ListData} from '../data/ListData';
 
 export class ModifyListUseCase{
 
@@ -76,46 +76,46 @@ container.registerAsSingleton(ModifyListUseCase);
 
 // Tests
 // TODO: Move this to the proper test environment
-Meteor.startup(function () {
-    if(Meteor.isServer){
-        console.log('');
-        console.log('=== MODIFY LIST USE CASE ===');
-
-        // For recursive printing
-        const util = require('util');
-
-        let useCase = container.resolve(ModifyListUseCase);
-
-        console.log('Clear database');
-        useCase._databaseSource.clear();
-
-        console.log('Performing some tests');
-
-        let listData = new ListData();
-        listData.setName('Tryout');
-
-        console.log('List data change (insertion)');
-        useCase.saveList(listData);
-        console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
-
-
-        let listItem = new ListItem();
-        listItem.setName('First item');
-        listItem.setDescription('First item description');
-
-        console.log('Item insertion');
-        useCase.addItemToList(listData.getId(), listItem);
-        console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
-
-        console.log('Item updating');
-        listItem.setQuantity(10);
-        listItem.addNote('Tryout');
-        useCase.updateItemInsideList(listData.getId(), listItem);
-        console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
-
-        console.log('Item removing');
-        useCase.removeItemFromList(listData.getId(), listItem);
-        console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
-
-    }
-});
+// Meteor.startup(function () {
+//     if(Meteor.isServer){
+//         console.log('');
+//         console.log('=== MODIFY LIST USE CASE ===');
+//
+//         // For recursive printing
+//         const util = require('util');
+//
+//         let useCase = container.resolve(ModifyListUseCase);
+//
+//         console.log('Clear database');
+//         useCase._databaseSource.clear();
+//
+//         console.log('Performing some tests');
+//
+//         let listData = new ListData();
+//         listData.setName('Tryout');
+//
+//         console.log('List data change (insertion)');
+//         useCase.saveList(listData);
+//         console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
+//
+//
+//         let listItem = new ListItem();
+//         listItem.setName('First item');
+//         listItem.setDescription('First item description');
+//
+//         console.log('Item insertion');
+//         useCase.addItemToList(listData.getId(), listItem);
+//         console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
+//
+//         console.log('Item updating');
+//         listItem.setQuantity(10);
+//         listItem.addNote('Tryout');
+//         useCase.updateItemInsideList(listData.getId(), listItem);
+//         console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
+//
+//         console.log('Item removing');
+//         useCase.removeItemFromList(listData.getId(), listItem);
+//         console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
+//
+//     }
+// });

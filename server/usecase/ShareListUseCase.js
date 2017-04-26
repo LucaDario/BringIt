@@ -13,8 +13,8 @@
  */
 
 import {container,inject} from 'dependency-injection-es6';
-import {DatabaseSource} from "../database/DatabaseSource";
-//import {ChatSource} from "../../client/chat/ChatSource";
+import {DatabaseSource} from '../server/database/DatabaseSource';
+import {ChatSource} from '../client/chat/ChatSource';
 
 export class ShareListUseCase{
 
@@ -23,7 +23,7 @@ export class ShareListUseCase{
      */
     constructor(){
         this._databaseSource = container.resolve(DatabaseSource);
-        //this._chatSource = container.resolve(ChatSource);
+        this._chatSource = container.resolve(ChatSource);
     }
 
     /**

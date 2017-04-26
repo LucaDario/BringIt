@@ -1,5 +1,5 @@
 /**
- * Description: Interface which allows to communicate with the database to work with saved lists.
+ * Description: Interface which allows to communicate with the database to work with lists messages.
  * To obtain an instance of this class be sure to include the following code inside the class that uses it:
  * <code>
  *  // Needed import
@@ -10,13 +10,12 @@
  * <code/>
  *
  * Created by Riccardo Montagnin on 27/03/2017.
- * Version 1.0.0 - Initial version
+ * Version 1.1.0 - DatabaseSource now operates on messages instead of different entities
  */
 
-import {container, singleton, inject} from 'dependency-injection-es6';
+import {container} from 'dependency-injection-es6';
 import {ListData} from "../../data/ListData";
 import {ListItem} from "../../data/ListItem";
-import {Mongo} from 'meteor/mongo'
 
 export class DatabaseSource {
 
@@ -24,25 +23,8 @@ export class DatabaseSource {
      * Public constructor.
      */
     constructor(){
-        this._listCollection = new Mongo.Collection('lists');
-    }
-
-    /**
-     * Creates a new list for the user with the given id.
-     * @param userId {String}: Id of the user to which create a new list.
-     * @return {ListData}: The list that has been created.
-     */
-    createListForUserWithId(userId){
-        // Create the ListData
-        let listData = new ListData();
-
-        // Set the creator
-        listData.setCreatorId(userId);
-
-        // Add it to the database
-        this._listCollection.insert(listData);
-
-        return listData;
+        // this._listCollection = new Mongo.Collection('lists');
+        this._listCollection = RocketChat.models.Messages;
     }
 
     /**
@@ -50,7 +32,7 @@ export class DatabaseSource {
      * @param listId {@code String}: Id of the list to be deleted from the database.
      */
     removeList(listId){
-        this._listCollection.remove({_id : listId});
+        this._listCollection.remove({'listData._id' : listId});
     }
 
     /**
@@ -59,10 +41,8 @@ export class DatabaseSource {
      * @return {ListData}: The list that with the given id saved inside the database.
      */
     getListWithId(listId){
-        let data = this._listCollection.findOne({_id : listId});
-        return this._convertToListData(data);
-
-
+        let message = this._listCollection.findOne({'listData._id' : listId});
+        return this._convertToListData(message.listData);
     }
 
     /**
@@ -70,7 +50,7 @@ export class DatabaseSource {
      * @param listData {ListData}: List to be saved inside the database.
      */
     saveList(listData){
-        this._listCollection.upsert({_id: listData.getId()}, listData);
+        this._listCollection.upsert({'listData._id': listData.getId()}, {$set : {listData : listDataObject}});
     }
 
     /**
@@ -79,8 +59,8 @@ export class DatabaseSource {
      */
     getLists(){
         let lists = [];
-        this._listCollection.find({}).fetch().forEach(function (list) {
-            lists.push(this._convertToListData(list));
+        this._listCollection.find({listData : {$exists : true}}).fetch().forEach(function (message) {
+            lists.push(this._convertToListData(message.listData));
         }, this);
         return lists;
     }
@@ -91,8 +71,8 @@ export class DatabaseSource {
      * @return {ListItem}: Item retrieved, if found.
      */
     getItemWithId(itemId){
-        let list = this._listCollection.findOne({'_items._id' : itemId});
-        let listData = this._convertToListData(list);
+        let message = this._listCollection.findOne({'listData._items._id' : itemId});
+        let listData = this._convertToListData(message.listData);
         return listData.getItembById(itemId);
     }
 
@@ -158,9 +138,8 @@ container.registerAsSingleton(DatabaseSource);
  * Tests.
  * TODO: Move this inside the proper testing environment
  */
-
-if(Meteor.isServer) {
-    Meteor.startup(function () {
+Meteor.startup(function () {
+    if(Meteor.isServer){
         console.log('');
         console.log('=== DATABASE SOURCE ===');
 
@@ -169,45 +148,39 @@ if(Meteor.isServer) {
 
         let source = container.resolve(DatabaseSource);
 
-        console.log('Clearing the database');
-        source.clear();
-
-        console.log('Creating a list');
-
-        let listData = source.createListForUserWithId(1);
-        listData.setName('The best list ever made');
-        let item1 = new ListItem();
-        item1.setDescription("First item");
-        let item2 = new ListItem();
-        item1.setDescription("Second item");
-        listData.addItem(item1);
-        listData.addItem(item2);
-
-        let listData2 = source.createListForUserWithId(1);
-        listData2.setName('The best list ever made 2');
-        let item11 = new ListItem();
-        item11.setDescription("First item");
-        let item21 = new ListItem();
-        item21.setDescription("Second item");
-        listData2.addItem(item11);
-        listData2.addItem(item21);
-
-        source.saveList(listData);
-        source.saveList(listData2);
-
-        // Should print an object with the proper data
-        console.log('List created');
         console.log(util.inspect(source.getLists(), false, null));
 
-        console.log('Retrieving an item');
-        console.log(util.inspect(source.getItemWithId(item1.getId()), false, null));
+        // console.log('Clearing the database');
+        // source.clear();
+        //
+        // console.log('Creating a list');
+        //
+        // let listData = source.createListForUserWithId(1); listData.setName('The best list ever made');
+        // let item1 = new ListItem(); item1.setDescription("First item");
+        // let item2 = new ListItem(); item1.setDescription("Second item");
+        // listData.addItem(item1); listData.addItem(item2);
+        //
+        // let listData2 = source.createListForUserWithId(1); listData2.setName('The best list ever made 2');
+        // let item11 = new ListItem(); item11.setDescription("First item");
+        // let item21 = new ListItem(); item21.setDescription("Second item");
+        // listData2.addItem(item11); listData2.addItem(item21);
+        //
+        // source.saveList(listData);
+        // source.saveList(listData2);
+        //
+        // // Should print an object with the proper data
+        // console.log('List created');
+        // console.log(util.inspect(source.getLists(), false, null));
+        //
+        // console.log('Retrieving an item');
+        // console.log(util.inspect(source.getItemWithId(item1.getId()), false, null));
+        //
+        // console.log('Removing the list');
+        // source.removeList(listData.getId());
+        //
+        // // Should return []
+        // console.log('Current database content: ');
+        // console.log(util.inspect(source.getLists(), false, null));
+    }
 
-        console.log('Removing the list');
-        source.removeList(listData.getId());
-
-        // Should return []
-        console.log('Current database content: ');
-        console.log(util.inspect(source.getLists(), false, null));
-
-    });
-}
+});
