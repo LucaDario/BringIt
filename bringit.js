@@ -13,11 +13,9 @@ Meteor.startup(function () {
             //create a list with a same parameter inside a message
             const idList = message.listData._id;
             const nameList = message.listData._name;
-            const arrayItems = message.listData._items;
 
             let bubble = new Bringit(nameList,idList);
-            cloneItemFromJson(message.listData._items);
-            console.log(message.listData._id._str);
+            cloneItemFromJson(bubble,message.listData._items);
 
             return bubble;
 
@@ -26,10 +24,14 @@ Meteor.startup(function () {
 });
 
 
-function cloneItemFromJson(jsonItem) {
-    for(var i in jsonItem)
-    {
-        console.log(i);
+function cloneItemFromJson(bubble, jsonItem) {
+
+    for(let i = 0; i<jsonItem.length; i++){
+
+        bubble.addItemFromDb(jsonItem[i]._id, jsonItem[i]._name, jsonItem[i]._status,
+            jsonItem[i]._description, jsonItem[i]._measurementUnit,jsonItem[i]._quantity,
+            jsonItem[i]._imagePath);
+
     }
 
     

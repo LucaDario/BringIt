@@ -32,7 +32,7 @@ export class ManageListsUseCase {
      * @param listData {ListData | undefined}: If present, the data which will be saved.
      * @return {ListData}: Object representing the just created list.
      */
-    createList(userId, listData){
+    /*createList(userId, listData){
         let list;
 
         if(listData !== undefined){
@@ -48,7 +48,7 @@ export class ManageListsUseCase {
 
         // Return it
         return list;
-    }
+    }*/
 
     /**
      * Deletes a list from the database.
@@ -63,7 +63,7 @@ export class ManageListsUseCase {
 // Register the class as a singleton so that each instance that is injected is always the same
 container.registerAsSingleton(ManageListsUseCase);
 
-Meteor.startup(function () {
+/*Meteor.startup(function () {
     if(Meteor.isServer){
         console.log('');
         console.log('=== MANAGE LISTS USE CASE ===');
@@ -94,4 +94,4 @@ Meteor.startup(function () {
         console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
 
     }
-});
+});*/

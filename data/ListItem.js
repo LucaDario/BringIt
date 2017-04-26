@@ -16,6 +16,7 @@ export class ListItem {
         this._name = '';
         this._notes = [];
         this._quantity = 0;
+        this._status = false;
     }
 
     getId() {

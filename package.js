@@ -80,7 +80,8 @@ Package.onUse(function(api) {
             'server/methods/getUsers.js',
             'server/database/DatabaseSource.js',
             'server/publications/setStatusItemInDb.js',
-            'server/publications/deleteList.js'
+            'server/publications/deleteList.js',
+            'server/publications/addItemInList.js'
         ],
         'server');
 });

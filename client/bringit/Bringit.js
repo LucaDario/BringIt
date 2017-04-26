@@ -4,6 +4,7 @@
 
 import {container, singleton, inject} from 'dependency-injection-es6';
 import {ListData} from '../../data/ListData'
+import {ListItem} from '../../data/ListItem'
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
@@ -33,7 +34,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this._addItemButton.renderView();
         this._addItemButton.setText(this._textAddItemButton);
 
-        this._addItemButton.setOnLongClickAction(() => {
+        this._addItemButton.setOnClickAction(() => {
             this.showInputAddItem();
         });
 
@@ -50,6 +51,9 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this.addNewBringitItem('martei');
         console.log('addNewBringitItem');
         //per nico qui chiamerai il tuo popup per l'addNewBringitItem
+        let item = new ListItem();
+        item.setName('ciao');
+        Meteor.subscribe('addItemInList',this._id,item);
 
     }
 
@@ -126,6 +130,33 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
     deleteItem(itemId){
         Meteor.subscribe('deleteItem',this._id,itemId);
+    }
+
+    addItemFromDb(itemId, name, status, description = '', mesuramentUnit = '', quantity = '', image = ''){
+
+        let itemCheck = new Monolith.widgets.checklist.ChecklistWidgetItem(name,status,itemId);
+        let itemImage = new Monolith.widgets.ImageWidget;
+        let itemText = new Monolith.widgets.TextWidget;
+        itemText.setText(quantity+' '+ mesuramentUnit);
+
+        let layoutContainer = new Monolith.layout.HorizontalLayoutView;
+        layoutContainer.addItem(itemCheck);
+        layoutContainer.addItem(itemImage);
+        layoutContainer.addItem(itemText);
+        this._checklist.push(layoutContainer);
+
+
+        itemCheck.setOnClick(() => {
+            this.setStatusItemInDb(this._id, itemCheck.getId());
+
+        });
+
+        itemCheck.setOnLongClick(() => {
+
+        });
+
+        super.addComponent(layoutContainer);
+
     }
 
 

@@ -13,9 +13,9 @@
  */
 
 import {container,inject} from 'dependency-injection-es6';
-import {DatabaseSource} from "../server/database/DatabaseSource";
-import {ListItem} from "../data/ListItem";
-import {ListData} from "../data/ListData";
+import {DatabaseSource} from "../database/DatabaseSource";
+import {ListItem} from "../../data/ListItem";
+import {ListData} from "../../data/ListData";
 
 export class ModifyListUseCase{
 
@@ -69,6 +69,7 @@ export class ModifyListUseCase{
         this._databaseSource.saveList(list);
     }
 
+
 }
 
 // Register the class as a singleton so that each instance that is injected is always the same
@@ -76,7 +77,7 @@ container.registerAsSingleton(ModifyListUseCase);
 
 // Tests
 // TODO: Move this to the proper test environment
-Meteor.startup(function () {
+/*Meteor.startup(function () {
     if(Meteor.isServer){
         console.log('');
         console.log('=== MODIFY LIST USE CASE ===');
@@ -118,4 +119,4 @@ Meteor.startup(function () {
         console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
 
     }
-});
+});*/

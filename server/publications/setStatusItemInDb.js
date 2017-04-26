@@ -1,10 +1,14 @@
 /**
  * Created by lucadario on 22/04/17.
  */
-import {ListData} from '../../data/ListData';
+
+import {ModifyListUseCase} from '../usecase/ModifyListUseCase';
+import {container,inject} from 'dependency-injection-es6';
+
 Meteor.publish('setStatusItemInDb',function (listId,itemId,status) {
-   console.log('setItem');
-   //TODO rihiarare il use case per modificare lo status della lista
+
+    const modifyListUseCase = container.resolve(ModifyListUseCase);
+
 
 });
 

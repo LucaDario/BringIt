@@ -4,11 +4,8 @@
  */
 
 
-
 import {container,inject} from 'dependency-injection-es6';
 import {ManageListsUseCase} from '../usecase/ManageListsUseCase';
-import {DatabaseSource} from '../database/DatabaseSource';
-
 /**
  * this Publish delete from db the listData with USeCase {ManageListData}
  * @param listId {Object} the id of the list

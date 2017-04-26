@@ -72,17 +72,15 @@ export class CreateListViewPresenter {
 	}
 
     /**Public
-	 * Subscribe method with name 'createList' with listData as a parameter
+	 * sendMessage with a jSon object contains listData
      * @param listData {ListData}
      */
 	createList(listData){
-		Meteor.subscribe('createList',listData, {
-            onReady: () => {
-                let roomName = $('.room-title').text();
 
-				this._chatSourse.sendMessageToChatWithJson(roomName, createJsonList(listData));
-            }
-        });
+		let roomName = $('.room-title').text();
+
+		this._chatSourse.sendMessageToChatWithJson(roomName, createJsonList(listData));
+
 	}
 
 
