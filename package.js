@@ -54,23 +54,21 @@ Package.onUse(function(api) {
         'client/view/list/InputItem/InputItemInfoView.js',
         'client/view/list/InputItem/presenter/InputItemInfoViewPresenter.js',
         'client/view/list/InputItem/view/inputitemscript.js',
-        'client/view/list/ShareListWithGroup/view/share.js',
         'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.js',
         'client/view/list/ShareListWithGroup/ShareWithGroupView.js',
         'client/view/list/ShareListWithGroup/presenter/ShareWithGroupViewPresenter.js',
-        'client/view/list/shareListWithContact/view/shareContact.js',
         'client/view/list/shareListWithContact/view/ShareWithContactViewImpl.js',
         'client/view/list/shareListWithContact/ShareWithContactView.js',
         'client/view/list/shareListWithContact/presenter/ShareWithContactViewPresenter.js',
         'client/usecase/ShowPopupUseCase.js',
         'client/view/list/delete/DeleteListView.js',
         'client/view/list/delete/presenter/DeleteListViewPresenter.js',
-        'client/view/list/delete/view/delete.js',
         'client/view/list/delete/view/DeleteListViewImpl.js',
         'client/usecase/popup.html',
         'data/ListData.js',
         'data/ListItem.js',
-        'client/view/list/create/tabBar.js'
+        'client/view/list/create/tabBar.js',
+        'client/messageActionButton.js'
     ],'client');
 
     api.addFiles([
