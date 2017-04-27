@@ -1,26 +1,23 @@
 /**
- * Created by Stefano Lia on 25/04/2017
+ * Created by Stefano Lia on 26/04/2017
  * Version {VERSION} - {VERSION_NOTES}
  */
 
-
-
-import {ShareWithGroupViewImpl} from './ShareWithGroupViewImpl';
+import {ShareWithContactViewImpl} from './ShareWithContactViewImpl';
 import {ListData} from '../../../../../data/ListData';
-import { Meteor } from 'meteor/meteor';
 
-describe('ShareWithGroupViewImpl', function () {
+describe('ShareWithContactViewImpl', function () {
     it('Check that is instantiable', function () {
         // This code will be executed by the test driver when the app is started
         // in the correct mode
         expect(
             () => {
-                new ShareWithGroupViewImpl(); //NOSONAR
+                new ShareWithContactViewImpl(); //NOSONAR
             }
         ).to.not.throw();
     });
     it("Check correct sharing", function () {
-        const share = new ShareWithGroupViewImpl();
+        const share = new ShareWithContactViewImpl();
         const listData = new ListData();
         listData.setName('Test');
         listData.setCreatorId(this.userId);
@@ -28,8 +25,9 @@ describe('ShareWithGroupViewImpl', function () {
             "bubbleType": 'Bringit',
             "listData": listData
         }
-        share.onClickShareWithGroup('general',json);
+        share.onClickShareWithContact('rocket.cat',json);
         return Meteor.call('getMessage',listData.getId(),function (error,result) {
+            console.log(result);
             return result != undefined;
         })
     });

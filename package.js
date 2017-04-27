@@ -78,6 +78,7 @@ Package.onUse(function(api) {
             'server/usecase/ManageListsUseCase.js',
             'server/usecase/ShareListUseCase.js',
             'server/methods/getUsers.js',
+            'server/methods/getMessage.js',
             'server/database/DatabaseSource.js',
             'server/publications/setStatusItemInDb.js',
             'server/publications/deleteList.js',
@@ -97,5 +98,18 @@ Package.onTest(function(api) {
     ]);
 
     api.use('templating', 'client');
+    api.use('mongo',['client','server']);
+
+    api.addFiles([
+        'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.test.js',
+        'client/view/list/shareListWithContact/view/ShareWithContactViewImpl.test.js'
+    ], 'client');
+
+    api.addFiles([
+        'server/methods/getMessage.js'
+    ], 'server');
+
+
 });
+
 

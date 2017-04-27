@@ -40,12 +40,11 @@ export class ChatSource{
             //creating a direct message
             Meteor.call('createDirectMessage', user[i], function (error, result) {
                 if (result) {
-                    console.log(result);
                     const msgObject = {
                         "_id": Random.id(),
                         "rid": result.rid,
                         "bubbleType": json.bubbleType,
-                        "listData:": json.listData,
+                        "listData": json.listData,
                         "msg": '',
                     };
                     console.log(msgObject);
@@ -53,7 +52,7 @@ export class ChatSource{
                     Meteor.call('sendMessage', msgObject);
                 }
                 else {
-                    console.log("ERRORE");
+                    console.log(error);
                 }
             });
         }
