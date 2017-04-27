@@ -1,6 +1,6 @@
 /**
  * Created by Francesco Bazzerla on 26/04/2017
- * Version 1.0.14 - Completed
+ * Version 1.0.15 - Completed
  */
 import {container,inject} from 'dependency-injection-es6';
 import {DeleteListViewImpl} from './view/list/delete/view/DeleteListViewImpl';
@@ -12,7 +12,7 @@ import {ShareWithGroupViewImpl} from './view/list/ShareListWithGroup/view/ShareW
 Meteor.startup(()=> {
     const btn = RocketChat.MessageAction.getButtons(null,null);
     for(let i in btn) {
-        if (btn[i].validation !== undefined) {
+        if (btn[i].validation !== undefined && btn[i].id !== 'reaction-message') {
             let oldVal = btn[i].validation.toString();
             oldVal = oldVal.substring(20);
             btn[i].validation = new Function("message", "{if (message.listData !== undefined" +
@@ -23,16 +23,8 @@ Meteor.startup(()=> {
 });
 
 Meteor.startup (function () {
-
-    /**
-     * Created by Stefano Lia on 03/04/2017
-     * Version {1.0.1} - {This function adds a button when a message contains a listData field}
-     * Description: At the beginning of the application's start this function adds a button which is visible when you click the
-     * 'option' button above a message.
-     */
-
     //the final receiver of the shareEvent emitted by the popup
-    let shareGroup = new ShareWithGroupViewImpl();
+    const shareGroup = new ShareWithGroupViewImpl();
     const pop = container.resolve(ShowPopupUseCase);
     //add the button to share the ToDoListBubble with a group
     RocketChat.MessageAction.addButton({
@@ -45,48 +37,44 @@ Meteor.startup (function () {
         ],
         "action": (event, instance) => {
             //this function gets the list of channels which are open in your instance of Rocket.Chat
-            Meteor.call('channelsList','','',function(error,result){
-                if(result) {
+            Meteor.call('channelsList', '', '', function (error, result) {
+                if (result) {
                     //let message = $(event.currentTarget).closest('.message')[0];
 
                     //make the html which will be shown inside the popup
                     let html = '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
-                    for(let i=0; i<result.channels.length; i++){
-                        html = html + '<option data-tokens="'+result.channels[i].name+'">'
-                            +result.channels[i].name+'</option>';
+                    for (let i = 0; i < result.channels.length; i++) {
+                        html = html + '<option data-tokens="' + result.channels[i].name + '">'
+                            + result.channels[i].name + '</option>';
                     }
                     html = html + '</select>';
-
-                    pop.showPopupAndSend('Choose a channel',html, this.message);
+                    pop.showPopupAndSend('Choose a channel', html, this.message);
                 }
-                if(error){
+                if (error) {
                     console.log(error);
                 }
             });
         },
         "validation": (message) => {
             //shows the button only if the message contains a listData field
-            if(message.listData !== undefined){
+            if (message.listData !== undefined) {
+                let auth = true;
+                for(let i in message.listData._users) {
+                    auth = auth && (message.listData._users[i] === Meteor.userId());
+                }
                 // copy the message
                 this.message = {
                     listData: message.listData,
                     bubbleType: message.bubbleType
                 };
-                return message.listData._creatorId === Meteor.userId();
+                return auth || (message.listData._creatorId === Meteor.userId());
             }
             return false;
         }
     });
 
-    /**
-     * Created by Stefano Lia on 23/04/2017
-     * Version 1.0.2 - At the beginning of the application's start this function adds a button which is visible when you click the
-     * 'option' button above a message.
-     * Description: This function add the 'share with contact' button
-     */
-
-        //the final receiver of the shareEvent emitted by the popup
-    let shareContact = new ShareWithContactViewImpl();
+    //the final receiver of the shareEvent emitted by the popup
+    const shareContact = new ShareWithContactViewImpl();
     //add the button to share the ToDoListBubble with a group
     RocketChat.MessageAction.addButton({
         "id": 'shareContact-pin',
@@ -125,22 +113,21 @@ Meteor.startup (function () {
         "validation": (message) => {
             //shows the button only if the message contains a listData field
             if(message.listData !== undefined){
+                let auth = true;
+                for(let i in message.listData._users) {
+                    auth = auth && (message.listData._users[i] === Meteor.userId());
+                }
                 // copy the message
                 this.message = {
                     listData: message.listData,
                     bubbleType: message.bubbleType
                 };
-                return message.listData._creatorId === Meteor.userId();
+                return auth || (message.listData._creatorId === Meteor.userId());
             }
             return false;
         }
     });
 });
-
-/**
- * Created by Francesco Bazzerla on 20/04/2017
- * Version 1.0.3 - Completed
- */
 
 Meteor.startup (function () {
     const deleteView = new DeleteListViewImpl();
@@ -163,8 +150,12 @@ Meteor.startup (function () {
             delEvent.emitDeleteThis(listId,nameList);
         },
         "validation": (message) => {
-            if(message.listData !== undefined && message.listData._creatorId === Meteor.userId()){
-                return message.listData._creatorId === Meteor.userId();
+            if(message.listData !== undefined){
+                let auth = true;
+                for(let i in message.listData._users) {
+                    auth = auth && (message.listData._users[i] === Meteor.userId());
+                }
+                return auth || (message.listData._creatorId === Meteor.userId());
             }
             return false;
         }
