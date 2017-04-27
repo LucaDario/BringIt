@@ -15,8 +15,8 @@ Meteor.startup(()=> {
         if (btn[i].validation !== undefined) {
             let oldVal = btn[i].validation.toString();
             oldVal = oldVal.substring(20);
-            btn[i].validation = new Function("message", "{if (message.listData !== undefined && " +
-                "message.listData._creatorId === Meteor.userId()) {return false;}" +
+            btn[i].validation = new Function("message", "{if (message.listData !== undefined" +
+                ") {return false;}" +
                 oldVal);
         }
     }

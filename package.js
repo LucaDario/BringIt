@@ -104,6 +104,12 @@ Package.onTest(function(api) {
         'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.test.js',
         'client/view/list/shareListWithContact/view/ShareWithContactViewImpl.test.js'
     ], 'client');
+
+    api.addFiles([
+        'server/methods/getMessage.js'
+    ], 'server');
+
+
 });
 
 
