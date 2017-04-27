@@ -12,8 +12,12 @@ export class InputItemInfoViewPresenter {
      * public constructor
      *
      */
-    constructor(view) {
+    constructor(view,listId) {
         this._view= view;
+        this._listId = listId;
+    }
+    getListId(){
+        return this._listId;
     }
 
     createListItem(name, image, quantity, long_description, mesaurement_unit) {
@@ -30,14 +34,16 @@ export class InputItemInfoViewPresenter {
         //let widget_checklist = new Monolith.widgets.CheckListWidgetItem();
         // widget_checklist.createOption(name);
 
-        ListItem.imagePath = image;
-        ListItem._measurementUnit = mesaurement_unit;
-        ListItem._name = name;
-        ListItem._notes = [];
-        ListItem._quantity = quantity;
-        ListItem._description = long_description;
+        listItem.setImagePath(image);
+        listItem.setMeasurementUnit(mesaurement_unit);
+        listItem.setName(name);
 
-        return ListItem;
+        //TODO aggiungere note sia view
+        listItem._notes = [];
+        listItem.setQuantity(quantity);
+        listItem.setDescription(long_description);
+
+        return listItem;
 
     }
 }

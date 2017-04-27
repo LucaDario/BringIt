@@ -13,16 +13,16 @@ import {ShowPopupUseCase} from '../../../../../client/usecase/ShowPopupUseCase';
  *  call InputListInfoViewImpl.onSaveClicked
  *
  */
-function showpopupitemad()
+function showpopupitemad(listId)
 {
     let showPop = container.resolve(ShowPopupUseCase);
 
-    let inputItemInfoView = new InputItemInfoViewImpl();
+    let inputItemInfoView = new InputItemInfoViewImpl(listId);
 
     let f = function () {
         inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
-            $("#itemdescription").val(), $("#itemMesaurement").val(), 'imageitem',);
-    }
+            $("#itemdescription").val(),'imageitem',$("#itemMesaurement").val() );
+    };
 
 
     showPop.showPopupWithFunction(

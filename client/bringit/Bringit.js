@@ -5,12 +5,16 @@
 import {container, singleton, inject} from 'dependency-injection-es6';
 import {ListData} from '../../data/ListData'
 import {ListItem} from '../../data/ListItem'
+import {showpopupitemad} from '../view/list/InputItem/view/inputitemscript';
+import {SaveItemEvent} from '../event/SaveItemEvent';
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
 
     constructor(listName, listId = undefined){
         super();
+        this._saveItemEvent = container.resolve(SaveItemEvent);
+
 
 
         //create unique id list
@@ -40,6 +44,13 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
         super.addComponent(this._addItemButton);
 
+        this._saveItemEvent.on('saveEventItem',(item,listId) => {
+            if(this._id == listId){
+                this.addNewBringitItem(item);
+            }
+
+        });
+
 
 
 
@@ -48,40 +59,18 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
 
     showInputAddItem(){
-        this.addNewBringitItem('martei');
-        console.log('addNewBringitItem');
         //per nico qui chiamerai il tuo popup per l'addNewBringitItem
-        let item = new ListItem();
-        item.setName('ciao');
+        showpopupitemad(this._id);
+
+
+
+    }
+
+    addNewBringitItem(item) {
         Meteor.subscribe('addItemInList',this._id,item);
 
     }
 
-    addNewBringitItem() {
-        let itemCheck = new Monolith.widgets.checklist.ChecklistWidgetItem('');
-        let itemImage = new Monolith.widgets.ImageWidget;
-        let itemText = new Monolith.widgets.TextWidget;
-
-        let layoutContainer = new Monolith.layout.HorizontalLayoutView;
-        layoutContainer.addItem(itemCheck);
-        layoutContainer.addItem(itemImage);
-        layoutContainer.addItem(itemText);
-
-
-        this._checklist.push(layoutContainer);
-
-
-        itemCheck.setOnClick(() => {
-            this.setStatusItemInDb(this._id, itemCheck.getId());
-
-        });
-
-        itemCheck.setOnLongClick(() => {
-
-        });
-
-        super.addComponent(layoutContainer);
-    }
 
     addImage(itemContainer,path){
         let listItem = itemContainer.getItems();
@@ -114,43 +103,62 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         }
     }
 
-    setStatusItemInDb(itemId, status){
-        Meteor.subscribe('setStatusItemInDb',this._id,itemId,status);
+    setStatusItemInDb(listItem){
+        Meteor.subscribe('setStatusItemInDb',this._id,listItem);
 
     }
 
-
-    cloneListItem(listItemJson){
-
-    }
+    /**
+     *
+     *Deletes all lists that have the id equal to this instance of Bringit from the all chat and database
+     */
 
     deleteList(){
+        //call a publish in server
         Meteor.subscribe('deleteList',this._id);
     }
+
+    /**
+     *Deletes all item that have the id equal to @param itemId from the all chat and database
+     * @param itemId {string} Id of the Item I Want delete from the all list
+     */
 
     deleteItem(itemId){
         Meteor.subscribe('deleteItem',this._id,itemId);
     }
 
-    addItemFromDb(itemId, name, status, description = '', mesuramentUnit = '', quantity = '', image = ''){
+    //provissorio
 
-        let itemCheck = new Monolith.widgets.checklist.ChecklistWidgetItem(name,status,itemId);
+    /**
+     *
+     * @param listItem {ListItem}
+     */
+
+    addItemFromDb(listItem){
+
+        let itemCheck = new Monolith.widgets.checklist.ChecklistWidgetItem(listItem.getName(),listItem.getStatus(),listItem.getId());
         let itemImage = new Monolith.widgets.ImageWidget;
-        let itemText = new Monolith.widgets.TextWidget;
-        itemText.setText(quantity+' '+ mesuramentUnit);
+        let widgetQuantity = new Monolith.widgets.TextWidget;
+        widgetQuantity.setText(listItem.getQuantity().toString());
+        let widgetUnity = new Monolith.widgets.TextWidget;
+        widgetQuantity.setText(listItem.getQuantity().toString());
 
         let layoutContainer = new Monolith.layout.HorizontalLayoutView;
         layoutContainer.addItem(itemCheck);
         layoutContainer.addItem(itemImage);
-        layoutContainer.addItem(itemText);
+        layoutContainer.addItem(widgetQuantity);
         this._checklist.push(layoutContainer);
 
+        //set action for click
 
         itemCheck.setOnClick(() => {
-            this.setStatusItemInDb(this._id, itemCheck.getId());
+            listItem.setStatus(itemCheck.isChecked());
+            this.setStatusItemInDb(listItem);
 
         });
 
+
+       // set action fot long click
         itemCheck.setOnLongClick(() => {
 
         });

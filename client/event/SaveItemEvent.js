@@ -20,10 +20,11 @@ export class SaveItemEvent extends EventEmitter{
 
     /**Public
      *This method emit a event with 'saveEvent'
-     * @param list {ListData} listData to pass pass through in emit method
+     * @param item {ListData} listData to pass pass through in emit method
+     * @param listId {string}
      */
-    emitSaveEventItem(item){
-        this.emit('saveEventItem', item);
+    emitSaveEventItem(item,listId){
+        this.emit('saveEventItem', item,listId);
     }
 
 

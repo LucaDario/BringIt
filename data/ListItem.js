@@ -5,6 +5,7 @@
  */
 
 export class ListItem {
+
     constructor(){
         // Create a unique id
         ObjectID = Mongo.ObjectID;
@@ -17,6 +18,13 @@ export class ListItem {
         this._notes = [];
         this._quantity = 0;
         this._status = false;
+    }
+    getStatus() {
+        return this._status;
+    }
+
+    setStatus(value) {
+        this._status = value;
     }
 
     getId() {

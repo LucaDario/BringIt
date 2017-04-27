@@ -3,6 +3,7 @@
  */
 import {Bringit} from './client/bringit/Bringit'
 import {container, singleton, inject} from 'dependency-injection-es6';
+import {ListItem} from './data/ListItem';
 
 /**
  * Register the custom bubble 'Bringit' in monolith
@@ -13,7 +14,6 @@ Meteor.startup(function () {
             //create a list with a same parameter inside a message
             const idList = message.listData._id;
             const nameList = message.listData._name;
-
             let bubble = new Bringit(nameList,idList);
             cloneItemFromJson(bubble,message.listData._items);
 
@@ -26,12 +26,22 @@ Meteor.startup(function () {
 
 function cloneItemFromJson(bubble, jsonItem) {
 
-    for(let i = 0; i<jsonItem.length; i++){
+    for(let i = 0; i < jsonItem.length; i++){
+        let listItem = new ListItem();
+        //add all notes
+        for(let j = 0; j < jsonItem[i]._notes.length; j++){
+            listItem.addNote(jsonItem[i]._notes[j]);
+        }
 
-        bubble.addItemFromDb(jsonItem[i]._id, jsonItem[i]._name, jsonItem[i]._status,
-            jsonItem[i]._description, jsonItem[i]._measurementUnit,jsonItem[i]._quantity,
-            jsonItem[i]._imagePath);
 
+        listItem.setName(jsonItem[i]._name);
+        listItem.setId(jsonItem[i]._id);
+        listItem.setStatus(jsonItem[i]._status);
+        listItem.setDescription(jsonItem[i]._description);
+        listItem.setMeasurementUnit(jsonItem[i]._measurementUnit);
+        listItem.setQuantity(jsonItem[i]._quantity);
+        listItem.setImagePath(jsonItem[i]._imagePath);
+        bubble.addItemFromDb(listItem);
     }
 
     
