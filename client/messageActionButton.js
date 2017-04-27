@@ -58,11 +58,9 @@ Meteor.startup (function () {
         "validation": (message) => {
             //shows the button only if the message contains a listData field
             if (message.listData !== undefined) {
-                let auth = false;
+                let auth = true;
                 for(let i in message.listData._users) {
-                    if(message.listData._users[i] === Meteor.userId()){
-                        auth = true;
-                    }
+                    auth = auth && (message.listData._users[i] === Meteor.userId());
                 }
                 // copy the message
                 this.message = {
@@ -115,11 +113,9 @@ Meteor.startup (function () {
         "validation": (message) => {
             //shows the button only if the message contains a listData field
             if(message.listData !== undefined){
-                let auth = false;
+                let auth = true;
                 for(let i in message.listData._users) {
-                    if(message.listData._users[i] === Meteor.userId()){
-                        auth = true;
-                    }
+                    auth = auth && (message.listData._users[i] === Meteor.userId());
                 }
                 // copy the message
                 this.message = {
@@ -155,11 +151,9 @@ Meteor.startup (function () {
         },
         "validation": (message) => {
             if(message.listData !== undefined){
-                let auth = false;
+                let auth = true;
                 for(let i in message.listData._users) {
-                    if(message.listData._users[i] === Meteor.userId()){
-                        auth = true;
-                    }
+                    auth = auth && (message.listData._users[i] === Meteor.userId());
                 }
                 return auth || (message.listData._creatorId === Meteor.userId());
             }
