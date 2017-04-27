@@ -16,19 +16,4 @@ describe('ShareWithContactViewImpl', function () {
             }
         ).to.not.throw();
     });
-    it("Check correct sharing", function () {
-        const share = new ShareWithContactViewImpl();
-        const listData = new ListData();
-        listData.setName('Test');
-        listData.setCreatorId(this.userId);
-        const json = {
-            "bubbleType": 'Bringit',
-            "listData": listData
-        }
-        share.onClickShareWithContact('rocket.cat',json);
-        return Meteor.call('getMessage',listData.getId(),function (error,result) {
-            console.log(result);
-            return result != undefined;
-        })
-    });
 });
