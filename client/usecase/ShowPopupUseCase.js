@@ -110,7 +110,7 @@ export class ShowPopupUseCase{
                 callback: function(result) {
                     if (result === true)
                     {
-                        fun();
+                        fun;
                     }
 
                 }
