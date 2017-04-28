@@ -58,16 +58,17 @@ Meteor.startup (function () {
         "validation": (message) => {
             //shows the button only if the message contains a listData field
             if (message.listData !== undefined) {
+                /*
                 let auth = true;
                 for(let i in message.listData._users) {
                     auth = auth && (message.listData._users[i] === Meteor.userId());
-                }
+                }*/
                 // copy the message
                 this.message = {
                     listData: message.listData,
                     bubbleType: message.bubbleType
                 };
-                return auth || (message.listData._creatorId === Meteor.userId());
+                return (message.listData._creatorId === Meteor.userId());
             }
             return false;
         }
@@ -113,16 +114,16 @@ Meteor.startup (function () {
         "validation": (message) => {
             //shows the button only if the message contains a listData field
             if(message.listData !== undefined){
-                let auth = true;
+                /*let auth = true;
                 for(let i in message.listData._users) {
                     auth = auth && (message.listData._users[i] === Meteor.userId());
-                }
+                }*/
                 // copy the message
                 this.message = {
                     listData: message.listData,
                     bubbleType: message.bubbleType
                 };
-                return auth || (message.listData._creatorId === Meteor.userId());
+                return (message.listData._creatorId === Meteor.userId());
             }
             return false;
         }
@@ -151,11 +152,11 @@ Meteor.startup (function () {
         },
         "validation": (message) => {
             if(message.listData !== undefined){
-                let auth = true;
+                /*let auth = true;
                 for(let i in message.listData._users) {
                     auth = auth && (message.listData._users[i] === Meteor.userId());
-                }
-                return auth || (message.listData._creatorId === Meteor.userId());
+                }*/
+                return (message.listData._creatorId === Meteor.userId());
             }
             return false;
         }

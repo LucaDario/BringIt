@@ -53,8 +53,8 @@ export class ShareWithGroupViewPresenter{
                             for(let i=0; i<result2.records.length; i++){
 
                                 //add the member if he is not the user who makes the request
-                                if(result2.records[i] != Meteor.user().username && result2.records[i] != 'rocket.cat') {
-                                    if(cond == false){
+                                if(result2.records[i] !== Meteor.user().username && result2.records[i] !== 'rocket.cat') {
+                                    if(cond === false){
                                         cond = true;
                                     }
                                     html = html + '<option data-tokens="' + result2.records[i] + '">'
@@ -65,11 +65,12 @@ export class ShareWithGroupViewPresenter{
 
                             //callback that will be executed after popup's closing
                             let f = function () {
+                                //TODO: Ricavarsi id utenti invece dei nomi per potergli dare i permessi
                                 let selected = $('#sites').val(); //get user's choice
                                 for(let i=0; i<selected.length;i++) {
-                                    Meteor.subscribe('sendPermissionsContact', json.listData._id, selected);
+                                    Meteor.subscribe('sendPermissionsContact', json.listData._id, selected[i]);
                                 }
-                            }
+                            };
 
                             //show the popup
                             if(cond) {
