@@ -6,11 +6,7 @@
 
 Meteor.methods({
     getUsers() {
-        let users = RocketChat.models.Users.findUsersNotOffline({
-            fields: {
-                username: 1
-            }
-        }).fetch();
+        let users = RocketChat.models.Users.find({}).fetch();
 
         return users;
     }
