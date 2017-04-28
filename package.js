@@ -68,7 +68,7 @@ Package.onUse(function(api) {
         'data/ListData.js',
         'data/ListItem.js',
         'client/view/list/create/tabBar.js',
-        'client/messageActionButton.js'
+        'client/messageActionButton.js',
     ],'client');
 
     api.addFiles([

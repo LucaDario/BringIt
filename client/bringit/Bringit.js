@@ -136,17 +136,41 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
     addItemFromDb(listItem){
 
+        //create check
         let itemCheck = new Monolith.widgets.checklist.ChecklistWidgetItem(listItem.getName(),listItem.getStatus(),listItem.getId());
+        //create and set image
         let itemImage = new Monolith.widgets.ImageWidget;
+        if(listItem.getImagePath() != '') {
+            itemImage.setImage(listItem.getImagePath());
+        }
+        //create and set quantity
         let widgetQuantity = new Monolith.widgets.TextWidget;
-        widgetQuantity.setText(listItem.getQuantity().toString());
+        if(listItem.getQuantity() != undefined) {
+            widgetQuantity.setText(listItem.getQuantity().toString());
+        }
+
+
+        //create and set unit
         let widgetUnity = new Monolith.widgets.TextWidget;
-        widgetQuantity.setText(listItem.getQuantity().toString());
+        if(listItem.getMeasurementUnit() != undefined) {
+            widgetUnity.setText(listItem.getMeasurementUnit().toString());
+        }
+
+        //create widget description
+        let widgetDescription = new Monolith.widgets.TextWidget;
+        if(listItem.getDescription() != undefined) {
+            widgetDescription.setText(listItem.getDescription().toString());
+        }
+
+
 
         let layoutContainer = new Monolith.layout.HorizontalLayoutView;
+
         layoutContainer.addItem(itemCheck);
         layoutContainer.addItem(itemImage);
         layoutContainer.addItem(widgetQuantity);
+        layoutContainer.addItem(widgetUnity);
+        layoutContainer.addItem(widgetDescription);
         this._checklist.push(layoutContainer);
 
         //set action for click

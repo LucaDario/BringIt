@@ -21,16 +21,19 @@ function showpopupitemad(listId)
 
     let f = function () {
         inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
-            $("#itemdescription").val(),'imageitem',$("#itemMesaurement").val() );
+            $("#itemdescription").val(),$("#itemMesaurement").val(),document.getElementById('imageItem').files[0]);
+
     };
 
 
     showPop.showPopupWithFunction(
         '<div class="content">' +
         '<h2>AGGIUNTA DI UNA ITEM</h2>' +
+
         '<div id="input_item_img">' +
         'Inserisci limmagine che vuoi rappresenti il tuo item <br>' +
-        '<input  id="imageITem" type="file" name="item_image" accept="image/*">' +
+        '<input  id="imageItem" type="file" name="item_image" accept="image/*">' +
+
         '</div>' +
         '<div id="input_name_item">' +
         'Inserisci il nome del item che vuoi creare:<br>' +
@@ -47,6 +50,7 @@ function showpopupitemad(listId)
         '<div id="input_mesaurement_unit">' +
         ' Inserisci l unita di misura del item che vuoi creare:<br>' +
         '<input id="itemMesaurement" type="text" name="item_mesaurement"><br>'+
-    '</div>', f, 1);
+        '</div>'
+            , f, 1);
 }
 export {showpopupitemad};

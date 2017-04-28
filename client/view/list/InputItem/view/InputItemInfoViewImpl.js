@@ -27,7 +27,42 @@ export class InputItemInfoViewImpl extends InputItemInfoView {
      * @param photoList path {string}
      */
     onSaveClicked(name,quantity,description,mesaurement,image){
-        let item = this._presenter.createListItem(name,quantity,description,mesaurement,image);
-        this._saveEvent.emitSaveEventItem(item,this._presenter.getListId());
+
+        /*if image is not null covert in blob and encrypt in base64*/
+        if(image) {
+            let fileReader = new FileReader();
+            fileReader.onloadend = (e) => {
+
+                let arrayBuffer = e.target.result;
+                let fileType = 'image/*';
+                blobUtil.arrayBufferToBlob(arrayBuffer, fileType).then((blob) => {
+                    let reader = new FileReader();
+                    reader.addEventListener("load", () => {
+                        //create item with base64image
+                        let item = this._presenter.createListItem(name, reader.result, quantity, description, mesaurement);
+                        this._saveEvent.emitSaveEventItem(item, this._presenter.getListId());
+                    }, false);
+
+                    if (blob) {
+                        reader.readAsDataURL(blob);
+                    }
+
+                });
+            };
+            fileReader.readAsArrayBuffer(image);
+        }
+
+        else{
+            //create item without image
+            let item = this._presenter.createListItem(name, '', quantity, description, mesaurement);
+            this._saveEvent.emitSaveEventItem(item, this._presenter.getListId());
+        }
+
+
+
+
     }
+
+
 }
+
