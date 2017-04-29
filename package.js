@@ -53,7 +53,7 @@ Package.onUse(function(api) {
         'client/view/item/inputitem/view/InputItemInfoViewImpl.js',
         'client/view/item/inputitem/InputItemInfoView.js',
         'client/view/item/inputitem/presenter/InputItemInfoViewPresenter.js',
-        'client/view/item/showinfoitem/Showinfoitem.js',
+        'client/view/item/showinfoitem/ShowInfoItem.js',
         'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.js',
         'client/view/list/ShareListWithGroup/ShareWithGroupView.js',
         'client/view/list/ShareListWithGroup/presenter/ShareWithGroupViewPresenter.js',

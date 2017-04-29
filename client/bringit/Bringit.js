@@ -7,8 +7,7 @@ import {ListData} from '../../data/ListData'
 import {ListItem} from '../../data/ListItem'
 import {ShowPopupUseCase} from '../usecase/ShowPopupUseCase';
 import {SaveItemEvent} from '../event/SaveItemEvent';
-import {showlayoutadd} from '../view/infoitem/layoutviewscript';
-import {Showinfoitem}  from '../view/item/showinfoitem/Showinfoitem';
+import {Showinfoitem}  from '../view/item/showinfoitem/ShowInfoItem';
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
