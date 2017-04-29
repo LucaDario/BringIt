@@ -17,3 +17,8 @@
 .modal-body #sites{
     background-color: #fff;
 }
+
+.content * {
+    color : #fff;
+
+}

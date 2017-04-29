@@ -19,11 +19,14 @@ function showlayoutadd(layout) {
     let name= layout.getItems()[0].getText();
 
     let new_layout= new Monolith.layout.VerticalLayoutView;
-    immage.setHeight(10);
-    immage.setWidth(10);
-    new_layout.addItem(immage);
-    new_layout.addItem(description);
-    showPop.showPopup(name,new_layout.renderView());
+    let new_image= new Monolith.widgets.ImageWidget
+    let new_textwidgets = new Monolith.widgets.TextWidget;
+
+    new_image.setHeight(10);
+    new_image.setWidth(10);
+    new_layout.addItem(new_image);
+    new_layout.addItem(new_textwidgets);
+    showPop.showPopup(name,new_layout.renderView(),1);
 
 
 

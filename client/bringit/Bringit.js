@@ -5,7 +5,7 @@
 import {container, singleton, inject} from 'dependency-injection-es6';
 import {ListData} from '../../data/ListData'
 import {ListItem} from '../../data/ListItem'
-import {showpopupitemad} from '../view/list/InputItem/view/inputitemscript';
+import {ShowPopupUseCase} from '../usecase/ShowPopupUseCase';
 import {SaveItemEvent} from '../event/SaveItemEvent';
 import {showlayoutadd} from '../view/infoitem/layoutviewscript';
 
@@ -64,7 +64,8 @@ export class Bringit extends Monolith.bubble.BaseBubble {
      * show the popUp for add a new item, it contains all the form for add all details
      */
     showInputAddItem(){
-        showpopupitemad(this._id);
+        let popup= container.resolve(ShowPopupUseCase)
+        popup.showpopupitemad(this._id);
 
 
 
