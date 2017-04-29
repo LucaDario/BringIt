@@ -7,12 +7,14 @@ import {ListData} from '../../data/ListData'
 import {ListItem} from '../../data/ListItem'
 import {showpopupitemad} from '../view/list/InputItem/view/inputitemscript';
 import {SaveItemEvent} from '../event/SaveItemEvent';
+import {showlayoutadd} from '../view/infoitem/layoutviewscript';
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
 
     constructor(listName, listId = undefined){
         super();
+        //resolve a object for save a new Item
         this._saveItemEvent = container.resolve(SaveItemEvent);
 
 
@@ -58,13 +60,20 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     }
 
 
+    /**
+     * show the popUp for add a new item, it contains all the form for add all details
+     */
     showInputAddItem(){
-        //per nico qui chiamerai il tuo popup per l'addNewBringitItem
         showpopupitemad(this._id);
 
 
 
     }
+
+    /**
+     * add a new item in database
+     * @param item {ListItem}
+     */
 
     addNewBringitItem(item) {
         Meteor.subscribe('addItemInList',this._id,item);
@@ -72,39 +81,13 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     }
 
 
-    addImage(itemContainer,path){
-        let listItem = itemContainer.getItems();
-        for(let obj in listItem){
-            if(obj instanceof Monolith.widgets.ImageWidget){
-                obj.setImage(path);
-            }
-        }
 
-    }
-
-    addText(itemContainer,text){
-        let listItem = itemContainer.getItems();
-        for(let obj in listItem){
-            if(obj instanceof Monolith.widgets.TextWidget){
-                obj.setText(text);
-            }
-        }
-
-    }
-
-    addCheckDetails(itemContainer,check, name = ''){
-        let listItem = itemContainer.getItems();
-        for(let obj in listItem){
-            if(obj instanceof Monolith.widgets.TextWidget){
-                obj.setText(text);
-                obj.setChecked(check);
-
-            }
-        }
-    }
-
-    setStatusItemInDb(listItem){
-        Meteor.subscribe('setStatusItemInDb',this._id,listItem);
+    /**
+     * Update item in database
+     * @param listItem {ListItem}
+     */
+    updateItem(listItem){
+        Meteor.subscribe('updateItem',this._id,listItem);
 
     }
 
@@ -130,7 +113,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     //provissorio
 
     /**
-     *
+     *Create, and add in Bringit, a new Item with same details in listItem
      * @param listItem {ListItem}
      */
 
@@ -177,7 +160,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
         itemCheck.setOnClick(() => {
             listItem.setStatus(itemCheck.isChecked());
-            this.setStatusItemInDb(listItem);
+            this.updateItem(listItem);
 
         });
 
@@ -185,6 +168,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
        // set action fot long click
         itemCheck.setOnLongClick(() => {
 
+            showlayoutadd(layoutContainer);
         });
 
         super.addComponent(layoutContainer);

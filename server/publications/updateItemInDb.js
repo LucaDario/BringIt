@@ -6,13 +6,17 @@ import {ModifyListUseCase} from '../usecase/ModifyListUseCase';
 import {container,inject} from 'dependency-injection-es6';
 import {ListItem} from '../../data/ListItem';
 
-Meteor.publish('setStatusItemInDb',function (listId,listItem) {
+/**
+ * Update a item in database with a same id in Bringit list with a id == listId
+ */
 
+Meteor.publish('updateItem',function (listId, listItem) {
+
+    //recreate a listItem serialized
     const modifyListUseCase = container.resolve(ModifyListUseCase);
     let objectListItem = new ListItem();
     objectListItem.setId(listItem._id);
     objectListItem.setDescription(listId._description);
-    console.log(listId._description);
     objectListItem.setImagePath(listItem._imagePath);
     objectListItem.setMeasurementUnit(listItem._measurementUnit);
     objectListItem.setName(listItem._name);

@@ -81,7 +81,7 @@ Package.onUse(function(api) {
             'server/methods/getMessage.js',
             'server/methods/getIdUser.js',
             'server/database/DatabaseSource.js',
-            'server/publications/setStatusItemInDb.js',
+            'server/publications/updateItemInDb.js',
             'server/publications/deleteList.js',
             'server/publications/addItemInList.js'
         ],
