@@ -8,6 +8,7 @@ import {ListItem} from '../../data/ListItem'
 import {ShowPopupUseCase} from '../usecase/ShowPopupUseCase';
 import {SaveItemEvent} from '../event/SaveItemEvent';
 import {showlayoutadd} from '../view/infoitem/layoutviewscript';
+import {Showinfoitem}  from '../view/item/showinfoitem/Showinfoitem';
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
@@ -169,7 +170,8 @@ export class Bringit extends Monolith.bubble.BaseBubble {
        // set action fot long click
         itemCheck.setOnLongClick(() => {
 
-            showlayoutadd(layoutContainer);
+            let popup_info_item = container.resolve(Showinfoitem);
+            popup_info_item.showlayoutadd(layoutContainer);
         });
 
         super.addComponent(layoutContainer);

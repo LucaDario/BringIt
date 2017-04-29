@@ -14,13 +14,16 @@ function showlayoutadd(layout) {
 
 
 
-    let immage = layout.getItems()[1];
-    let description = layout.getItems()[4];
+    let image = layout.getItems()[1].getPath();
+    let description = layout.getItems()[4].getText();
     let name= layout.getItems()[0].getText();
 
     let new_layout= new Monolith.layout.VerticalLayoutView;
-    let new_image= new Monolith.widgets.ImageWidget
+    let new_image= new Monolith.widgets.ImageWidget;
     let new_textwidgets = new Monolith.widgets.TextWidget;
+
+    new_image.setImage(image);
+    new_textwidgets.setText(description);
 
     new_image.setHeight(10);
     new_image.setWidth(10);
