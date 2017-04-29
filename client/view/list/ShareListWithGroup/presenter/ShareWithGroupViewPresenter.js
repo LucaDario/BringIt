@@ -65,10 +65,17 @@ export class ShareWithGroupViewPresenter{
 
                             //callback that will be executed after popup's closing
                             let f = function () {
-                                //TODO: Ricavarsi id utenti invece dei nomi per potergli dare i permessi
                                 let selected = $('#sites').val(); //get user's choice
                                 for(let i=0; i<selected.length;i++) {
-                                    Meteor.subscribe('sendPermissionsContact', json.listData._id, selected[i]);
+                                    Meteor.call('getIdUser', selected[i], true, function (error, result) {
+                                        if(result) {
+                                            console.log(result);
+                                            Meteor.subscribe('sendPermissionsContact', json.listData._id, result);
+                                        }
+                                        else{
+                                            console.log(error);
+                                        }
+                                    });
                                 }
                             };
 

@@ -79,6 +79,7 @@ Package.onUse(function(api) {
             'server/usecase/ShareListUseCase.js',
             'server/methods/getUsers.js',
             'server/methods/getMessage.js',
+            'server/methods/getIdUser.js',
             'server/database/DatabaseSource.js',
             'server/publications/setStatusItemInDb.js',
             'server/publications/deleteList.js',
