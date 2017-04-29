@@ -40,4 +40,4 @@ export class Showinfoitem {
 
 }
 
-container.registerAsSingleton(ShowPopupUseCase);
+container.registerAsSingleton(Showinfoitem);

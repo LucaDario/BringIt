@@ -22,7 +22,7 @@ import {ShareEventEmitter} from '../event/ShareEventEmitter';
 import "../modal.css";
 import {ModifyListEvent} from '../event/ModifyListEvent';
 import {DeleteItem} from '../event/DeleteItem';
-import {InputItemInfoViewImpl} from '../view/item/inputItem/view/InputItemInfoViewImpl'
+import {InputItemInfoViewImpl} from '../view/item/inputitem/view/InputItemInfoViewImpl'
 
 
 //const ReactiveModal = require('');
