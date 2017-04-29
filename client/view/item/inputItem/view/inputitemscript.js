@@ -5,7 +5,7 @@
 import {container, singleton, inject} from 'dependency-injection-es6';
 
 import {InputItemInfoViewImpl} from './InputItemInfoViewImpl'
-import {ShowPopupUseCase} from '../../../../../client/usecase/ShowPopupUseCase';
+import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
 
 
 /**
