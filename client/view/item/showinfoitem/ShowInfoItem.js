@@ -14,7 +14,7 @@ export class Showinfoitem {
         this._popup= container.resolve(ShowPopupUseCase);
     }
 
-    showlayoutadd(layout) {
+    showlayoutadd(layout,listId,item) {
 
 
         let showPop = container.resolve(ShowPopupUseCase);
@@ -34,7 +34,7 @@ export class Showinfoitem {
         new_image.setWidth(10);
         new_layout.addItem(new_image);
         new_layout.addItem(new_textwidgets);
-        showPop.showPopup(name,new_layout.renderView(),1);
+        showPop.showPopup(name,new_layout.renderView(),listId,item,1);
 
     }
 

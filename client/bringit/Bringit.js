@@ -3,12 +3,12 @@
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
-import {ListData} from '../../data/ListData'
 import {ListItem} from '../../data/ListItem'
 import {ShowPopupUseCase} from '../usecase/ShowPopupUseCase';
 import {SaveItemEvent} from '../event/SaveItemEvent';
 import {Showinfoitem}  from '../view/item/showinfoitem/ShowInfoItem';
 import {CompleteListEventEmitter} from '../event/CompleteListEventEmitter';
+import {DeleteItem} from '../event/DeleteItem';
 
 
 
@@ -20,12 +20,22 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this._saveItemEvent = container.resolve(SaveItemEvent);
         this._completeEvent = container.resolve(CompleteListEventEmitter);
         this._shoPopupUseCase = container.resolve(ShowPopupUseCase);
+        this._deleteItemEvent = container.resolve(DeleteItem);
+
+        //add a callback at a complete list event
         this._completeEvent.on('completeEvent',(listId,listName) => {
 
             if(listId == this._id){
                 this._shoPopupUseCase.showPopup('Lista '+listName, this._COMPLETE_POPUP_TEXT);
             }
         });
+
+        //add callback at a delete item event
+        this._deleteItemEvent.on('DeleteItem',(listId,item) => {
+            Meteor.subscribe('deleteItem',listId,item);
+        });
+
+
 
 
         //static
@@ -131,7 +141,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         Meteor.subscribe('deleteItem',this._id,itemId);
     }
 
-    //provissorio
+
 
     /**@method
      *Create, and add in Bringit, a new Item with same details in listItem
@@ -170,6 +180,8 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
         let layoutContainer = new Monolith.layout.HorizontalLayoutView;
 
+        //add a all item
+
         layoutContainer.addItem(itemCheck);
         layoutContainer.addItem(itemImage);
         layoutContainer.addItem(widgetQuantity);
@@ -195,7 +207,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
        // set action fot long click
         itemCheck.setOnLongClick(() => {
             let popup_info_item = container.resolve(Showinfoitem);
-            popup_info_item.showlayoutadd(layoutContainer);
+            popup_info_item.showlayoutadd(layoutContainer,this._id,listItem);
         });
 
         super.addComponent(layoutContainer);

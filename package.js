@@ -83,7 +83,8 @@ Package.onUse(function(api) {
             'server/database/DatabaseSource.js',
             'server/publications/updateItemInDb.js',
             'server/publications/deleteList.js',
-            'server/publications/addItemInList.js'
+            'server/publications/addItemInList.js',
+            'server/publications/deleteItem.js'
         ],
         'server');
 });

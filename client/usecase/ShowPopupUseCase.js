@@ -166,7 +166,7 @@ export class ShowPopupUseCase{
      * @param content {string} : the html that will be shown inside the popup.
      * @param title {string}: the title of the modal
      */
-    showPopup(title,content, index=0,listid = null, itemid = null){
+    showPopup(title,content, listId, item,index=0,){
 
 
         //necessary to use jQuery and Bootstrap
@@ -206,7 +206,7 @@ export class ShowPopupUseCase{
                         className: "btn btn-primary pull-left",
                         callback: function() {
                             let emitter = container.resolve(DeleteItem);
-                            emitter.emitDeleteItem(listid,itemid);
+                            emitter.emitDeleteItem(listId,item);
                         }
                     }
                 ],
