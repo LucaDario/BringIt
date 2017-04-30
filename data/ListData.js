@@ -84,6 +84,7 @@ export class ListData {
         if(position > -1){
             // If the item is found, then update it
             this._items[position] = item;
+            console.log('aggiornato');
         } else {
             // Otherwise just create a new one
             this.addItem(item);

@@ -8,6 +8,8 @@ import {ListItem} from '../../data/ListItem'
 import {ShowPopupUseCase} from '../usecase/ShowPopupUseCase';
 import {SaveItemEvent} from '../event/SaveItemEvent';
 import {Showinfoitem}  from '../view/item/showinfoitem/ShowInfoItem';
+import {CompleteListEventEmitter} from '../event/CompleteListEventEmitter';
+
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
@@ -16,14 +18,27 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         super();
         //resolve a object for save a new Item
         this._saveItemEvent = container.resolve(SaveItemEvent);
+        this._completeEvent = container.resolve(CompleteListEventEmitter);
+        this._shoPopupUseCase = container.resolve(ShowPopupUseCase);
+        this._completeEvent.on('completeEvent',(listId,listName) => {
+
+            if(listId == this._id){
+                this._shoPopupUseCase.showPopup('Lista '+listName, this._COMPLETE_POPUP_TEXT);
+            }
+        });
 
 
+        //static
+        this._COMPLETE_POPUP_TEXT = 'List Completed!!!';
 
         //create unique id list
         if(listId == undefined) {
             listId = ('_' + Math.random().toString(36).substr(2, 9)).toString();
         }
+
         this._id = listId;
+        this._nameList = listName;
+
         //create and set the tittle of the list
         this._textNameList = new Monolith.widgets.TextWidget;
         this._textNameList.setText(listName);
@@ -72,6 +87,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     }
 
     /**
+     * @method
      * add a new item in database
      * @param item {ListItem}
      */
@@ -84,16 +100,20 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
 
     /**
+     * @method
      * Update item in database
      * @param listItem {ListItem}
      */
     updateItem(listItem){
+        //console.log(this.isComplete());
         Meteor.subscribe('updateItem',this._id,listItem);
+
+
 
     }
 
     /**
-     *
+     *@method
      *Deletes all lists that have the id equal to this instance of Bringit from the all chat and database
      */
 
@@ -102,7 +122,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         Meteor.subscribe('deleteList',this._id);
     }
 
-    /**
+    /**@method
      *Deletes all item that have the id equal to @param itemId from the all chat and database
      * @param itemId {string} Id of the Item I Want delete from the all list
      */
@@ -113,7 +133,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
     //provissorio
 
-    /**
+    /**@method
      *Create, and add in Bringit, a new Item with same details in listItem
      * @param listItem {ListItem}
      */
@@ -161,20 +181,44 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
         itemCheck.setOnClick(() => {
             listItem.setStatus(itemCheck.isChecked());
+
+            if(this.isComplete()){
+                this._completeEvent.emitCompleteEvent(this._id,this._nameList)
+            }
+
             this.updateItem(listItem);
+
 
         });
 
 
        // set action fot long click
         itemCheck.setOnLongClick(() => {
-
             let popup_info_item = container.resolve(Showinfoitem);
             popup_info_item.showlayoutadd(layoutContainer);
         });
 
         super.addComponent(layoutContainer);
 
+    }
+
+    /**
+     * Returned true if list is Completed, false if is not completed
+     * @returns {boolean}
+     */
+    isComplete(){
+
+        const FIRST_LAYOUT_ITEM = 2;
+        let isPossibleComplete = true;
+
+        for(let i= FIRST_LAYOUT_ITEM; i < super.getLayout().getItems().length && isPossibleComplete; i++){
+            if(!super.getLayout().getItems()[i].getItems()[0].isChecked()){
+                isPossibleComplete = false;
+            }
+
+        }
+
+        return isPossibleComplete;
     }
 
 

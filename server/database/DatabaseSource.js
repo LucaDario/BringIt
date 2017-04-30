@@ -140,6 +140,7 @@ export class DatabaseSource {
                 listItem.addNote(note);
             });
         }
+        listItem.setStatus(item._status);
         return listItem;
     }
 

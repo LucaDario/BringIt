@@ -66,6 +66,7 @@ export class ModifyListUseCase{
     updateItemInsideList(listId, item){
         let list = this._databaseSource.getListWithId(listId);
         list.saveItem(item);
+
         this._databaseSource.saveList(list);
     }
 

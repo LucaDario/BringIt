@@ -28,6 +28,8 @@ Meteor.publish('updateItem',function (listId, listItem) {
         objectListItem.addNote(listItem._notes[j]);
     }
 
+
+
     modifyListUseCase.updateItemInsideList(listId,objectListItem);
 
 
