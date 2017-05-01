@@ -1,5 +1,6 @@
 /**
  * Created by lucadario on 26/04/17.
+ * version 3.0.0-completed
  */
 
 import {ModifyListUseCase} from '../usecase/ModifyListUseCase';

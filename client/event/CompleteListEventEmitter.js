@@ -1,5 +1,7 @@
 /**
  * Created by lucadario on 29/04/17.
+ * Event for the completation of the list
+ * version 3.0.0 - Completed
  */
 
 const EventEmitter = require('events');

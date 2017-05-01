@@ -1,7 +1,7 @@
 /**
  * Description: Class which represents an exception that is thrown when an abstract method is not implemented.
  * Created by Riccardo Montagnin on 27/03/2017.
- * Version 1.0.0 - Initial version
+ * Version 1.2.0 - completed
  */
 
 import {Exception} from "./Exception";

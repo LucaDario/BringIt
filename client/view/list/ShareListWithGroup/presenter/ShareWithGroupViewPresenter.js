@@ -1,8 +1,6 @@
 /**
  * Created by Stefano Lia on 31/03/2017
- * Version {1.0.2} - {This class manages the sharing of a BringitBubble in some channels. For each channel you can
- *                    choose some members (who are in the channel) and you can give to them permissions to modify the List
- *                    (add some items, delete items, ecc...)}
+ * version 4.0.0 - completed
  * Description: This class is the presenter of the 'share with group' functionality
  */
 import {ChatSource} from "../../../../chat/ChatSource";

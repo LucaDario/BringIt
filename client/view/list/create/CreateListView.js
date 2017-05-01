@@ -1,6 +1,7 @@
 /**
  * Base Abstract class represents the generic view for add a view for  create list
  * Created by lucadario on 23/03/17.
+ *  * version 2.0.0 - Completed
  */
 
 import {GeneralView} from "../../../GeneralView"

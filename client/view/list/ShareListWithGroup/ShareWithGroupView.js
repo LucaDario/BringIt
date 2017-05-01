@@ -1,6 +1,6 @@
 /**
  * Created by Stefano Lia on 22/04/2017
- * Version 1.0.0 - Initial version
+ * Version 4.0.0 - completed
  * Description: This class simulates the interface of the 'share with group' functionality
  */
 

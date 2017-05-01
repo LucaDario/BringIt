@@ -1,6 +1,6 @@
 /**
  * Created by Riccardo Montagnin on 29/03/2017.
- * Version 1.0.0 - Initial version
+ * Version 3.0.0 -  Bug fixes completed
  * Description: Interface which allows to communicate with the chat.
  * To obtain an instance of this interface be sure to include the following code inside the class that uses it:
  * <code>

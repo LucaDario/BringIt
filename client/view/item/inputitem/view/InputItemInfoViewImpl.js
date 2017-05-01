@@ -1,5 +1,8 @@
 /**
  * Created by nicolo on 22/04/17.
+ *  * Description: Class which allows to create a new  item of the list.
+ * This class implement the interface of InputItemInfoView
+ * version 3.0.0 - Completed
  */
 
 
@@ -17,16 +20,26 @@ export class InputItemInfoViewImpl extends InputItemInfoView {
      */
     constructor(listId) {
         super();
+        /**
+         *
+         * @type {InputItemInfoViewPresenter}: the reference to the Presenter
+         */
         this._presenter = new InputItemInfoViewPresenter(this,listId);
+        /**
+         * @type {SaveItemEvent} resolve the singleton for the EventItemEmitter
+         */
         this._saveEvent = container.resolve(SaveItemEvent);
     }
 
     /**
-     *This Create a listData and call a emitSaveEvent on SalveEventClass whit ListData created
-     * @param name of list {string}
-     * @param photoList path {string}
+     *This method create a function for create the item wih the right param
+     * @param name: of item {string}
+     * @param quantity: the quantity of item {string}
+     * @param description: the description of the item {string}
+     * @param measurement: the measurement of the item {string}
+     * @param image: the image that rappresent the item {Blob}
      */
-    onSaveClicked(name,quantity,description,mesaurement,image){
+    onSaveClicked(name,quantity,description,measurement,image){
 
         /*if image is not null covert in blob and encrypt in base64*/
         if(image) {
@@ -39,7 +52,7 @@ export class InputItemInfoViewImpl extends InputItemInfoView {
                     let reader = new FileReader();
                     reader.addEventListener("load", () => {
                         //create item with base64image
-                        let item = this._presenter.createListItem(name, reader.result, quantity, description, mesaurement);
+                        let item = this._presenter.createListItem(name, reader.result, quantity, description, measurement);
                         this._saveEvent.emitSaveEventItem(item, this._presenter.getListId());
                     }, false);
 
@@ -54,7 +67,7 @@ export class InputItemInfoViewImpl extends InputItemInfoView {
 
         else{
             //create item without image
-            let item = this._presenter.createListItem(name, '', quantity, description, mesaurement);
+            let item = this._presenter.createListItem(name, '', quantity, description, measurement);
             this._saveEvent.emitSaveEventItem(item, this._presenter.getListId());
         }
 

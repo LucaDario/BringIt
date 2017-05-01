@@ -3,6 +3,8 @@
  * and this class allow a receive a listData when the user press 'SaveLIst' in {InputLIstInfoViewImpl) and send this
  * list in 'database'
  * Created by lucadario on 23/03/17.
+ *  * version 3.4.0 - completed
+
  */
 
 import {container,inject} from 'dependency-injection-es6';

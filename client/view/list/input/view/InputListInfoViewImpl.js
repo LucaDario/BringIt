@@ -11,6 +11,7 @@
  *
  *
  * Created by lucadario on 27/03/17.
+ * version 3.0.0 - bug fixes, on hold for other component
  */
 
 import {InputListInfoView} from '../InputListInfoView';
@@ -26,7 +27,13 @@ export class InputListInfoViewImpl extends InputListInfoView {
      */
     constructor() {
         super();
+        /**
+         * @type {InputListInfoViewPresenter}: the reference of presenter
+         */
         this._presenter = container.resolve(InputListInfoViewPresenter);
+        /**
+         * @type {SaveListEvent}: the singleto that emit the input for the list info
+         */
         this._saveEvent = container.resolve(SaveListEvent);
     }
 

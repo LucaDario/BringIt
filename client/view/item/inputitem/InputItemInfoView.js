@@ -1,5 +1,7 @@
 /**
  * Created by nicolo on 22/04/17.
+ * This class is the interface for the InputItemInfoViewImpl
+ * version 2.0.0 - Completed
  */
 
 import {GeneralView} from "../../../GeneralView"

@@ -1,6 +1,6 @@
 /**
  * Created by Stefano Lia on 31/03/2017
- * Version {1.0.0} - {Initial version}
+ * Version 4.0.0 - completed
  * Description: The view of the 'share with group button'. It catches the share event and it delegates
  * the task to the Presenter
  */

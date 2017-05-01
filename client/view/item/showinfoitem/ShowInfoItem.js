@@ -1,5 +1,7 @@
 /**
  * Created by nicolo on 29/04/17.
+ * This class allows to show the further information
+ * version 3.2.0 - Miss the notes on the popuop
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
@@ -11,8 +13,19 @@ export class Showinfoitem {
      * Public constructor. If called directly it will produce an exception as this class is abstract.
      */
     constructor() {
+        /**
+         * @type{ShowPopupUseCase}: This resolve the singleton for the popup that we want show
+         */
         this._popup= container.resolve(ShowPopupUseCase);
     }
+
+    /**
+     * this method show at the screen of rocket chat the further info of the item
+     * @param layout: the layout where is present the item with the further information
+     * @param listId: the id of the list where the item is present
+     * @param item: the item  where the further information is present
+     * @param permission: the permission if the user can modify or delete the list
+     */
 
     showlayoutadd(layout,listId,item,permission) {
 

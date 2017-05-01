@@ -1,9 +1,9 @@
 /**
  * Created by Stefano Lia on 23/04/2017
- * Version 1.0.0 - Initial version
  * Description: The view of the 'share with contact button'. It catches the share event and it delegates
  * the task to the Presenter
- */
+ * version 4.0.0 - bug to fix { popuo appears twice}
+ * */
 
 import {ShareWithContactView} from '../ShareWithContactView';
 import {ShareWithContactViewPresenter} from "../presenter/ShareWithContactViewPresenter";

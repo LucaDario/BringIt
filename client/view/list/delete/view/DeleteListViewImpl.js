@@ -1,7 +1,7 @@
 /**
  * The concrete class od DeleteListViewImpl.
  * Created by Francesco Bazzerla on 21/03/17.
- * Version 1.0.0 -
+ * Version 2.0.0 - completed
  */
 
 import {container,inject} from 'dependency-injection-es6';
@@ -15,8 +15,14 @@ export class DeleteListViewImpl extends DeleteListView{
      * @type {Object}: Presenter of DeleteListViewImpl
      */
     _presenter;
+    /**
+     * @type  {DeleteListEventEmitter}: the resolve for the singleton where is emit the event of delet
+     */
 
     _deleteEvent;
+    /**
+     * @type {ShowPopupUseCase}: this show the popup for the confirm of the delete
+     */
 
     _popup;
 

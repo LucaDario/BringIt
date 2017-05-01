@@ -1,7 +1,7 @@
 /**
  * Created by Stefano Lia on 23/04/2017
- * Version 1.0.0 - Initial Version
  * Description: This class is the presenter of the 'share with contact' functionality
+ * version 4.0.0 - bug to fix { popuo appears twice}
  */
 import {ChatSource} from "../../../../chat/ChatSource";
 import {container,inject} from 'dependency-injection-es6';

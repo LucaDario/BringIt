@@ -1,7 +1,7 @@
 /**
  * Created by Stefano Lia on 22/04/2017
- * Version 1.0.0 - Initial version
  * Description: This class simulates the interface of the 'share with contact' functionality
+ * version 2.0.0 - on hold for fix bug in other component
  */
 
 import {GeneralView} from "../../../GeneralView";

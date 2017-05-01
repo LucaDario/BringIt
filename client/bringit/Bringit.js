@@ -1,5 +1,6 @@
 /**
  * Created by lucadario on 21/04/17.
+ * version 8.1.0 - only miss the notes in the bubble and the forward
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
@@ -13,6 +14,12 @@ import {DeleteItem} from '../event/DeleteItem';
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
+    /**
+     * create the bringit bubble
+     * @param listName:the name of the list
+     * @param listId: the id of the list
+     * @param permission: the permission for the list
+     */
 
     constructor(listName, listId, permission){
         super();

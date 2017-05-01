@@ -1,7 +1,7 @@
 /**
  * Description: Base class which represents a generic exception.
  * Created by Riccardo Montagnin on 21/03/2017.
- * Version 1.0.0 - Initial version
+ * Version 1.2.0 - completed
  */
 
 export class Exception {

@@ -1,7 +1,7 @@
 /**
  * The view for DeleteListViewImpl.
  * Created by Francesco Bazzerla on 21/03/17.
- * Version 1.0.0 -
+ * Version 2.0.0 - completed
  */
 
 import {GeneralView} from "../../../GeneralView"

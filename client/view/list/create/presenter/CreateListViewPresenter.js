@@ -9,6 +9,7 @@
  *  var createListViewPresenter = container.resolve(CreateListViewPresenter);
  * </code>
  * Created by lucadario on 29/03/17.
+ *  * version 3.3.0 - Bug fixed
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';

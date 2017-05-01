@@ -1,6 +1,9 @@
 /**
  * Created by Stefano Lia on 21/04/2017
  * Version {VERSION} - {VERSION_NOTES}
+ * This method give permission to an user (identified by an ID) to add and remove items to a specific list.
+ * It in interfaces with the database.
+ *
  */
 
 import {ShareListUseCase} from '../usecase/ShareListUseCase';

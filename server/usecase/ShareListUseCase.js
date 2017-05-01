@@ -9,7 +9,7 @@
  *  var shareListUseCase = container.resolve(ShareListUseCase);
  * <code/>
  * Created by Riccardo Montagnin on 29/03/2017.
- * Version 1.0.0 - Initial version
+ * Version 2.0.0 - completed
  */
 
 import {container,inject} from 'dependency-injection-es6';

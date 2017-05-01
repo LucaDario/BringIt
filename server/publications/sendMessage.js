@@ -1,6 +1,7 @@
 /**
  * Send Message in RocketChat
  * Created by lucadario on 03/04/17.
+ * version 3.4.0-completed
  */
 
 /**

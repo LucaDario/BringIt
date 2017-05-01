@@ -1,5 +1,7 @@
 /**
  * Created by nicolo on 29/04/17.
+ * An event for the modify of the item
+ * version 2.0.0 - Completed
  */
 
 const EventEmitter = require('events');
@@ -19,8 +21,8 @@ export class ModifyListEvent extends EventEmitter{
     /**
      *@method
      *This method emit a event with 'deleteEvent'
-     * @param listId {Object}: listId to pass through in emit method
-     * @param itemId {string}: listName to pass through in emit method
+     * @param listId {number}: listId to pass through in emit method
+     * @param itemId {number}: ItemId to pass through in emit method
      */
     emitModifyitem(listId,itemId){
         this.emit('ModifyItem', listId, itemId);

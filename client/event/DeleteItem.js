@@ -1,9 +1,8 @@
-/**
- * Created by nicolo on 29/04/17.
- */
 
 /**
  * Created by nicolo on 29/04/17.
+ * Event for delete the item
+ * version 2.0.0 - Completed
  */
 
 const EventEmitter = require('events');
@@ -23,8 +22,8 @@ export class DeleteItem extends EventEmitter{
     /**
      *@method
      *This method emit a event with 'deleteEvent'
-     * @param listId {Object}: listId to pass through in emit method
-     * @param item {ListItem}: item to pass through in emit method
+     * @param listId {number}: listId to pass through in emit method
+     * @param item {object}: item to pass through in emit method
      */
     emitDeleteItem(listId,item){
         this.emit('DeleteItem', listId,item);

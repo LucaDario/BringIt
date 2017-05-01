@@ -9,7 +9,7 @@
  *  var modifyListUseCase = container.resolve(ModifyListUseCase);
  * <code/>
  * Created by Riccardo Montagnin on 27/03/2017.
- * Version 1.0.0 - Initial version
+ * Version 4.5.0 - completed
  */
 
 import {container,inject} from 'dependency-injection-es6';

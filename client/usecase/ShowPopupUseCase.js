@@ -10,8 +10,7 @@
  * <code/>
  *
  * Created by Riccardo Montagnin on 29/03/2017.
- * Version 1.0.0 - Initial version
- * Version 1.0.1 - added three methods: showPopupAndSend, showPopupWithFunction and showPopup - Stefano Lia
+ * Version 3.0.0 - miss the popup for the forward
  */
 
 import {container} from 'dependency-injection-es6';
@@ -221,9 +220,8 @@ export class ShowPopupUseCase{
 
     /**
      * @method
-     * Show a popup with a message inside.
-     * @param content {string} : the html that will be shown inside the popup.
-     * @param title {string}: the title of the modal
+     * Show a popup with a message of form for the information of the item that we want insert .
+     * @param listId {number} : the id of the list where we want create the item.
      */
 
     showpopupitemad(listId) {

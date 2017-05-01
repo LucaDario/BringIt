@@ -1,7 +1,7 @@
 /**
  * Description: Class which represents all the data that are stored inside a list.
  * Created by Riccardo Montagnin on 21/03/2017.
- * Version 1.0.0 - Initial version
+ * Version 3.0.0 - completed
  */
 
 import {ListItem} from "./ListItem";
@@ -11,12 +11,30 @@ export class ListData {
     constructor(){
         // Create a new ObjectID so that the id of the list will be unique
         ObjectID = Mongo.ObjectID;
+        /**
+         * @type {number}: unique id for the ListData
+         */
         this._id = new ObjectID();
+        /**
+         * @type {Blob}: blob that represent the image that we want
+         */
 
         this._imagePath = '';
+        /**
+         * @type {string}: the string taht represent the name of the list
+         */
         this._name = '';
+        /**
+         * @type {item}: array that contain all the item in the list
+         */
         this._items = [];
+        /**
+         * @type {number}: number that represent the id of the creator
+         */
         this._creatorId = '';
+        /**
+         * @type {string}: array with the user that allows to interact with the list
+         */
         this._users = [];
     }
 
@@ -101,6 +119,11 @@ export class ListData {
         return this._getItemPositionById(item.getId());
     }
 
+    /**
+     * Return the position of a specific item
+     * @param {string} itemId: the item of which we want position
+     * @return {number} position: return the position of the item in the param
+     */
     _getItemPositionById(itemId){
         let position = -1;
 
@@ -121,9 +144,19 @@ export class ListData {
         this._creatorId = value;
     }
 
+    /**
+     * method that allows to add a user in the list
+     * @param user{string}: user that we want add at the list
+     */
     addUser(user){
         this._users.push(user);
     }
+
+    /**
+     * method that check if a user have permission
+     * @param {string} user: user that we want check if have permission
+     * @return {boolean}: return true if the user in the param have permission
+     */
     hasUsersPermission(user){
         return this._users.includes(user);
     }

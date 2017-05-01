@@ -10,7 +10,7 @@
  * <code/>
  *
  * Created by Riccardo Montagnin on 27/03/2017.
- * Version 1.1.0 - DatabaseSource now operates on messages instead of different entities
+ * Version 7.8.0 - DatabaseSource now operates on messages instead of different entities, completed
  */
 
 import {container} from 'dependency-injection-es6';

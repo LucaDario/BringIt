@@ -2,7 +2,7 @@
  * A class Event, this exstends from EventEmitter (es6-event-emitter) and this represents the event
  * for emit the event when click button delete list
  * Created by Francesco Bazzerla on 20/04/17.
- * Version 1.0.1 - Completed
+ * Version 2.0.0 - Completed
  */
 
 const EventEmitter = require('events');

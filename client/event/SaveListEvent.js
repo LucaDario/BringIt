@@ -1,6 +1,7 @@
 /**A class Event, this exstends from EventEmitter (es6-event-emitter) and this represents the event
  * for emit the event when click button save list
  * Created by lucadario on 29/03/17.
+ * version 2.0.0 - Completed
  */
 
 const EventEmitter = require('events');

@@ -1,5 +1,7 @@
 /**
  * Created by manu on 21/04/17.
+ * version 3.3.0 - add some function for testing, now this file can be implemented in other file,
+ * on hold
  */
 import {Bringit} from './client/bringit/Bringit'
 import {container, singleton, inject} from 'dependency-injection-es6';

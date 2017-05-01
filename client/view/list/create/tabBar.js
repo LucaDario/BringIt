@@ -1,5 +1,8 @@
 /**
  * Created by lucadario on 24/03/17.
+ *  * version 2.0.0 - Miss the notes on the popuop
+ *   * version 4.1.0 - completed
+
  */
 
 import {container, inject} from 'dependency-injection-es6';

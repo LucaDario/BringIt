@@ -12,6 +12,7 @@
  *  var inputListInfoViewPresenter = container.resolve(InputListInfoViewPresenter);
  * </code>
  * Created by lucadario on 28/03/17.
+ *  * version 3.0.0 - bug fixes, on hold for other component
  */
 
 

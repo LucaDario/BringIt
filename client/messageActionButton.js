@@ -1,6 +1,6 @@
 /**
  * Created by Francesco Bazzerla on 26/04/2017
- * Version 1.0.15 - Completed
+ * Version 3.0.0 - Completed
  */
 import {container,inject} from 'dependency-injection-es6';
 import {DeleteListViewImpl} from './view/list/delete/view/DeleteListViewImpl';
