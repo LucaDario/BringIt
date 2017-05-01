@@ -14,8 +14,9 @@ Meteor.startup(function () {
             //create a list with a same parameter inside a message
             const idList = message.listData._id;
             const nameList = message.listData._name;
-            let bubble = new Bringit(nameList,idList);
+            let bubble = new Bringit(nameList,idList,checkPermission(message.listData));
             cloneItemFromJson(bubble,message.listData._items);
+            console.log(message);
 
             return bubble;
 
@@ -43,6 +44,16 @@ function cloneItemFromJson(bubble, jsonItem) {
         listItem.setImagePath(jsonItem[i]._imagePath);
         bubble.addItemFromDb(listItem);
     }
-
     
+}
+
+function checkPermission(listData) {
+    let permission = false;
+
+    for(let i = 0; i < listData._users.length; i++){
+        if(listData._users[i] == Meteor.userId()){
+            permission = true;
+        }
+    }
+    return permission || (listData._creatorId == Meteor.userId());
 }

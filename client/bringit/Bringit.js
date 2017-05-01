@@ -14,8 +14,10 @@ import {DeleteItem} from '../event/DeleteItem';
 
 export class Bringit extends Monolith.bubble.BaseBubble {
 
-    constructor(listName, listId = undefined){
+    constructor(listName, listId, permission){
         super();
+        this._permission = permission;
+
         //resolve a object for save a new Item
         this._saveItemEvent = container.resolve(SaveItemEvent);
         this._completeEvent = container.resolve(CompleteListEventEmitter);
@@ -58,18 +60,22 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this._checklist = [];
         this._completionMessage = 'Checklist Completed!';
 
+        //if the user have permission create button for add item
 
-        //create a button for add the show a inputItem
-        this._addItemButton = new Monolith.widgets.ButtonWidget;
-        this._textAddItemButton = 'Add Item';
-        this._addItemButton.renderView();
-        this._addItemButton.setText(this._textAddItemButton);
+        if(this._permission) {
+            //create a button for add the show a inputItem
+            this._addItemButton = new Monolith.widgets.ButtonWidget;
+            this._textAddItemButton = 'Add Item';
+            this._addItemButton.renderView();
+            this._addItemButton.setText(this._textAddItemButton);
 
-        this._addItemButton.setOnClickAction(() => {
-            this.showInputAddItem();
-        });
+            this._addItemButton.setOnClickAction(() => {
+                this.showInputAddItem();
+            });
 
-        super.addComponent(this._addItemButton);
+
+            super.addComponent(this._addItemButton);
+        }
 
         this._saveItemEvent.on('saveEventItem',(item,listId) => {
             if(this._id == listId){
@@ -77,6 +83,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
             }
 
         });
+
 
 
 
@@ -157,6 +164,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         if(listItem.getImagePath() != '') {
             itemImage.setImage(listItem.getImagePath());
         }
+        itemImage.setVisibility(false);
         //create and set quantity
         let widgetQuantity = new Monolith.widgets.TextWidget;
         if(listItem.getQuantity() != undefined) {
@@ -175,6 +183,9 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         if(listItem.getDescription() != undefined) {
             widgetDescription.setText(listItem.getDescription().toString());
         }
+
+
+        widgetDescription.setVisibility(false);
 
 
 
@@ -207,7 +218,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
        // set action fot long click
         itemCheck.setOnLongClick(() => {
             let popup_info_item = container.resolve(Showinfoitem);
-            popup_info_item.showlayoutadd(layoutContainer,this._id,listItem);
+            popup_info_item.showlayoutadd(layoutContainer,this._id,listItem,this._permission);
         });
 
         super.addComponent(layoutContainer);

@@ -238,15 +238,16 @@ export class ShowPopupUseCase{
 
 
     this.showPopupWithFunction(
-        '<div class="content">' +
+        '<div class="subject">' +
         '<h2>AGGIUNTA DI UNA ITEM</h2>' +
+        '<form>'+
         '<div id="input_item_img">' +
         'Inserisci limmagine che vuoi rappresenti il tuo item <br>' +
         '<input  id="imageItem" type="file" name="item_image" accept="image/*">' +
         '</div>' +
         '<div id="input_name_item">' +
         'Inserisci il nome del item che vuoi creare:<br>' +
-        '<input id="itemList" type="text" name="item_name"><br>' +
+        '<input id="itemList" type="text" name="item_name" required><br>' +
         '</div>' +
         '<div id="input_quantity_item">' +
         'Inserisci la quantità del item che vuoi creare:<br>' +
@@ -259,7 +260,8 @@ export class ShowPopupUseCase{
         '<div id="input_mesaurement_unit">' +
         ' Inserisci l unita di misura del item che vuoi creare:<br>' +
         '<input id="itemMesaurement" type="text" name="item_mesaurement"><br>'+
-        '</div>'
+        '</div>'+
+        '</form>'
         , f, 1);
     }
 }

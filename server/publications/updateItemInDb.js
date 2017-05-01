@@ -30,6 +30,7 @@ Meteor.publish('updateItem',function (listId, listItem) {
 
 
 
+
     modifyListUseCase.updateItemInsideList(listId,objectListItem);
 
 

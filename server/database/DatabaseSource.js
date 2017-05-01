@@ -59,7 +59,8 @@ export class DatabaseSource {
     saveList(listData){
         const cursor = this._listCollection.find({'listData._id' : listData._id});
         cursor.forEach(function (message) {
-            Meteor.runAsUser(listData._creatorId, () => {
+            Meteor.runAsUser('rocket.cat', () => {
+
                 Meteor.call('updateMessage',{_id : message._id, msg:'', listData : listData, rid:message.rid})
 
              });
@@ -115,6 +116,11 @@ export class DatabaseSource {
             data._items.forEach(function (item) {
                 listData.addItem(this._convertToListItem(item));
             }, this);
+        }
+        if(data._users !== undefined){
+            data._users.forEach(function (user) {
+                listData.addUser(user);
+            })
         }
 
         return listData;
