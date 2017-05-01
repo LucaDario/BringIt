@@ -27,12 +27,10 @@ export class ShareWithContactViewPresenter{
     onClickShareWithContact(person, json){
         this._chat.sendMessageToUser(person,json);
 
-        let f = function (person){
-            Meteor.subscribe('sendPermissionsContact', json.listData._id, person);
-        };
-
-        this._popup.showPopupWithFunction('<h3> Do you want to give the permissions to modify the list ' +
-            'to the user? </h3>',f(person),1);
+        for(let i=0; i<person.length; i++) {
+            this._popup.showPopupContactPermission('<h3> Do you want to give the permissions to modify the list ' +
+                'to ' + person[i] + '? </h3>', person[i], json);
+        }
     }
 
 }

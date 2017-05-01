@@ -10,7 +10,8 @@
  * <code/>
  *
  * Created by Riccardo Montagnin on 29/03/2017.
- * Version 3.0.0 - miss the popup for the forward
+ * Version 1.0.0 - Initial version
+ * Version 1.0.1 - added three methods: showPopupAndSend, showPopupWithFunction and showPopup - Stefano Lia
  */
 
 import {container} from 'dependency-injection-es6';
@@ -65,7 +66,6 @@ export class ShowPopupUseCase{
                 if (result === true) {
                     let emitter = container.resolve(ShareEventEmitter);
                     let selected = $('#sites').val(); //get user's choice
-                    console.log(emitter);
                     emitter.emitShareEvent(selected, json, title); // launch event
                 }
             }
@@ -210,9 +210,6 @@ export class ShowPopupUseCase{
                     }
                 ],
                 onEscape: "null",
-                    /*function() {
-                    console.log("CIAONE");*/
-                //}
             });
 
         }
@@ -220,8 +217,51 @@ export class ShowPopupUseCase{
 
     /**
      * @method
-     * Show a popup with a message of form for the information of the item that we want insert .
-     * @param listId {number} : the id of the list where we want create the item.
+     * Show a popup with a message inside and after its closing a function will be executed in
+     * an asynchronous way. This popup is used to share permission with a contact, used by ShareWithContact
+     * @param content {string} : the html that will be shown inside the popup.
+     * @param person {string}: the person whom you want to give permissions to
+     * @param json {JSON}: the message you've already sent
+     */
+
+    showPopupContactPermission(content,person,json){
+        const $ = require('jquery');
+        global.jQuery = require("bootstrap-jquery");
+        window.$ = $;
+        //necessary to use jQuery and Bootstrap
+        //calling the library bootbox to make popups
+        global.bootbox = require('bootbox');
+        bootbox.confirm({
+            size: "small",
+            message: content,
+            buttons: {
+                confirm: {
+                    label: 'Confirm',
+                    className: 'btn-primary'
+                }
+            },
+            closeButton: false,
+            onEscape: false,
+            callback: function (result) { // it will be executed after popup's closing
+                if (result === true) {
+                    Meteor.call('getIdUser', person, true, function (error, result) {
+                        if(result) {
+                            Meteor.subscribe('sendPermissionsContact', json.listData._id, result);
+                        }
+                        else {
+                            console.log(error);
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    /**
+     * @method
+     * Show a popup with a message inside.
+     * @param content {string} : the html that will be shown inside the popup.
+     * @param title {string}: the title of the modal
      */
 
     showpopupitemad(listId) {

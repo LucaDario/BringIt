@@ -40,6 +40,7 @@ export class ShareWithGroupViewPresenter{
                     //find the room's user
                     Meteor.call('getUsersOfRoom', result1, true, function (error2, result2) {
                         if (result2) {
+                            //true if there are users available in the channel
                             let cond = false;
                             let show = container.resolve(ShowPopupUseCase);
 
