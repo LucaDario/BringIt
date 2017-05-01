@@ -10,8 +10,8 @@
  * <code/>
  *
  * Created by Riccardo Montagnin on 29/03/2017.
- * Version 1.0.0 - Initial version
- * Version 1.0.1 - added three methods: showPopupAndSend, showPopupWithFunction and showPopup - Stefano Lia
+ *
+ * Version 7.4.0 - add index for a popup for the share with contact. Miss popup for modify item
  */
 
 import {container} from 'dependency-injection-es6';
