@@ -45,7 +45,7 @@ export class InputItemInfoViewPresenter {
      * @return {ListItem}: the listItem that you want create
      */
 
-    createListItem(name, image, quantity, long_description, mesaurement_unit) {
+    createListItem(name, image, quantity, long_description, mesaurement_unit = "") {
         let listItem = new ListItem();
 
         //let widget_immagine= new Monolith.widgets.ImageWidget();

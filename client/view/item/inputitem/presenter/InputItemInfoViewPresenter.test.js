@@ -39,7 +39,9 @@ describe('InputItemInfoViewPresenter', function () {
     });
 
     it('Check item quantity default measurement unit [TU48]', function () {
-        throw new Error("NOT IMPLEMENTED");
+        const presenter = new InputItemInfoViewPresenter();
+        const item = presenter.createListItem("Test Product", "Test path", 10, "Long desc");
+        expect(item._measurementUnit).to.be.eq("");
     });
 
     it('Check item remove [TU49]', function () {
