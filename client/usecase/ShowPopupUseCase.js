@@ -165,7 +165,7 @@ export class ShowPopupUseCase{
      * @param content {string} : the html that will be shown inside the popup.
      * @param title {string}: the title of the modal
      */
-    showPopup(title,content, listId, item,index=0,){
+    showPopup(title,content, listId = 0, item = 0,index=0){
 
 
         //necessary to use jQuery and Bootstrap
@@ -266,41 +266,41 @@ export class ShowPopupUseCase{
 
     showpopupitemad(listId) {
 
-    let inputItemInfoView = new InputItemInfoViewImpl(listId);
+        let inputItemInfoView = new InputItemInfoViewImpl(listId);
 
-    let f = function () {
-        inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
-            $("#itemdescription").val(),$("#itemMesaurement").val(),document.getElementById('imageItem').files[0]);
+        let f = function () {
+            inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
+                $("#itemdescription").val(),$("#itemMesaurement").val(),document.getElementById('imageItem').files[0]);
 
-    };
+        };
 
 
-    this.showPopupWithFunction(
-        '<div class="subject">' +
-        '<h2>AGGIUNTA DI UNA ITEM</h2>' +
-        '<form>'+
-        '<div id="input_item_img">' +
-        'Inserisci limmagine che vuoi rappresenti il tuo item <br>' +
-        '<input  id="imageItem" type="file" name="item_image" accept="image/*">' +
-        '</div>' +
-        '<div id="input_name_item">' +
-        'Inserisci il nome del item che vuoi creare:<br>' +
-        '<input id="itemList" type="text" name="item_name" required><br>' +
-        '</div>' +
-        '<div id="input_quantity_item">' +
-        'Inserisci la quantità del item che vuoi creare:<br>' +
-        '<input id="itemQuantity" type="number" name="item_quantity"><br>' +
-        '</div>' +
-        '<div id="input_description_item">' +
-        'Inserisci la descrizione del item che vuoi creare:<br>' +
-        '<input id="itemdescription" type="text" name="item_description"><br>' +
-        '</div>' +
-        '<div id="input_mesaurement_unit">' +
-        ' Inserisci l unita di misura del item che vuoi creare:<br>' +
-        '<input id="itemMesaurement" type="text" name="item_mesaurement"><br>'+
-        '</div>'+
-        '</form>'
-        , f, 1);
+        this.showPopupWithFunction(
+            '<div class="subject">' +
+            '<h2>AGGIUNTA DI UNA ITEM</h2>' +
+            '<form>'+
+            '<div id="input_item_img">' +
+            'Inserisci limmagine che vuoi rappresenti il tuo item <br>' +
+            '<input  id="imageItem" type="file" name="item_image" accept="image/*">' +
+            '</div>' +
+            '<div id="input_name_item">' +
+            'Inserisci il nome del item che vuoi creare:<br>' +
+            '<input id="itemList" type="text" name="item_name" required><br>' +
+            '</div>' +
+            '<div id="input_quantity_item">' +
+            'Inserisci la quantità del item che vuoi creare:<br>' +
+            '<input id="itemQuantity" type="number" name="item_quantity"><br>' +
+            '</div>' +
+            '<div id="input_description_item">' +
+            'Inserisci la descrizione del item che vuoi creare:<br>' +
+            '<input id="itemdescription" type="text" name="item_description"><br>' +
+            '</div>' +
+            '<div id="input_mesaurement_unit">' +
+            ' Inserisci l unita di misura del item che vuoi creare:<br>' +
+            '<input id="itemMesaurement" type="text" name="item_mesaurement"><br>'+
+            '</div>'+
+            '</form>'
+            , f, 1);
     }
 }
 
