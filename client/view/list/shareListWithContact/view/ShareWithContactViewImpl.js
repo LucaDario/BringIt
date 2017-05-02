@@ -17,7 +17,7 @@ export class ShareWithContactViewImpl extends ShareWithContactView{
      */
     constructor(){
         super();
-        this._presenter = new ShareWithContactViewPresenter(this);
+        this._presenter = container.resolve(ShareWithContactViewPresenter);
         this._shareEmitter = container.resolve(ShareEventEmitter);
         // this statement is used to catch the 'share event'
         this._shareEmitter.on('shareEvent', (person,json,title) => {

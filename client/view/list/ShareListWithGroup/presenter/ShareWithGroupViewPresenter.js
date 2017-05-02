@@ -11,10 +11,8 @@ export class ShareWithGroupViewPresenter{
 
     /**
      * Public constructor
-     * @param view: it represents the view of this class
      */
-    constructor(view){
-        this._view = view;
+    constructor(){
         this._chat = container.resolve(ChatSource);
     }
 

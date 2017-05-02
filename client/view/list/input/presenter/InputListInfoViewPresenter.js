@@ -47,6 +47,3 @@ export class InputListInfoViewPresenter{
     }
 }
 
-// Needed registering, so that each time a user wants an instance of this class it will get every time the same instance
-container.registerAsSingleton(InputListInfoViewPresenter);
-

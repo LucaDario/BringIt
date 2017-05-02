@@ -5,15 +5,9 @@
  */
 
 import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
-import {DeleteListEventEmitter} from '../../../../event/DeleteListEventEmitter';
-import {DeleteListViewImpl} from '../view/DeleteListViewImpl';
 import {container,inject} from 'dependency-injection-es6';
 
 export class DeleteListViewPresenter{
-    /**
-     * @type {Object}: DeleteListViewImpl element for the presenter
-     */
-    _view;
 
     /**
      * @type {Object}: A ShowPopupUseCase object used to create a new modal
@@ -23,10 +17,8 @@ export class DeleteListViewPresenter{
     /**
      * @constructor
      * Constructor of DeleteListViewPresenter
-     * @param view {Object}
      */
-    constructor(view){
-        this._view = view;
+    constructor(){
         this._popup = container.resolve(ShowPopupUseCase);
     }
 
