@@ -2,12 +2,9 @@
  * Created by manu on 02/05/17.
  */
 import {InputItemInfoViewPresenter} from "./InputItemInfoViewPresenter";
+import { sinon } from 'meteor/practicalmeteor:sinon';
 
 describe('InputItemInfoViewPresenter', function () {
-
-    it('Check item name [TU41]', function () {
-        throw new Error("NOT IMPLEMENTED");
-    });
 
     it('Check image path [TU42]', function () {
         const presenter = new InputItemInfoViewPresenter();
@@ -42,7 +39,9 @@ describe('InputItemInfoViewPresenter', function () {
     });
 
     it('Check item quantity default measurement unit [TU48]', function () {
-        throw new Error("NOT IMPLEMENTED");
+        const presenter = new InputItemInfoViewPresenter();
+        const item = presenter.createListItem("Test Product", "Test path", 10, "Long desc");
+        expect(item._measurementUnit).to.be.eq("");
     });
 
     it('Check item remove [TU49]', function () {

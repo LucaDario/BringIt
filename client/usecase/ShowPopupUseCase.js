@@ -200,7 +200,7 @@ export class ShowPopupUseCase{
      * @param content {string} : the html that will be shown inside the popup.
      * @param title {string}: the title of the modal
      */
-    showPopup(title,content, listId, item,index=0,){
+    showPopup(title,content, listId = 0, item = 0,index=0){
 
 
         //necessary to use jQuery and Bootstrap
@@ -301,13 +301,13 @@ export class ShowPopupUseCase{
 
     showpopupitemad(listId) {
 
-    let inputItemInfoView = new InputItemInfoViewImpl(listId);
+        let inputItemInfoView = new InputItemInfoViewImpl(listId);
 
-    let f = function () {
-        inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
-            $("#itemdescription").val(),$("#itemMesaurement").val(),document.getElementById('imageItem').files[0]);
+        let f = function () {
+            inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
+                $("#itemdescription").val(),$("#itemMesaurement").val(),document.getElementById('imageItem').files[0]);
 
-    };
+        };
 
 
     this.showPopupWithFunction(

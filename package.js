@@ -107,7 +107,8 @@ Package.onTest(function(api) {
         'client/view/list/shareListWithContact/view/ShareWithContactViewImpl.test.js',
         'client/view/list/shareListWithContact/presenter/ShareWithContactViewPresenter.test.js',
         'client/view/list/create/presenter/CreateListViewPresenter.test.js',
-        'client/view/item/inputitem/presenter/InputItemInfoViewPresenter.test.js'
+        'client/view/item/inputitem/presenter/InputItemInfoViewPresenter.test.js',
+        'client/view/item/inputitem/view/InputItemInfoViewImpl.test.js'
     ], 'client');
 
     api.addFiles([
