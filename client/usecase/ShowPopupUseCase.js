@@ -100,8 +100,8 @@ export class ShowPopupUseCase{
         }
         if (index === 1) {
             bootbox.confirm({
-
-                size: "small",
+                size: 'small',
+                title: 'Add a new item',
                 message: content,
                 buttons: {
                     confirm: {
@@ -111,11 +111,35 @@ export class ShowPopupUseCase{
                 closeButton: false,
                 onEscape: false,
                 callback: function(result) {
-                    if (result === true)
-                    {
+                    const img = $("#imageItem");
+                    const name = $("#itemList");
+                    const quantity = $("#itemQuantity");
+                    const unity = $("#itemMesaurement");
+                    const imgText = $("#input_item_img");
+                    const nameText = $("#input_name_item");
+                    const quantityText = $("#input_quantity_item");
+                    const unityText = $("#input_mesaurement_unit");
+                    if(result === false){
+                        return true;
+                    }
+                    if (result === true && img.val()!== '' && name.val() !== '' && quantity.val() !== '' && unity.val() !== '') {
                         fun();
                     }
-
+                    else{
+                        if(img.val() === ''){
+                            imgText.css({ 'color': '#f90'});
+                        }
+                        if(name.val() === ''){
+                            nameText.css({ 'color': '#f90'});
+                        }
+                        if(quantity.val() === ''){
+                            quantityText.css({ 'color': '#f90'});
+                        }
+                        if(unity.val() === ''){
+                            unityText.css({ 'color': '#f90'});
+                        }
+                        return false;
+                    }
                 }
             });
         }
@@ -288,7 +312,6 @@ export class ShowPopupUseCase{
 
     this.showPopupWithFunction(
         '<div class="subject">' +
-        '<h2>AGGIUNTA DI UNA ITEM</h2>' +
         '<form>'+
         '<div id="input_item_img">' +
         'Inserisci limmagine che vuoi rappresenti il tuo item <br>' +

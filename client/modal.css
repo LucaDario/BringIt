@@ -20,5 +20,9 @@
 
 .subject * {
     color : #fff;
+}
 
+#imageItem{
+    width: auto;
+    border: none;
 }
