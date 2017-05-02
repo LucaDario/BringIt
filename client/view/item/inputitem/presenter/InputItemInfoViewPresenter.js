@@ -6,7 +6,6 @@
 
 import {container, singleton, inject} from 'dependency-injection-es6';
 import {ListItem} from '../../../../../data/ListItem';
-import {ImageWidget} from 'meteor/monolith/client/component/widget/image/view/ImageWidget';
 
 export class InputItemInfoViewPresenter {
 

@@ -30,7 +30,6 @@ export class CreateListViewImpl extends CreateListView {
         let callFunction = function () {
 			if(arguments[1] instanceof ListData) {
                 this._presenter.createList(arguments[1]);
-
             }
         };
 
