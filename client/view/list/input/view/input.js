@@ -22,7 +22,7 @@ Meteor.startup(function(){
                 inputListInfoView.onSaveClicked(value, 'image');
             }
             else{
-                popup.showPopupWithFunction('You must add a name to the list to create it!',()=>{},4);
+                popup.showPopupWithFunction('You must add a name and an image to the list to create it!',()=>{},4);
             }
         }
     });
