@@ -10,12 +10,13 @@ import {InputListInfoViewImpl} from './InputListInfoViewImpl'
  *  call InputListInfoViewImpl.onSaveClicked
  *
  */
-let inputListInfoView = new InputListInfoViewImpl();
+Meteor.startup(function(){
+    let inputListInfoView = new InputListInfoViewImpl();
 
-Template.input.events({
-    'click .btn'(event){
-        inputListInfoView.onSaveClicked($("#nameList").val(),'image');
-    }
+    Template.input.events({
+        'click .btn'(event){
+            inputListInfoView.onSaveClicked($("#nameList").val(), 'image');
+        }
 
-
+    });
 });
