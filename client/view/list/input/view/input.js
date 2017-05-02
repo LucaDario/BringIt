@@ -3,7 +3,8 @@
  */
 
 import {InputListInfoViewImpl} from './InputListInfoViewImpl'
-
+import {container, inject} from 'dependency-injection-es6';
+import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
 
 /**
  * This script set event when the button with  class '.btn' clicked, and the event
@@ -11,12 +12,18 @@ import {InputListInfoViewImpl} from './InputListInfoViewImpl'
  *
  */
 Meteor.startup(function(){
-    let inputListInfoView = new InputListInfoViewImpl();
-
+    const inputListInfoView = container.resolve(InputListInfoViewImpl);
+    const popup = container.resolve(ShowPopupUseCase);
     Template.input.events({
         'click .btn'(event){
-            inputListInfoView.onSaveClicked($("#nameList").val(), 'image');
+            const value = $("#nameList").val();
+            const img = $("#imageList").val();
+            if(value !== '' && img !== '' ) {
+                inputListInfoView.onSaveClicked(value, 'image');
+            }
+            else{
+                popup.showPopupWithFunction('You must add a name to the list to create it!',()=>{},4);
+            }
         }
-
     });
 });

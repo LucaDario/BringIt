@@ -157,6 +157,17 @@ export class ShowPopupUseCase{
                 }
             });
         }
+        if (index === 4) {
+            bootbox.alert({
+                size: "small",
+                title: 'Error',
+                message: content,
+                backdrop: true,
+                closeButton: true,
+                onEscape: false,
+                callback: fun
+            });
+        }
     }
 
     /**
