@@ -29,7 +29,7 @@ describe('CreateListViewPresenter', function () {
         presenter._chatSourse.sendMessageToChatWithJson.restore();
     });
 
-    it('Check that the list name have a default value [TU40]', function () {
+    it('Check that the list image is setted correctly [TU40]', function () {
         const presenter = new CreateListViewPresenter();
         const listData = new ListData();
         listData.setImagePath("TEST");

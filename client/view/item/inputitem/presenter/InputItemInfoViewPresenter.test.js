@@ -6,9 +6,7 @@ import {InputItemInfoViewPresenter} from "./InputItemInfoViewPresenter";
 describe('InputItemInfoViewPresenter', function () {
 
     it('Check item name [TU41]', function () {
-        const presenter = new InputItemInfoViewPresenter();
-        const item = presenter.createListItem("Test Product", "", 10, "Long desc", "L");
-        expect(item._name).to.be.eq("Test Product");
+        throw new Error("NOT IMPLEMENTED");
     });
 
     it('Check image path [TU42]', function () {
@@ -21,6 +19,10 @@ describe('InputItemInfoViewPresenter', function () {
         const presenter = new InputItemInfoViewPresenter();
         const item = presenter.createListItem("Test Product", "Test path", 10, "Long desc", "L");
         expect(item._description).to.be.eq("Long desc");
+    });
+
+    it('Check item notes [TU44]', function () {
+        throw new Error("NOT IMPLEMENTED");
     });
 
     it('Check item quantity [TU45]', function () {
