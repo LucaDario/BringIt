@@ -23,5 +23,5 @@ export class ShareWithGroupView extends GeneralView{
      * When 'the share with group' button is clicked, this function provides to share the wished message to a specific
      * person who had been chosen by the user
      */
-    onClickShareWithGroup(){}
+    onClickShareWithGroup(group,json){}
 }
