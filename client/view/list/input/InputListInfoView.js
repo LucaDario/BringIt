@@ -18,7 +18,12 @@ export class InputListInfoView extends GeneralView{
          }*/
     }
 
-    onSaveClicked(){}
+    /**
+     *This Create a listData and call a emitSaveEvent on SalveEventClass whit ListData created
+     * @param name of list {string}
+     * @param photoList path {string}
+     */
+    onSaveClicked(name,photoList){}
 
 
 }
