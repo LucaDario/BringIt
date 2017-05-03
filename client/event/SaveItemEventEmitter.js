@@ -21,7 +21,7 @@ export class SaveItemEvent extends EventEmitter{
 
 
     /**Public
-     *This method emit a event with 'saveEvent'
+     *This method emit a event with 'saveEventItem'
      * @param item {Object}: ListItem to  pass through in emit method
      * @param listId {number}: Id of the list to pass through in emit method
      */
