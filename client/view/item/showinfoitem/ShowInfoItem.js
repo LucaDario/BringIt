@@ -21,54 +21,53 @@ export class Showinfoitem {
 
     /**
      * this method show at the screen of rocket chat the further info of the item
-     * @param layout: the layout where is present the item with the further information
      * @param listId: the id of the list where the item is present
      * @param item: the item  where the further information is present
      * @param permission: the permission if the user can modify or delete the list
      */
 
-    showlayoutadd(layout,listId,item,permission) {
+    showlayoutadd(listId,item,permission) {
 
+        const image = item.getImagePath();
+        const description = item.getDescription();
+        const name= item.getName();
+        const quantity = item.getQuantity();
+        const unity = item.getMeasurementUnit();
 
-        let showPop = container.resolve(ShowPopupUseCase);
+        const new_layout= new Monolith.layout.VerticalLayoutView;
+        const new_image= new Monolith.widgets.ImageWidget;
+        const new_textwidgets = new Monolith.widgets.TextWidget;
+        const new_textQuantity = new Monolith.widgets.TextWidget;
+        const newTextUnity = new Monolith.widgets.TextWidget;
 
-        const image = layout.getItems()[1].getPath();
-        const description = layout.getItems()[4].getText();
-        const name= layout.getItems()[0].getText();
-        const quantity = layout.getItems()[2].getText();
-        const unity = layout.getItems()[3].getText();
+        new_textwidgets.setFormatText(true);
+        new_textQuantity.setFormatText(true);
+        newTextUnity.setFormatText(true);
 
-        let new_layout= new Monolith.layout.VerticalLayoutView;
-        let new_image= new Monolith.widgets.ImageWidget;
-        let new_textwidgets = new Monolith.widgets.TextWidget;
-        let new_textQuantity = new Monolith.widgets.TextWidget;
-        let newTextUnity = new Monolith.widgets.TextWidget;
+        new_textwidgets.setTextColor('#fff');
+        new_textQuantity.setTextColor('#fff');
+        newTextUnity.setTextColor('#fff');
 
         new_image.setImage(image);
-        new_textwidgets.setText('descrizione: ' +description);
-        new_textQuantity.setText('Quantià: ' +quantity);
-        newTextUnity.setText('Unità di misura: ' +unity);
-
-
+        new_textwidgets.setText('*Description: *' + description);
+        new_textQuantity.setText('*Quantity: *' + quantity);
+        newTextUnity.setText('*Measure Unit: *' + unity);
 
         new_image.setHeight(60);
         new_image.setWidth(60);
         new_layout.addItem(new_image);
-        console.log(new_image);
         new_layout.addItem(new_textwidgets);
         new_layout.addItem(new_textQuantity);
         new_layout.addItem(newTextUnity);
 
 
-        if(permission == true){
-            showPop.showPopup(name,new_layout.renderView(),listId,item,1);
+        if(permission === true){
+            this._popup.showPopup(name,new_layout.renderView(),listId,item,1);
 
         }
         else{
-            showPop.showPopup(name,new_layout.renderView(),listId,item);
+            this._popup.showPopup(name,new_layout.renderView(),listId,item);
         }
-
-
     }
 
 }

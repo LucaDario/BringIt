@@ -34,7 +34,7 @@ export class InputItemInfoViewImpl extends InputItemInfoView {
 
     showErrorPopup(){
         const pop = container.resolve(ShowPopupUseCase);
-        pop.showPopup("<h2>Error</h2>","<p>Insert the name of the element</p>");
+        pop.showPopup("Error","Insert the name of the element!");
     }
 
     /**

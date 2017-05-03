@@ -17,12 +17,17 @@
 .modal-body #sites{
     background-color: #fff;
 }
-
 .subject * {
     color : #fff;
 }
-
 #imageItem{
-    width: auto;
-    border: none;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.modal-footer button{
+    border-radius: 5px;
+}
+.modal-body .markdown p{
+    color:#fff;
 }

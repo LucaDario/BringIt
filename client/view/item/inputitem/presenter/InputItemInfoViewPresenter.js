@@ -15,7 +15,7 @@ export class InputItemInfoViewPresenter {
      */
     constructor(view,listId) {
         /**
-         * @type {InpuItemInfoView} this is a reference at the InputItemInfoView
+         * @type {InputItemInfoView} this is a reference at the InputItemInfoView
          */
         this._view= view;
         /**
@@ -41,7 +41,7 @@ export class InputItemInfoViewPresenter {
      * @param image {blob}: the blob of the image of the item that you want create
      * @param quantity{number} : the quantity of the item that you want create
      * @param long_description {string} : the description of the item that you want create
-     * @mesaurement_unit {string} : the unit of measure of the item that you want create
+     * @param mesaurement_unit {string} : the unit of measure of the item that you want create
      * @return {ListItem}: the listItem that you want create
      */
 

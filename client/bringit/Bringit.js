@@ -12,7 +12,6 @@ import {CompleteListEventEmitter} from '../event/CompleteListEventEmitter';
 import {DeleteItem} from '../event/DeleteItem';
 
 
-
 export class Bringit extends Monolith.bubble.BaseBubble {
     /**
      * create the bringit bubble
@@ -34,7 +33,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         //add a callback at a complete list event
         this._completeEvent.on('completeEvent',(listId,listName) => {
 
-            if(listId == this._id){
+            if(listId === this._id){
                 this._shoPopupUseCase.showPopup('Lista '+listName, this._COMPLETE_POPUP_TEXT);
             }
         });
@@ -51,7 +50,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this._COMPLETE_POPUP_TEXT = 'List Completed!!!';
 
         //create unique id list
-        if(listId == undefined) {
+        if(listId === undefined) {
             listId = ('_' + Math.random().toString(36).substr(2, 9)).toString();
         }
 
@@ -61,6 +60,8 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         //create and set the tittle of the list
         this._textNameList = new Monolith.widgets.TextWidget;
         this._textNameList.setText(listName);
+        this._textNameList.setFormatText(true);
+        this._textNameList.setTextSize(20);
         super.addComponent(this._textNameList);
 
         //set a array for contains the list of the itemWidget
@@ -73,28 +74,23 @@ export class Bringit extends Monolith.bubble.BaseBubble {
             //create a button for add the show a inputItem
             this._addItemButton = new Monolith.widgets.ButtonWidget;
             this._textAddItemButton = 'Add Item';
-            this._addItemButton.renderView();
+            const btn = this._addItemButton.renderView();
+            btn.style.borderRadius = '5px';
+            btn.style.marginBottom = '.5em';
             this._addItemButton.setText(this._textAddItemButton);
 
             this._addItemButton.setOnClickAction(() => {
                 this.showInputAddItem();
             });
-
-
             super.addComponent(this._addItemButton);
         }
 
         this._saveItemEvent.on('saveEventItem',(item,listId) => {
-            if(this._id == listId){
+            if(this._id === listId){
                 this.addNewBringitItem(item);
             }
 
         });
-
-
-
-
-
 
     }
 
@@ -103,10 +99,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
      * show the popUp for add a new item, it contains all the form for add all details
      */
     showInputAddItem(){
-        let popup= container.resolve(ShowPopupUseCase)
-        popup.showpopupitemad(this._id);
-
-
+        this._shoPopupUseCase.showpopupitemad(this._id);
 
     }
 
@@ -131,9 +124,6 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     updateItem(listItem){
         //console.log(this.isComplete());
         Meteor.subscribe('updateItem',this._id,listItem);
-
-
-
     }
 
     /**
@@ -225,7 +215,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
        // set action fot long click
         itemCheck.setOnLongClick(() => {
             let popup_info_item = container.resolve(Showinfoitem);
-            popup_info_item.showlayoutadd(layoutContainer,this._id,listItem,this._permission);
+            popup_info_item.showlayoutadd(this._id,listItem,this._permission);
         });
 
         super.addComponent(layoutContainer);

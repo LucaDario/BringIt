@@ -1,22 +1,16 @@
 <template name="input">
-	<div class="content">
-		<h2>AGGIUNTA DI UNA LISTA</h2>
-
-
-			<div id="create_list_img">
-				Inserisci l'immagine che vuoi rappresenti la tua lista:<br>
-				<input  id="imageList" type="file" name="list_image" accept="image/*">
-			</div>
-			<div id="create_list_name">
-				Inserisci il nome della lista che vuoi creare:<br>
-				<input id="nameList" type="text" name="list_name"><br>
-			</div>
+	<div class="content" id="contentInputList">
+		<h2>CREATE A NEW LIST</h2>
+		<div id="create_list_img">
+			Add an image for the list:<br/>
+			<input  id="imageList" type="file" name="list_image" accept="image/*"/>
+		</div>
+		<div id="create_list_name">
+			Add the name of the list:<br/>
+			<input id="nameList" type="text" name="list_name"/>
 			<button type="button" class="btn btn-primary" id="btnAddList">
-				Conferma la creazione della lista<br>
-
+				Create list
 			</button>
-
-
-
+		</div>
 	</div>
 </template>

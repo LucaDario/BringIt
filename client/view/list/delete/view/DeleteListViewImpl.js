@@ -45,7 +45,7 @@ export class DeleteListViewImpl extends DeleteListView{
         this._deleteEvent.on('deleteThisEvent',(listId,nameList)=>{
             this.openDeleteListView(listId, nameList);
         });
-        this._presenter = container.resolve(DeleteListViewPresenter);
+        this._presenter = new DeleteListViewPresenter(this);
     }
 
     getDeleteEvent(){

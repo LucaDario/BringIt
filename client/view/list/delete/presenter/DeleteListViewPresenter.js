@@ -6,6 +6,7 @@
 
 import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
 import {container,inject} from 'dependency-injection-es6';
+import {DeleteListViewImpl} from '../view/DeleteListViewImpl';
 
 export class DeleteListViewPresenter{
 
@@ -18,15 +19,15 @@ export class DeleteListViewPresenter{
      * @constructor
      * Constructor of DeleteListViewPresenter
      */
-    constructor(){
+    constructor(view){
         this._popup = container.resolve(ShowPopupUseCase);
+        this._view = view;
     }
 
     openDeleteListView(listId,nameList){
-        const popup = container.resolve(ShowPopupUseCase);
         const fun = (viewDel = this._view)=>{
             viewDel.getDeleteEvent().emitDeleteEvent(listId,nameList)
         };
-        popup.showPopupWithFunction(nameList,fun,3);
+        this._popup.showPopupWithFunction(nameList,fun,3);
     }
 }

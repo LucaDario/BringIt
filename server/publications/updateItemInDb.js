@@ -17,7 +17,7 @@ Meteor.publish('updateItem',function (listId, listItem) {
     const modifyListUseCase = container.resolve(ModifyListUseCase);
     let objectListItem = new ListItem();
     objectListItem.setId(listItem._id);
-    objectListItem.setDescription(listId._description);
+    objectListItem.setDescription(listItem._description);
     objectListItem.setImagePath(listItem._imagePath);
     objectListItem.setMeasurementUnit(listItem._measurementUnit);
     objectListItem.setName(listItem._name);

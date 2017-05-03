@@ -128,15 +128,19 @@ export class ShowPopupUseCase{
                     else{
                         if(img.val() === ''){
                             imgText.css({ 'color': '#f90'});
+                            img.css({'border:1px solid':'#f90'});
                         }
                         if(name.val() === ''){
                             nameText.css({ 'color': '#f90'});
+                            name.css({'border:1px solid':'#f90'});
                         }
                         if(quantity.val() === ''){
                             quantityText.css({ 'color': '#f90'});
+                            quantity.css({'border:1px solid':'#f90'});
                         }
                         if(unity.val() === ''){
                             unityText.css({ 'color': '#f90'});
+                            unity.css({'border:1px solid':'#f90'});
                         }
                         return false;
                     }
@@ -199,6 +203,9 @@ export class ShowPopupUseCase{
      * Show a popup with a message inside.
      * @param content {string} : the html that will be shown inside the popup.
      * @param title {string}: the title of the modal
+     * @param listId {Object}
+     * @param item {Object}
+     * @param index {number}
      */
     showPopup(title,content, listId = 0, item = 0,index=0){
 
@@ -211,7 +218,7 @@ export class ShowPopupUseCase{
         //calling the library bootbox to make popups
         global.bootbox = require('bootbox');
 
-        if (index == 0) {
+        if (index === 0) {
 
             bootbox.alert({
                 size: "small",
@@ -222,13 +229,13 @@ export class ShowPopupUseCase{
                 onEscape: false
             });
         }
-        if ( index == 1) {
+        if (index === 1) {
             bootbox.dialog({
                 message: content,
                 title: title,
                 buttons: [
                     {
-                        label: "Vuoi modificare la lista",
+                        label: "Modify item",
                         className: "btn btn-primary pull-left",
                         callback: function() {
                             let emitter = container.resolve(ModifyListEvent);
@@ -236,7 +243,7 @@ export class ShowPopupUseCase{
                         }
                     },
                     {
-                        label: "Vuoi elimare la lista",
+                        label: "Delete item",
                         className: "btn btn-primary pull-left",
                         callback: function() {
                             let emitter = container.resolve(DeleteItem);
@@ -244,7 +251,7 @@ export class ShowPopupUseCase{
                         }
                     }
                 ],
-                onEscape: "null",
+                onEscape: false
             });
 
         }
@@ -258,7 +265,6 @@ export class ShowPopupUseCase{
      * @param person {string}: the person whom you want to give permissions to
      * @param json {JSON}: the message you've already sent
      */
-
     showPopupContactPermission(content,person,json){
         const $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
@@ -295,13 +301,11 @@ export class ShowPopupUseCase{
     /**
      * @method
      * Show a popup with a message inside.
-     * @param content {string} : the html that will be shown inside the popup.
-     * @param title {string}: the title of the modal
+     * @param listId {Object} : the id of the list
      */
-
     showpopupitemad(listId) {
 
-        let inputItemInfoView = new InputItemInfoViewImpl(listId);
+        const inputItemInfoView = new InputItemInfoViewImpl(listId);
 
         let f = function () {
             inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
@@ -310,35 +314,33 @@ export class ShowPopupUseCase{
         };
 
 
-    this.showPopupWithFunction(
-        '<div class="subject">' +
-        '<form>'+
-        '<div id="input_item_img">' +
-        'Inserisci limmagine che vuoi rappresenti il tuo item <br>' +
-        '<input  id="imageItem" type="file" name="item_image" accept="image/*">' +
-        '</div>' +
-        '<div id="input_name_item">' +
-        'Inserisci il nome del item che vuoi creare:<br>' +
-        '<input id="itemList" type="text" name="item_name" required><br>' +
-        '</div>' +
-        '<div id="input_quantity_item">' +
-        'Inserisci la quantità del item che vuoi creare:<br>' +
-        '<input id="itemQuantity" type="number" name="item_quantity"><br>' +
-        '</div>' +
-        '<div id="input_description_item">' +
-        'Inserisci la descrizione del item che vuoi creare:<br>' +
-        '<input id="itemdescription" type="text" name="item_description"><br>' +
-        '</div>' +
-        '<div id="input_mesaurement_unit">' +
-        ' Inserisci l unita di misura del item che vuoi creare:<br>' +
-        '<input id="itemMesaurement" type="text" name="item_mesaurement"><br>'+
-        '</div>'+
-        '</form>'
-        , f, 1);
+        this.showPopupWithFunction(
+            '<div class="subject">' +
+                '<form>'+
+                    '<div id="input_item_img">' +
+                        'Add an image for the list:<br>' +
+                        '<input  id="imageItem" type="file" name="item_image" accept="image/*">' +
+                    '</div>' +
+                    '<div id="input_name_item">' +
+                        'Add the name of the item:<br>' +
+                        '<input id="itemList" type="text" name="item_name" required><br>' +
+                    '</div>' +
+                    '<div id="input_quantity_item">' +
+                        'Add the quantity of the item:<br>' +
+                        '<input id="itemQuantity" type="number" name="item_quantity"><br>' +
+                    '</div>' +
+                    '<div id="input_description_item">' +
+                        'Add a description for the item:<br>' +
+                        '<input id="itemdescription" type="text" name="item_description"><br>' +
+                    '</div>' +
+                    '<div id="input_mesaurement_unit">' +
+                        'Add a measure unit for the item:<br>' +
+                    '<input id="itemMesaurement" type="text" name="item_mesaurement"><br>'+
+                    '</div>'+
+                '</form>' +
+            '</div>'
+            , f, 1);
     }
 }
-
-
-
 // Be sure that each instance of this class that will be injected is always the same
 container.registerAsSingleton(ShowPopupUseCase);
