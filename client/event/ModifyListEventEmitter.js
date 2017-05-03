@@ -20,7 +20,7 @@ export class ModifyListEvent extends EventEmitter{
 
     /**
      *@method
-     *This method emit a event with 'deleteEvent'
+     *This method emit a event with 'ModifyItem'
      * @param listId {number}: listId to pass through in emit method
      * @param itemId {number}: ItemId to pass through in emit method
      */

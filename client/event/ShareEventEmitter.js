@@ -22,7 +22,7 @@ export class ShareEventEmitter extends EventEmitter{
 
     /**
      * @method
-     * this method emits a share event.
+     * This method emit a event with 'shareEvent'
      * @param group {array}: contains the group which you want to share something to
      * @param message {JSON}: the message that you want to share
      * @param title {string}: the title of the popup

@@ -10,7 +10,7 @@
 import {InputItemInfoView} from '../InputItemInfoView';
 import {InputItemInfoViewPresenter} from '../presenter/InputItemInfoViewPresenter';
 import {container,inject} from 'dependency-injection-es6';
-import {SaveItemEvent} from '../../../../event/SaveItemEvent';
+import {SaveItemEvent} from '../../../../event/SaveItemEventEmitter';
 import {ShowPopupUseCase} from "../../../../usecase/ShowPopupUseCase";
 
 export class InputItemInfoViewImpl extends InputItemInfoView {

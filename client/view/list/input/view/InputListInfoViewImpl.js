@@ -17,7 +17,7 @@
 import {InputListInfoView} from '../InputListInfoView';
 import {InputListInfoViewPresenter} from '../presenter/InputListInfoViewPresenter';
 import {container,inject} from 'dependency-injection-es6';
-import {SaveListEvent} from '../../../../event/SaveListEvent'
+import {SaveListEvent} from '../../../../event/SaveListEventEmitter'
 
 export class InputListInfoViewImpl extends InputListInfoView {
 
