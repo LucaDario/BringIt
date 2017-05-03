@@ -18,7 +18,7 @@ export class ShareWithGroupViewImpl extends ShareWithGroupView{
 
     constructor() {
         super();
-        this._presenter = container.resolve(ShareWithGroupViewPresenter);
+        this._presenter = new ShareWithGroupViewPresenter(this);
         this._shareEvent = container.resolve(ShareEventEmitter);
         this._shareEvent.on('shareEvent', (group,json, title) => {
             if(title === 'Choose a channel') {

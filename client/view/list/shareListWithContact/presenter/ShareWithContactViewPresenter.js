@@ -12,11 +12,13 @@ export class ShareWithContactViewPresenter{
     /**
     * Public constructor
     */
-    constructor(){
+    constructor(view){
         this._chat = container.resolve(ChatSource);
         this._popup = container.resolve(ShowPopupUseCase);
+        this._view = view;
 
     }
+
     /**
      * @method
      * When 'the share with person' button is clicked, this function provides to share the wished message to a specific
