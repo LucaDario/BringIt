@@ -20,8 +20,8 @@ import "./popup.html";
 import {DeleteListEventEmitter} from '../event/DeleteListEventEmitter';
 import {ShareEventEmitter} from '../event/ShareEventEmitter';
 import "../modal.css";
-import {ModifyListEvent} from '../event/ModifyListEvent';
-import {DeleteItem} from '../event/DeleteItem';
+import {ModifyListEvent} from '../event/ModifyListEventEmitter';
+import {DeleteItem} from '../event/DeleteItemEventEmitter';
 import {InputItemInfoViewImpl} from '../view/item/inputitem/view/InputItemInfoViewImpl'
 
 

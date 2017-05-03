@@ -10,7 +10,7 @@
 import {container,inject} from 'dependency-injection-es6';
 import {CreateListView} from "../CreateListView";
 import {CreateListViewPresenter} from "../presenter/CreateListViewPresenter";
-import {SaveListEvent} from '../../../../event/SaveListEvent';
+import {SaveListEvent} from '../../../../event/SaveListEventEmitter';
 import {ListData} from '../../../../../data/ListData';
 
 export class CreateListViewImpl extends CreateListView {

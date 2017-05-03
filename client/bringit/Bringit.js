@@ -6,10 +6,10 @@
 import {container, singleton, inject} from 'dependency-injection-es6';
 import {ListItem} from '../../data/ListItem'
 import {ShowPopupUseCase} from '../usecase/ShowPopupUseCase';
-import {SaveItemEvent} from '../event/SaveItemEvent';
+import {SaveItemEvent} from '../event/SaveItemEventEmitter';
 import {Showinfoitem}  from '../view/item/showinfoitem/ShowInfoItem';
 import {CompleteListEventEmitter} from '../event/CompleteListEventEmitter';
-import {DeleteItem} from '../event/DeleteItem';
+import {DeleteItem} from '../event/DeleteItemEventEmitter';
 
 
 
