@@ -16,14 +16,19 @@ export class DeleteListViewPresenter{
     _popup;
 
     /**
-     * @constructor
-     * Constructor of DeleteListViewPresenter
+     * Public constructor
      */
     constructor(view){
         this._popup = container.resolve(ShowPopupUseCase);
         this._view = view;
     }
 
+    /**
+     * @method
+     * Allows you to show the popup for deletion of the list
+     * @param listId {Object}: the id of the list
+     * @param nameList {string}: the name of the list
+     */
     openDeleteListView(listId,nameList){
         const fun = (viewDel = this._view)=>{
             viewDel.getDeleteEvent().emitDeleteEvent(listId,nameList)

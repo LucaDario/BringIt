@@ -18,6 +18,11 @@ export class CreateListView extends GeneralView{
 		}*/
 	}
 
+    /**
+     * This method returned a Json config for flex-tab-bar
+     * @returns {*|{JSON}|String}
+     */
+	renderView(){}
 
 }
 

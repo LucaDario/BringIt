@@ -48,10 +48,21 @@ export class DeleteListViewImpl extends DeleteListView{
         this._presenter = new DeleteListViewPresenter(this);
     }
 
+    /**
+     * @method
+     * _deleteEvent getter
+     * @return {DeleteListEventEmitter}
+     */
     getDeleteEvent(){
         return this._deleteEvent;
     }
 
+    /**
+     * @method
+     * Allows you to show the popup for deletion of the list
+     * @param listId {Object}: the id of the list
+     * @param nameList {string}: the name of the list
+     */
     openDeleteListView(listId,nameList){
         this._presenter.openDeleteListView(listId,nameList);
     }

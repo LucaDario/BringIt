@@ -15,8 +15,9 @@ export class DeleteListView extends GeneralView{
     }
 
     /**
-     * @method openDeleteListView
-     * It allows you to show the popup that allows you to delete a bringit list.
+     * Allows you to show the popup for deletion of the list
+     * @param listId {Object}: the id of the list
+     * @param nameList {string}: the name of the list
      */
     openDeleteListView(listId,nameList){}
 }
