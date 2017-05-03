@@ -24,5 +24,5 @@ export class ShareWithContactView extends GeneralView{
      * When 'the share with person' button is clicked, this function provides to share the wished message to a specific
      * person who had been chosen by the user
      */
-    onClickShareWithContact(){}
+    onClickShareWithContact(person,json){}
 }
