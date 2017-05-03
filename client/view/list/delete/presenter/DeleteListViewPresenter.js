@@ -16,6 +16,11 @@ export class DeleteListViewPresenter{
     _popup;
 
     /**
+     * @type {Object}: the view associated to the presenter
+     */
+    _view;
+
+    /**
      * Public constructor
      */
     constructor(view){
