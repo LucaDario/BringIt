@@ -7,7 +7,6 @@
 import {ListData} from '../../data/ListData';
 import {InputItemInfoViewImpl} from '../view/item/inputitem/view/InputItemInfoViewImpl';
 import {ShareWithGroupViewImpl} from '../view/list/ShareListWithGroup/view/ShareWithGroupViewImpl';
-//import '../../../Monolith/lib/_monolith';
 import {Bringit} from '../bringit/Bringit';
 
 

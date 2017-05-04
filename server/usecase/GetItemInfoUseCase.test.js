@@ -14,7 +14,7 @@ import {GetItemInfoUseCase} from './GetItemInfoUseCase';
 
 describe('GetItemInfoUseCase', function () {
 
-    it('Verify GetItemInfoUseCase works properly with DatabaseSource [TI47]', function () {
+    it('Verify GetItemInfoUseCase works properly with DatabaseSource [TI35]', function () {
 
         Meteor.isTest = true;
         const util = require('util');

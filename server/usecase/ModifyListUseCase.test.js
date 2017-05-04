@@ -49,7 +49,7 @@ describe('ModifyListUseCase', function () {
             });
     });
 
-    it('Verify ModifyListUseCase works properly with DatabaseSource [TI22]', function () {
+    it('Verify ModifyListUseCase works properly with DatabaseSource [TI38]', function () {
         // For recursive printing
         const util = require('util');
         Meteor.isTest = true;

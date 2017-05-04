@@ -37,14 +37,16 @@ describe('DatabasaseSource', function () {
     });
 
     it('Verify DatabaseSource deletes the list [TU52]', function () {
-
-        Meteor.isTest = true;
-        let db = container.resolve(DatabaseSource);
-        const listData = new ListData();
-        listData.setName('The best list ever made');
-        db.saveList(listData);
-        db.removeList(listData.getId());
-        expect(db.getListWithId(listData.getId())).to.throw();
+        expect(
+            () => {
+                Meteor.isTest = true;
+                let db = container.resolve(DatabaseSource);
+                const listData = new ListData();
+                listData.setName('The best list ever made');
+                db.saveList(listData);
+                db.removeList(listData.getId());
+                db.getListWithId(listData.getId());
+            }).to.throw();
     });
 
 
