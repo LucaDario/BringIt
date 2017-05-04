@@ -29,7 +29,7 @@ export class GetItemInfoUseCase {
      * @return {ListItem}: Object representing the retrieved item.
      */
     getItemInfo(listId,itemId){
-        return this._databaseSource.getItemWithId(itemId);
+        return this._databaseSource.getItemWithId(listId,itemId);
     }
 
 }

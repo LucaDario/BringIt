@@ -6,6 +6,9 @@
 
 export class ListItem {
 
+    /**
+     * Public constructor
+     */
     constructor(){
         // Create a unique id
         ObjectID = Mongo.ObjectID;

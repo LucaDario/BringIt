@@ -38,14 +38,19 @@ export class DatabaseSource {
      * @param listId {@code String}: Id of the list to be deleted from the database.
      */
     removeList(listId){
-        const cursor = this._listCollection.find({'listData._id' : listId});
-        cursor.forEach(function (message) {
-            Meteor.runAsUser(message.listData._creatorId, () => {
-                Meteor.call('deleteMessage',{_id: message._id})
+        if(Meteor.isTest){
+            this._listCollection.remove({'listData._id' : listId});
+        }
+        else {
+            const cursor = this._listCollection.find({'listData._id': listId});
+            cursor.forEach(function (message) {
+                Meteor.runAsUser(message.listData._creatorId, () => {
+                    Meteor.call('deleteMessage', {_id: message._id})
 
-            });
+                });
 
-        })
+            })
+        }
     }
 
     /**
@@ -63,15 +68,20 @@ export class DatabaseSource {
      * @param listData {ListData}: List to be saved inside the database.
      */
     saveList(listData){
-        const cursor = this._listCollection.find({'listData._id' : listData._id});
-        cursor.forEach(function (message) {
-            Meteor.runAsUser('rocket.cat', () => {
+        if(Meteor.isTest){
+            this._listCollection.insert({listData: listData});
+        }
+        else {
+            const cursor = this._listCollection.find({'listData._id': listData._id});
+            cursor.forEach(function (message) {
+                Meteor.runAsUser('rocket.cat', () => {
 
-                Meteor.call('updateMessage',{_id : message._id, msg:'', listData : listData, rid:message.rid})
+                    Meteor.call('updateMessage', {_id: message._id, msg: '', listData: listData, rid: message.rid})
 
-             });
+                });
 
-        })
+            });
+        }
 
 
     }

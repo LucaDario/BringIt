@@ -1,6 +1,7 @@
 /**
  * Created by Stefano Lia on 04/05/2017
  * Version 1.0.0 - Initial version
+ * Unit test of Bringit bubble
  */
 
 import {Bringit} from './Bringit';

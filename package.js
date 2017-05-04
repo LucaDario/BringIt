@@ -123,6 +123,7 @@ Package.onTest(function(api) {
         'server/usecase/ManageListUseCase.test.js',
         'server/usecase/ModifyListUseCase.test.js',
         'server/usecase/ShareListUseCase.test.js',
+        'server/database/DatabaseSource.test.js'
     ], 'server');
 
 

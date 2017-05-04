@@ -24,7 +24,11 @@ describe('System tests', function () {
             2, 'test', 'kg');
         // adding an element in the list
         bubble.addNewBringitItem(item);
+        bubble.updateItem(item);
+        console.log(bubble.getLayout().getItems());
+        expect(bubble.getLayout().getItems().length).to.be.eq(3);
     });
+
     it('Check the correct deleting of an item in the list and it interacts correctly with the database' +
         ' [TSFO19]', function () {
 
@@ -34,33 +38,35 @@ describe('System tests', function () {
         let item = input._presenter.createListItem(list.getName(), '',
             2, 'test', 'kg');
         bubble.addNewBringitItem(item);
+        bubble.updateItem(item);
         bubble.deleteItem(item.getId());
+        bubble.updateItem(item);
+        console.log(bubble.getLayout().getItems());
+        expect(bubble.getLayout().getItems().length).to.be.eq(0);
     });
 
     it('Check the correct checking of an item in the list [TSFO20]', function () {
-
-        expect(
-            () => {
-                let list = new ListData();
-                let bubble = new Bringit(list.getName(),list.getId(),true);
-                let input = new InputItemInfoViewImpl(list.getId());
-                let item = input._presenter.createListItem(list.getName(), '',
-                    2, 'test', 'kg');
-                bubble.addNewBringitItem(item);
-                item.setStatus(true);
-            }
-        ).to.not.throw();
+        let list = new ListData();
+        let bubble = new Bringit(list.getName(),list.getId(),true);
+        let input = new InputItemInfoViewImpl(list.getId());
+        let item = input._presenter.createListItem(list.getName(), '',
+            2, 'test', 'kg');
+        bubble.addNewBringitItem(item);
+        item.setStatus(true);
+        expect(bubble.getLayout().getItems()[0].isChecked()).to.be.eq(true);
     });
 
-    it("Check correct sharing of a Bringit bubble [TSFO25]", function () {
-        const share = new ShareWithGroupViewImpl();
-        const listData = new ListData();
-        listData.setName('Test');
-        listData.setCreatorId(this.userId);
-        const json = {
-            "bubbleType": 'Bringit',
-            "listData": listData
-        }
-        share.onClickShareWithGroup('general',json);
+    it("Check correct sharing in a group of a Bringit bubble [TSFO25]", function () {
+        expect(() => {
+            const share = new ShareWithGroupViewImpl();
+            const listData = new ListData();
+            listData.setName('Test');
+            listData.setCreatorId(this.userId);
+            const json = {
+                "bubbleType": 'Bringit',
+                "listData": listData
+            }
+            share.onClickShareWithGroup('general', json);
+        }).to.not.throw();
     });
 });

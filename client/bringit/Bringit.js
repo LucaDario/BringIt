@@ -59,7 +59,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this._id = listId;
         this._nameList = listName;
 
-        //create and set the tittle of the list
+        //create and set the title of the list
         this._textNameList = new Monolith.widgets.TextWidget;
         this._textNameList.setText(listName);
         this._textNameList.setFormatText(true);
@@ -70,7 +70,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this._checklist = [];
         this._completionMessage = 'Checklist Completed!';
 
-        //if the user have permission create button for add item
+        //if the user have permission create button for adding item
 
         if(this._permission) {
             //create a button for add the show a inputItem

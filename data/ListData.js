@@ -8,6 +8,9 @@ import {ListItem} from "./ListItem";
 
 export class ListData {
 
+    /**
+     * Public constructor
+     */
     constructor(){
         // Create a new ObjectID so that the id of the list will be unique
         ObjectID = Mongo.ObjectID;

@@ -9,7 +9,7 @@ import {ListItem} from "../../data/ListItem";
 import {ListData} from "../../data/ListData";
 
 describe('ModifyListUseCase', function () {
-    it('Verify ShareList shares add the user in the _user filed of a ListData [TU62]', function () {
+    it('Verify ShareList shares add the user in the _user filed of a ListData [TU57]', function () {
         expect(
             () => {
                 Meteor.isTest = true;
