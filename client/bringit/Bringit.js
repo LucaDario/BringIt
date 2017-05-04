@@ -10,6 +10,7 @@ import {SaveItemEvent} from '../event/SaveItemEventEmitter';
 import {Showinfoitem}  from '../view/item/showinfoitem/ShowInfoItem';
 import {CompleteListEventEmitter} from '../event/CompleteListEventEmitter';
 import {DeleteItem} from '../event/DeleteItemEventEmitter';
+import {InputItemInfoViewImpl} from '../view/item/inputitem/view/InputItemInfoViewImpl';
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
@@ -99,7 +100,40 @@ export class Bringit extends Monolith.bubble.BaseBubble {
      * show the popUp for add a new item, it contains all the form for add all details
      */
     showInputAddItem(){
-        this._shoPopupUseCase.showpopupitemad(this._id);
+        const inputItemInfoView = new InputItemInfoViewImpl(this._id);
+
+        let f = function () {
+            inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
+                $("#itemdescription").val(),$("#itemMesaurement").val(),document.getElementById('imageItem').files[0]);
+
+        };
+
+        this._shoPopupUseCase.showPopupWithFunction(
+            '<div class="subject">' +
+            '<form>'+
+            '<div id="input_item_img">' +
+            'Add an image for the list:<br>' +
+            '<input  id="imageItem" type="file" name="item_image" accept="image/*">' +
+            '</div>' +
+            '<div id="input_name_item">' +
+            'Add the name of the item:<br>' +
+            '<input id="itemList" type="text" name="item_name" required><br>' +
+            '</div>' +
+            '<div id="input_quantity_item">' +
+            'Add the quantity of the item:<br>' +
+            '<input id="itemQuantity" type="number" name="item_quantity"><br>' +
+            '</div>' +
+            '<div id="input_description_item">' +
+            'Add a description for the item:<br>' +
+            '<input id="itemdescription" type="text" name="item_description"><br>' +
+            '</div>' +
+            '<div id="input_mesaurement_unit">' +
+            'Add a measure unit for the item:<br>' +
+            '<input id="itemMesaurement" type="text" name="item_mesaurement"><br>'+
+            '</div>'+
+            '</form>' +
+            '</div>'
+            , f, 1);
 
     }
 
