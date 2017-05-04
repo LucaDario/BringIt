@@ -17,12 +17,10 @@
 import {container} from 'dependency-injection-es6';
 import {ChatSource} from "../chat/ChatSource";
 import "./popup.html";
-import {DeleteListEventEmitter} from '../event/DeleteListEventEmitter';
 import {ShareEventEmitter} from '../event/ShareEventEmitter';
 import "../modal.css";
 import {ModifyListEvent} from '../event/ModifyListEventEmitter';
 import {DeleteItem} from '../event/DeleteItemEventEmitter';
-import {InputItemInfoViewImpl} from '../view/item/inputitem/view/InputItemInfoViewImpl'
 
 
 //const ReactiveModal = require('');
@@ -296,50 +294,6 @@ export class ShowPopupUseCase{
                 }
             }
         });
-    }
-
-    /**
-     * @method
-     * Show a popup with a message inside.
-     * @param listId {Object} : the id of the list
-     */
-    showpopupitemad(listId) {
-
-        const inputItemInfoView = new InputItemInfoViewImpl(listId);
-
-        let f = function () {
-            inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
-                $("#itemdescription").val(),$("#itemMesaurement").val(),document.getElementById('imageItem').files[0]);
-
-        };
-
-
-        this.showPopupWithFunction(
-            '<div class="subject">' +
-                '<form>'+
-                    '<div id="input_item_img">' +
-                        'Add an image for the list:<br>' +
-                        '<input  id="imageItem" type="file" name="item_image" accept="image/*">' +
-                    '</div>' +
-                    '<div id="input_name_item">' +
-                        'Add the name of the item:<br>' +
-                        '<input id="itemList" type="text" name="item_name" required><br>' +
-                    '</div>' +
-                    '<div id="input_quantity_item">' +
-                        'Add the quantity of the item:<br>' +
-                        '<input id="itemQuantity" type="number" name="item_quantity"><br>' +
-                    '</div>' +
-                    '<div id="input_description_item">' +
-                        'Add a description for the item:<br>' +
-                        '<input id="itemdescription" type="text" name="item_description"><br>' +
-                    '</div>' +
-                    '<div id="input_mesaurement_unit">' +
-                        'Add a measure unit for the item:<br>' +
-                    '<input id="itemMesaurement" type="text" name="item_mesaurement"><br>'+
-                    '</div>'+
-                '</form>' +
-            '</div>'
-            , f, 1);
     }
 }
 // Be sure that each instance of this class that will be injected is always the same
