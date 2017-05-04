@@ -11,16 +11,15 @@ import {container, singleton, inject} from 'dependency-injection-es6';
 export class ModifyListEvent extends EventEmitter{
 
     /**
-     * @constructor
-     *
+     * Public constructor
      */
     constructor() {
         super();
     }
 
     /**
-     *@method
-     *This method emit a event with 'ModifyItem'
+     * @method
+     * This method emits the 'ModifyItem' event
      * @param listId {number}: listId to pass through in emit method
      * @param itemId {number}: ItemId to pass through in emit method
      */

@@ -12,16 +12,15 @@ import {container, singleton, inject} from 'dependency-injection-es6';
 export class DeleteItem extends EventEmitter{
 
     /**
-     * @constructor
-     *
+     * Public constructor
      */
     constructor() {
         super();
     }
 
     /**
-     *@method
-     *This method emit a event with 'deleteEvent'
+     * @method
+     * This method emits the 'deleteEvent'
      * @param listId {number}: listId to pass through in emit method
      * @param item {object}: item to pass through in emit method
      */

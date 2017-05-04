@@ -13,13 +13,14 @@ import {DeleteItem} from '../event/DeleteItemEventEmitter';
 
 
 export class Bringit extends Monolith.bubble.BaseBubble {
-    /**
-     * create the bringit bubble
-     * @param listName:the name of the list
-     * @param listId: the id of the list
-     * @param permission: the permission for the list
-     */
 
+    /**
+     * Public constructor
+     * @param listName {string} : name of the list
+     * @param listId {string} : id of the list
+     * @param permission {boolean} : true if the user has the permissions to add or remove items
+     * in the list
+     */
     constructor(listName, listId, permission){
         super();
         this._permission = permission;
@@ -96,7 +97,9 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
 
     /**
-     * show the popUp for add a new item, it contains all the form for add all details
+     * @method
+     * It shows the popUp for adding a new item, it contains all the html forms needed to add all the
+     * necessary information
      */
     showInputAddItem(){
         this._shoPopupUseCase.showpopupitemad(this._id);
@@ -105,8 +108,8 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
     /**
      * @method
-     * add a new item in database
-     * @param item {ListItem}
+     * It adds a new item in the database
+     * @param item {ListItem} : it represents the item which will be added in the database
      */
 
     addNewBringitItem(item) {
@@ -114,12 +117,10 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
     }
 
-
-
     /**
      * @method
-     * Update item in database
-     * @param listItem {ListItem}
+     * It updates an item in the database
+     * @param listItem {ListItem} : the item which will be updated
      */
     updateItem(listItem){
         //console.log(this.isComplete());
@@ -128,7 +129,8 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
     /**
      *@method
-     *Deletes all lists that have the id equal to this instance of Bringit from the all chat and database
+     * It deletes all lists that have the id equal to this instance of Bringit
+     * from the all available chats and also in the database
      */
 
     deleteList(){
@@ -137,8 +139,8 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     }
 
     /**@method
-     *Deletes all item that have the id equal to @param itemId from the all chat and database
-     * @param itemId {string} Id of the Item I Want delete from the all list
+     * It deletes all item that have the id equal to @param itemId from the all chat and database
+     * @param itemId {string} Id of the Item I want delete from the all list
      */
 
     deleteItem(itemId){
@@ -148,8 +150,8 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
 
     /**@method
-     *Create, and add in Bringit, a new Item with same details in listItem
-     * @param listItem {ListItem}
+     * It creates and adds in Bringit a new Item with the same details of listItem
+     * @param listItem {ListItem} : the item you want to clonate
      */
 
     addItemFromDb(listItem){
@@ -188,7 +190,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
         let layoutContainer = new Monolith.layout.HorizontalLayoutView;
 
-        //add a all item
+        //add all items
 
         layoutContainer.addItem(itemCheck);
         layoutContainer.addItem(itemImage);
@@ -197,7 +199,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         layoutContainer.addItem(widgetDescription);
         this._checklist.push(layoutContainer);
 
-        //set action for click
+        //setting an action for the clicking of the button
 
         itemCheck.setOnClick(() => {
             listItem.setStatus(itemCheck.isChecked());
@@ -223,8 +225,9 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     }
 
     /**
-     * Returned true if list is Completed, false if is not completed
-     * @returns {boolean}
+     * @method
+     * It returns true if list is Completed, false if is not completed
+     * @returns {boolean} : it represents the returned value
      */
     isComplete(){
 

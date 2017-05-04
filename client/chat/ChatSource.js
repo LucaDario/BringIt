@@ -15,6 +15,11 @@
 import {container,inject} from 'dependency-injection-es6';
 const EventEmitter = require('events');
 export class ChatSource{
+
+
+    /**
+     * Public constructor
+     */
     constructor(){}
 
     /**
@@ -55,10 +60,6 @@ export class ChatSource{
                 }
             });
         }
-    }
-
-    showPopup(content){
-        //TODO: stub.
     }
 }
 

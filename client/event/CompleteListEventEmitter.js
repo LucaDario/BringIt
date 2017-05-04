@@ -11,16 +11,15 @@ import {container, singleton, inject} from 'dependency-injection-es6';
 export class CompleteListEventEmitter extends EventEmitter{
 
     /**
-     * @constructor
-     *
+     * Public constructor
      */
     constructor() {
         super();
     }
 
     /**
-     *@method
-     *This method emit a event with 'completeEvent'
+     * @method
+     * This method emits the 'completeEvent'
      * @param listId {Object}: listId to pass through in emit method
      * @param nameList {string}: listName to pass through in emit method
      */

@@ -11,8 +11,7 @@ import {container, singleton, inject} from 'dependency-injection-es6';
 export class SaveItemEvent extends EventEmitter{
 
     /**
-     * @constructor
-     *
+     * Public constructor
      */
     constructor() {
         super();
@@ -20,8 +19,9 @@ export class SaveItemEvent extends EventEmitter{
     }
 
 
-    /**Public
-     *This method emit a event with 'saveEventItem'
+    /**
+     * @method
+     * This method emits the 'saveEventItem' event
      * @param item {Object}: ListItem to  pass through in emit method
      * @param listId {number}: Id of the list to pass through in emit method
      */
