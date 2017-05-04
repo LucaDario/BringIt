@@ -18,21 +18,4 @@ describe('ShareWithGroupViewPresenter', function () {
             }
         ).to.not.throw();
     });
-    it("Check correct sharing", function (done) {
-        const share = new ShareWithGroupViewImpl();
-        const listData = new ListData();
-        listData.setName('Test');
-        listData.setCreatorId(this.userId);
-        const json = {
-            "bubbleType": 'Bringit',
-            "listData": listData
-        }
-        share.onClickShareWithGroup('general',json);
-        let message = Meteor.call('getMessage',listData.getId(),function (error,result) {
-            done();
-        });
-        console.log(message);
-        return message != undefined;
-        done();
-    });
 });

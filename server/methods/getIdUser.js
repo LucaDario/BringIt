@@ -1,6 +1,7 @@
 /**
  * Created by Stefano Lia on 28/04/2017
- * Version 1.0.0 - Initial version
+ * Version 1.0.1 - Completed
+ * This method get from the database the id of a specific user
  */
 
 

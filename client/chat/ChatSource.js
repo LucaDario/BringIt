@@ -47,7 +47,6 @@ export class ChatSource{
                         "listData": json.listData,
                         "msg": '',
                     };
-                    console.log(msgObject);
                     //sending the message just created
                     Meteor.call('sendMessage', msgObject);
                 }

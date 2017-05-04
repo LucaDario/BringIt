@@ -1,6 +1,7 @@
 /**
- * Created by liast on 26/04/2017
- * Version {VERSION} - {VERSION_NOTES}
+ * Created by Stefano Lia on 26/04/2017
+ * Version 1.0.1 - Completed
+ * This method get from the database the id of a specific message
  */
 
 Meteor.methods({

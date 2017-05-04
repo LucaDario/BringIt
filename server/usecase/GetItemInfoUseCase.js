@@ -28,7 +28,7 @@ export class GetItemInfoUseCase {
      * @param itemId {string}: Id of the item which needs to be retrieved.
      * @return {ListItem}: Object representing the retrieved item.
      */
-    getItemInfo(itemId){
+    getItemInfo(listId,itemId){
         return this._databaseSource.getItemWithId(itemId);
     }
 
@@ -37,46 +37,4 @@ export class GetItemInfoUseCase {
 // Register the class as a singleton so that each instance that is injected is always the same
 container.registerAsSingleton(GetItemInfoUseCase);
 
-/**
- * Tests.
- * TODO: Move this inside the proper testing environment
- */
-/*
-Meteor.startup(function () {
-    console.log('');
-    console.log('=== GET ITEM INFO USE CASE ===');
-
-    // For recursive printing
-    const util = require('util');
-
-    let useCase = container.resolve(GetItemInfoUseCase);
-
-    console.log('Inserting some lists');
-
-    let listData = useCase._databaseSource.createListForUserWithId(1);
-    listData.setName('The best list ever made');
-    let item1 = new ListItem(); item1.setDescription("First item");
-    let item2 = new ListItem(); item1.setDescription("Second item");
-
-    listData.addNewBringitItem(item1);
-    listData.addNewBringitItem(item2);
-
-    let listData2 = useCase._databaseSource.createListForUserWithId(3);
-    listData.setName('The best list ever made 2');
-    let item11 = new ListItem(); item1.setDescription("First item 2");
-    let item21 = new ListItem(); item1.setDescription("Second item 2");
-
-    listData2.addNewBringitItem(item11);
-    listData2.addNewBringitItem(item21);
-
-    useCase._databaseSource.saveList(listData);
-    useCase._databaseSource.saveList(listData2);
-
-    // Should print an object with the proper data
-    console.log('Retrieving items 1 and 11');
-    console.log(useCase.getItemInfo(item1.getId()));
-    console.log(useCase.getItemInfo(item21.getId()));
-
-});
-    */
 

@@ -15,6 +15,7 @@
 
 import {container} from 'dependency-injection-es6';
 import {ListData} from "../../data/ListData";
+import { Mongo } from 'meteor/mongo'
 import {ListItem} from "../../data/ListItem";
 
 export class DatabaseSource {
@@ -24,7 +25,12 @@ export class DatabaseSource {
      */
     constructor(){
         // this._listCollection = new Mongo.Collection('lists');
-        this._listCollection = RocketChat.models.Messages;
+        if(Meteor.isTest){
+            this._listCollection = new Mongo.Collection('lists');
+        }
+        else {
+            this._listCollection = RocketChat.models.Messages;
+        }
     }
 
     /**
@@ -87,8 +93,8 @@ export class DatabaseSource {
      * @param itemId {string}: Id of the item to be searched for.
      * @return {ListItem}: Item retrieved, if found.
      */
-    getItemWithId(itemId){
-        let message = this._listCollection.findOne({'listData._items._id' : itemId});
+    getItemWithId(listId, itemId){
+        let message = this._listCollection.findOne({'listData._id' : listId});
         let listData = this._convertToListData(message.listData);
         return listData.getItembById(itemId);
     }

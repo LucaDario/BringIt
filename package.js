@@ -89,14 +89,18 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
+    api.versionsFrom('1.4.1.1');
     api.use([
         'coffeescript',
         'jquery',
         'ecmascript',
         'practicalmeteor:mocha',
         'practicalmeteor:chai',
-        'practicalmeteor:sinon'
+        'practicalmeteor:sinon',
+        'monolith'
     ]);
+
+   // api.imply('monolith', ['client','server']);
 
     api.use('templating', 'client');
     api.use('mongo',['client','server']);
@@ -108,11 +112,17 @@ Package.onTest(function(api) {
         'client/view/list/shareListWithContact/presenter/ShareWithContactViewPresenter.test.js',
         'client/view/list/create/presenter/CreateListViewPresenter.test.js',
         'client/view/item/inputitem/presenter/InputItemInfoViewPresenter.test.js',
-        'client/view/item/inputitem/view/InputItemInfoViewImpl.test.js'
+        'client/view/item/inputitem/view/InputItemInfoViewImpl.test.js',
+        'client/test/testSistema.js',
+        'client/bringit/Bringit.test.js'
     ], 'client');
 
     api.addFiles([
-        'server/methods/getMessage.js'
+        'server/usecase/GetItemInfoUseCase.test.js',
+        'server/usecase/GetListInfoUseCase.test.js',
+        'server/usecase/ManageListUseCase.test.js',
+        'server/usecase/ModifyListUseCase.test.js',
+        'server/usecase/ShareListUseCase.test.js',
     ], 'server');
 
 
