@@ -28,8 +28,8 @@ export class ShareWithContactViewPresenter{
         this._chat.sendMessageToUser(person,json);
 
         for(let i=0; i<person.length; i++) {
-            this._popup.showPopupContactPermission('<h3> Do you want to give the permissions to modify the list ' +
-                'to ' + person[i] + '? </h3>', person[i], json);
+            this._popup.showPopupContactPermission(person[i], json,'<h3> Do you want to give the permissions to modify the list ' +
+                'to ' + person[i] + '? </h3>');
         }
     }
 

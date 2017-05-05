@@ -263,7 +263,7 @@ export class ShowPopupUseCase{
      * @param person {string}: the person whom you want to give permissions to
      * @param json {JSON}: the message you've already sent
      */
-    showPopupContactPermission(content,person,json){
+    showPopupContactPermission(person,json,content=''){
         const $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
         window.$ = $;

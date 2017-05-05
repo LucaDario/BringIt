@@ -41,7 +41,12 @@ export class InputListInfoViewPresenter{
         let listData = new ListData();
         listData.setName(name);
         listData.setImagePath(image);
-        listData.setCreatorId(Meteor.userId());
+        if(Meteor.isTest){
+            listData.setCreatorId('rocket.cat');
+        }
+        else {
+            listData.setCreatorId(Meteor.userId());
+        }
         return listData;
 
     }
