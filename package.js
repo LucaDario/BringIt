@@ -114,8 +114,7 @@ Package.onTest(function(api) {
         'client/view/item/inputitem/presenter/InputItemInfoViewPresenter.test.js',
         'client/view/item/inputitem/view/InputItemInfoViewImpl.test.js',
         'client/test/testSistema.js',
-        'client/test/testIntegrazione.js',
-        'client/bringit/Bringit.test.js'
+        'client/test/testIntegrazione.js'
     ], 'client');
 
     api.addFiles([

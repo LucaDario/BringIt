@@ -6,7 +6,6 @@
 
 
 import {ListData} from '../../data/ListData';
-import {ListItem} from '../../data/ListItem';
 import {ShareWithGroupViewImpl} from '../view/list/ShareListWithGroup/view/ShareWithGroupViewImpl';
 import {CreateListViewImpl} from '../view/list/create/view/CreateListViewImpl';
 import {DeleteListViewImpl} from '../view/list/delete/view/DeleteListViewImpl';

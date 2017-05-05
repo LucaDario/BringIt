@@ -15,6 +15,14 @@ import {container,inject} from 'dependency-injection-es6';
 
 describe('System tests', function () {
 
+    it('Check if it is possible to instantiate a Bringit bubble [TSFO18]', function () {
+        expect(
+            () => {
+                let list = new ListData();
+                new Bringit(list.getName(),list.getId(),true);
+            }).to.not.throw;
+    });
+
     it('Check if it is possible to add an element in a Bringit bubble [TSFO19]', function () {
 
 
