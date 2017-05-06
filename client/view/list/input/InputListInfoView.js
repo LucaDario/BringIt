@@ -13,9 +13,9 @@ export class InputListInfoView extends GeneralView{
      */
     constructor() {
         super();
-        /*if (this instanceof CreateListView) {
+        if (this.constructor === InputListInfoView) {
          throw new TypeError("Cannot construct CreateListView instances directly");
-         }*/
+         }
     }
 
     /**

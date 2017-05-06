@@ -8,7 +8,7 @@ import {GeneralView} from "../../../GeneralView";
 export class ForwardListView extends GeneralView{
 
     constructor(){
-        if (this instanceof ForwardListView) {
+        if (this.constructor === ForwardListView) {
             throw new TypeError("Cannot construct ForwardListView instances directly");
         }
     }

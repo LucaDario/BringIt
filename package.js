@@ -97,7 +97,8 @@ Package.onTest(function(api) {
         'practicalmeteor:mocha',
         'practicalmeteor:chai',
         'practicalmeteor:sinon',
-        'monolith'
+        'monolith',
+        'lmieulet:meteor-coverage@1.1.4'
     ]);
 
    // api.imply('monolith', ['client','server']);
@@ -107,10 +108,16 @@ Package.onTest(function(api) {
 
     api.addFiles([
         'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.test.js',
+        'client/view/list/create/view/CreateListViewImpl.test.js',
+        'client/view/list/create/presenter/CreateListViewPresenter.test.js',
+        'client/view/list/delete/presenter/DeleteListViewPresenter.test.js',
+        'client/view/list/delete/view/DeleteListViewImpl.test.js',
+        'client/view/list/input/presenter/InputListInfoViewPresenter.test.js',
+        'client/view/list/input/view/InputListInfoViewImpl.test.js',
         'client/view/list/ShareListWithGroup/presenter/ShareWithGroupViewPresenter.test.js',
+        'client/view/list/ShareListWithGroup/view/ShareWithGroupViewImpl.test.js',
         'client/view/list/shareListWithContact/view/ShareWithContactViewImpl.test.js',
         'client/view/list/shareListWithContact/presenter/ShareWithContactViewPresenter.test.js',
-        'client/view/list/create/presenter/CreateListViewPresenter.test.js',
         'client/view/item/inputitem/presenter/InputItemInfoViewPresenter.test.js',
         'client/view/item/inputitem/view/InputItemInfoViewImpl.test.js',
         'client/test/testSistema.js',

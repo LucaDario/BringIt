@@ -1,10 +1,11 @@
 /**
- * Created by manu on 02/05/17.
+ * Created by Manuel Turetta on 02/05/17
+ * version 1.1.0 - Tests completed
+ * Unit tests for CreateListViewPresenter
  */
 
 import {CreateListViewPresenter} from "./CreateListViewPresenter";
 import {ListData} from "../../../../../data/ListData";
-import { sinon } from 'meteor/practicalmeteor:sinon';
 
 describe('CreateListViewPresenter', function () {
 
@@ -24,12 +25,13 @@ describe('CreateListViewPresenter', function () {
         const listData = new ListData();
         sinon.spy(presenter._chatSourse, "sendMessageToChatWithJson");
         presenter.createList(listData);
+        listData.setName('');
         expect(presenter._chatSourse.sendMessageToChatWithJson.called).to.be.ok;
-        expect(presenter._chatSourse.sendMessageToChatWithJson.getCall(0).args[1].listData._name).to.be.eq("");
+        expect(presenter._chatSourse.sendMessageToChatWithJson.getCall(0).args[1].listData._name).to.be.eq("List");
         presenter._chatSourse.sendMessageToChatWithJson.restore();
     });
 
-    it('Check that the list image is setted correctly [TU40]', function () {
+    it('Check that the list image is set correctly [TU40]', function () {
         const presenter = new CreateListViewPresenter();
         const listData = new ListData();
         listData.setImagePath("TEST");

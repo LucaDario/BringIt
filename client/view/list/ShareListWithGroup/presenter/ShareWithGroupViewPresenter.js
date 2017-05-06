@@ -21,7 +21,7 @@ export class ShareWithGroupViewPresenter{
      * @method
      * This method sends a message to each group selected by the user. However it's possible to give permissions to
      * the members of the group (or groups) chosen. This choice can be made with a popup which will be created by this method.
-     * @param group {array} : groups that the user wants to send message to
+     * @param group {string[]} : groups that the user wants to send message to
      * @param json {JSON} : the message which will be sent
      */
     openShareWithGroupView(group,json){

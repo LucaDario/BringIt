@@ -15,6 +15,18 @@ import {container,inject} from 'dependency-injection-es6';
 
 describe('System tests', function () {
 
+    function checkPermission(listData) {
+        let permission = false;
+        if (Meteor.isTest) {
+            for (let i = 0; i < listData._users.length; i++) {
+                if (listData._users[i] == 'testID') {
+                    permission = true;
+                }
+            }
+            return permission || (listData._creatorId == 'testCreator');
+        }
+    }
+
     it('Check if it is possible to instantiate a Bringit bubble [TSFO18]', function () {
         expect(
             () => {
@@ -63,7 +75,6 @@ describe('System tests', function () {
             2, 'test', 'kg');
         bubble.addNewBringitItem(item);
         bubble.addItemFromDb(item);
-        console.log(bubble.getLayout().getItems());
         bubble.getLayout().getItems()[2]._items[0].setChecked(true);
         expect(bubble.getLayout().getItems()[2]._items[0].isChecked()).to.be.eq(true);
     });
@@ -114,5 +125,54 @@ describe('System tests', function () {
         share.onClickShareWithGroup('general', json);
         assert(spy.called);
         spy.restore();
+    });
+
+    it("Check if only the users in the _user field can add an element in the list" +
+        " [TSFO26]", function () {
+        Meteor.isTest = true;
+        // creation of a Bringit message
+        const listData = new ListData();
+        listData.setName('Test');
+        listData.addUser('testID');
+        const json = {
+            "bubbleType": 'Bringit',
+            "listData": listData
+        }
+        console.log(checkPermission(json.listData));
+        let bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
+        expect(bubble._addItemButton).to.not.equal(undefined);
+    });
+
+    it("Check if users aren't in the _users list can't add elements in the list" +
+        " [TSFO27]", function () {
+
+        Meteor.isTest = true;
+        // creation of a Bringit message
+        const listData = new ListData();
+        listData.setName('Test');
+        const json = {
+            "bubbleType": 'Bringit',
+            "listData": listData
+        }
+
+        let bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
+        expect(bubble._addItemButton).to.be.eq(undefined);
+    });
+
+    it("Check the creator has the right permissions" +
+        " [TSFO28]", function () {
+
+        Meteor.isTest = true;
+        // creation of a Bringit message
+        const listData = new ListData();
+        listData.setName('Test');
+        listData.setCreatorId('testCreator');
+        const json = {
+            "bubbleType": 'Bringit',
+            "listData": listData
+        }
+        console.log(listData);
+        let bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
+        expect(bubble._addItemButton).to.not.equal(undefined);
     });
 });

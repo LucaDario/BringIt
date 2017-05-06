@@ -18,7 +18,7 @@ Meteor.startup(function(){
         'click .btn'(event){
             const value = $("#nameList").val();
             const img = $("#imageList").val();
-            if(value !== '' && img !== '' ) {
+            if(value !== '') {
                 inputListInfoView.onSaveClicked(value, 'image');
             }
             else{

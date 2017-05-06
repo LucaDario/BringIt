@@ -63,6 +63,9 @@ export class ListData {
         return this._name;
     }
     setName(value) {
+        if(value === ''){
+            value = 'List';
+        }
         this._name = value;
     }
 

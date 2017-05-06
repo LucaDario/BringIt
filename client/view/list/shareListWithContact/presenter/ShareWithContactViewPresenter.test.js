@@ -1,10 +1,7 @@
 /**
  * Created by Stefano Lia on 27/04/2017
- * Version 1.0.0 - Initial version
- */
-/**
- * Created by Stefano Lia on 26/04/2017
- * Version {VERSION} - {VERSION_NOTES}
+ * Version 1.0.2 - Completed
+ * Unit tests of ShareWithContactViewPresenter
  */
 
 import {ShareWithContactViewPresenter} from './ShareWithContactViewPresenter';
@@ -12,30 +9,23 @@ import {ShareWithContactViewImpl} from '../view/ShareWithContactViewImpl';
 import {ListData} from '../../../../../data/ListData';
 
 describe('ShareWithContactViewPresenter', function () {
-    it('Check that is instantiable', function () {
-        // This code will be executed by the test driver when the app is started
-        // in the correct mode
+    it("Check that is possible to share a message using onClickShareWithContact [TU60]", function () {
+
         expect(
             () => {
-                new ShareWithContactViewPresenter(new ShareWithContactViewImpl()); //NOSONAR
-            }
-        ).to.not.throw();
-    });
-    it("Check correct sharing", function () {
-        const share = new ShareWithContactViewImpl();
-        const listData = new ListData();
-        listData.setName('Test');
-        listData.setCreatorId(this.userId);
-        const json = {
-            "bubbleType": 'Bringit',
-            "listData": listData
-        }
-        share._presenter.onClickShareWithContact('rocket.cat',json);
-        /*let message = Meteor.call('getMessage',listData.getId(),function (error,result) {
-            done();
-        });
-        console.log(message);
-        return message != undefined;
-        done();*/
+                const share = new ShareWithContactViewImpl();
+
+                // create a Bringit message
+                const listData = new ListData();
+                listData.setName('Test');
+                listData.setCreatorId(this.userId);
+                const json = {
+                    "bubbleType": 'Bringit',
+                    "listData": listData
+                }
+
+                //try to share the message
+                share._presenter.onClickShareWithContact('rocket.cat', json);
+            }).to.not.throw();
     });
 });

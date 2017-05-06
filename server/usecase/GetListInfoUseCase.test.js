@@ -15,7 +15,7 @@ import {GetListInfoUseCase} from './GetListInfoUseCase';
 
 describe('GetListInfoUseCase', function () {
 
-    it('Verify GetListInfoUseCase works properly with DatabaseSource [TI31]', function () {
+    it('Verify GetListInfoUseCase works properly with DatabaseSource [TI29]', function () {
         expect(
             () => {
                 Meteor.isTest = true;

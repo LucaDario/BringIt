@@ -116,7 +116,7 @@ export class ListItem {
     getQuantity() {
         return this._quantity;
     }
-    setQuantity(value) {
+    setQuantity(value = 1) {
         this._quantity = value;
     }
 

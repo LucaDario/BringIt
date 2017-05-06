@@ -1,6 +1,7 @@
 /**
  * Created by Stefano Lia on 26/04/2017
- * Version {VERSION} - {VERSION_NOTES}
+ * Version 1.0.0 - Initial version
+ * Unit tests of ShareWithContactViewImpl
  */
 
 import {ShareWithContactViewImpl} from './ShareWithContactViewImpl';

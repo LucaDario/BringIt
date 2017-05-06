@@ -46,6 +46,61 @@ describe('Integration tests', function () {
         spy.restore();
     });
 
+    it('Verify the ShareWithGroupPresenter works properly with ChatSource [TI24]', function () {
+
+        const create = new CreateListViewImpl();
+        const chat = container.resolve(ChatSource);
+
+        //create a Bringit message
+        const listData = new ListData();
+        listData.setName('Test');
+        listData.setCreatorId('test');
+        const json = {
+            "bubbleType": 'Bringit',
+            "listData": listData
+        }
+
+        //create a spy element which simulates the function you want to verify
+        let spy = sinon.spy(chat, "sendMessageToChatWithJson");
+
+        //specify the arguments of the function you want to simulate
+        spy.withArgs('general',json);
+        create._presenter.createList(listData);
+        assert(spy.called);
+
+        //clear the spy element
+        spy.restore();
+    });
+
+    it('Verify the DeleteListViewImpl works properly with ShowPopupUseCase and shows the popup for' +
+        'the elimination of the list [TI27]', function () {
+
+        const del = new DeleteListViewImpl();
+        const show = container.resolve(ShowPopupUseCase);
+
+        //create a Bringit message
+        const listData = new ListData();
+        listData.setName('Test');
+        listData.setCreatorId(this.userId);
+        const json = {
+            "bubbleType": 'Bringit',
+            "listData": listData
+        }
+        //create a function
+        let f = function () {}
+
+        //create a spy element which simulates the function you want to verify
+        const spy = sinon.spy(show, "showPopupWithFunction");
+
+        //specify the arguments of the function you want to simulate
+        spy.withArgs(listData.getName(),f,3);
+        del._presenter.openDeleteListView(listData.getId(),listData.getName());
+        assert(spy.called);
+
+        //clear the spy element
+        spy.restore();
+    });
+
     it('Verify ShareWithGroupViewImpl works properly with ShareWithGroupViewPresenter ' +
         'TI[32]', function () {
         const group = new ShareWithGroupViewImpl();
@@ -89,7 +144,7 @@ describe('Integration tests', function () {
         spy.restore();
     });
 
-    it('Verify ShareWithContactViewPresenter works properly with ChatSource TI[??]', function () {
+    it('Verify ShareWithContactViewPresenter works properly with ChatSource TI[39]', function () {
 
         const contact = new ShareWithContactViewImpl();
         const chat = container.resolve(ChatSource);
@@ -118,7 +173,7 @@ describe('Integration tests', function () {
 
     });
 
-    it('Verify ShareWithContactViewPresenter works properly with ShowPopupUseCase TI[??]', function () {
+    it('Verify ShareWithContactViewPresenter works properly with ShowPopupUseCase TI[40]', function () {
         const contact = new ShareWithContactViewImpl();
         const show = container.resolve(ShowPopupUseCase);
 
@@ -145,7 +200,7 @@ describe('Integration tests', function () {
         spy.restore();
     });
 
-    it('Verify CreateListViewImpl works properly with CreateListViewPresenter TI[??]', function () {
+    it('Verify CreateListViewImpl works properly with CreateListViewPresenter TI[41]', function () {
 
         const create = new CreateListViewImpl();
 
@@ -159,7 +214,7 @@ describe('Integration tests', function () {
         spy.restore();
     });
 
-    it('Verify DeleteListViewImpl works properly with DeleteListViewPresenter TI[??]', function () {
+    it('Verify DeleteListViewImpl works properly with DeleteListViewPresenter TI[42]', function () {
 
         const del = new DeleteListViewImpl();
 
@@ -182,7 +237,7 @@ describe('Integration tests', function () {
     });
 
     it('Verify InputListInfoViewImpl works properly with ' +
-        'InputListInfoViewPresenter TI[??]', function () {
+        'InputListInfoViewPresenter TI[43]', function () {
         //true if the test requires a stub
         Meteor.isTest = true;
 
@@ -202,7 +257,7 @@ describe('Integration tests', function () {
     });
 
     it('Verify InputItemInfoViewImpl works properly with ' +
-        'InputItemInfoViewPresenter TI[??]', function () {
+        'InputItemInfoViewPresenter TI[44]', function () {
 
         const input = new InputItemInfoViewImpl();
 
@@ -210,9 +265,9 @@ describe('Integration tests', function () {
         const spy = sinon.spy(input._presenter, "createListItem");
 
         //specify the arguments of the function you want to simulate
-        spy.withArgs('Test',4,'descrizione','kg','../test.jpg');
+        spy.withArgs('Test',4,'descrizione','kg',null);
 
-        input.onSaveClicked('Test',4,'descrizione','kg','../test.jpg');
+        input.onSaveClicked('Test',4,'descrizione','kg',null);
         assert(spy.called);
 
         //clear the spy element

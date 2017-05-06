@@ -9,7 +9,7 @@ import {ManageListsUseCase} from "./ManageListsUseCase";
 
 describe('ManageListUseCase', function () {
 
-    it('Verify ManageListsUseCase works properly with DatabaseSource [TI27]', function () {
+    it('Verify ManageListsUseCase works properly with DatabaseSource [TI26]', function () {
         expect(
             () => {
                 Meteor.isTest = true;

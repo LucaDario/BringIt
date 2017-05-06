@@ -8,9 +8,9 @@ import {container,inject} from 'dependency-injection-es6';
 import {ListItem} from "../../data/ListItem";
 import {ListData} from "../../data/ListData";
 
-describe('ModifyListUseCase', function () {
+describe('ShareListUseCase', function () {
     it('Verify ShareList shares add the user in the _user field and works properly with ' +
-        'the database [TI42]', function () {
+        'the database [TI25]', function () {
         expect(
             () => {
                 Meteor.isTest = true;
