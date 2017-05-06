@@ -1,7 +1,5 @@
 /**
- * Description: Class that tells what to inject when there is an @inject(CreateListViewPresenter) annotation.
- * Created by Riccardo Montagnin on 23/03/2017.
- * Version 1.0.0 - Initial version
+ * Created by lucadario on 29/03/17.
  */
 
 import {container,inject,singleton} from 'dependency-injection-es6';

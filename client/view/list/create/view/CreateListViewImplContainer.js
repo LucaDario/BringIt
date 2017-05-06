@@ -1,4 +1,7 @@
 /**
+ * Created by lucadario on 29/03/17.
+ */
+/**
  * Description:
  * Created by Riccardo Montagnin on 24/03/2017.
  * Version 1.0.0 - Initial version
@@ -9,4 +12,3 @@ import {CreateListView} from '../CreateListView'
 import {CreateListViewImpl} from './CreateListViewImpl';
 
 container.bind(CreateListViewImpl, CreateListViewImpl);
-

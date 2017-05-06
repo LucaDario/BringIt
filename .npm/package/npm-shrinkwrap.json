@@ -1,9 +1,378 @@
 {
   "dependencies": {
+    "bootbox": {
+      "version": "4.4.0",
+      "resolved": "https://registry.npmjs.org/bootbox/-/bootbox-4.4.0.tgz",
+      "from": "bootbox@4.4.0"
+    },
+    "bootstrap-jquery": {
+      "version": "3.3.2",
+      "resolved": "https://registry.npmjs.org/bootstrap-jquery/-/bootstrap-jquery-3.3.2.tgz",
+      "from": "bootstrap-jquery@3.3.2"
+    },
+    "can": {
+      "version": "3.5.1",
+      "resolved": "https://registry.npmjs.org/can/-/can-3.5.1.tgz",
+      "from": "can@3.5.1"
+    },
+    "can-cid": {
+      "version": "1.0.3",
+      "resolved": "https://registry.npmjs.org/can-cid/-/can-cid-1.0.3.tgz",
+      "from": "can-cid@1.0.3"
+    },
+    "can-component": {
+      "version": "3.0.7",
+      "resolved": "https://registry.npmjs.org/can-component/-/can-component-3.0.7.tgz",
+      "from": "can-component@3.0.7"
+    },
+    "can-compute": {
+      "version": "3.0.7",
+      "resolved": "https://registry.npmjs.org/can-compute/-/can-compute-3.0.7.tgz",
+      "from": "can-compute@3.0.7"
+    },
+    "can-connect": {
+      "version": "1.3.8",
+      "resolved": "https://registry.npmjs.org/can-connect/-/can-connect-1.3.8.tgz",
+      "from": "can-connect@1.3.8"
+    },
+    "can-connect-feathers": {
+      "version": "3.5.2",
+      "resolved": "https://registry.npmjs.org/can-connect-feathers/-/can-connect-feathers-3.5.2.tgz",
+      "from": "can-connect-feathers@3.5.2"
+    },
+    "can-connect-signalr": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/can-connect-signalr/-/can-connect-signalr-0.1.0.tgz",
+      "from": "can-connect-signalr@0.1.0"
+    },
+    "can-construct": {
+      "version": "3.1.1",
+      "resolved": "https://registry.npmjs.org/can-construct/-/can-construct-3.1.1.tgz",
+      "from": "can-construct@3.1.1"
+    },
+    "can-construct-super": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/can-construct-super/-/can-construct-super-3.0.3.tgz",
+      "from": "can-construct-super@3.0.3"
+    },
+    "can-control": {
+      "version": "3.0.7",
+      "resolved": "https://registry.npmjs.org/can-control/-/can-control-3.0.7.tgz",
+      "from": "can-control@3.0.7"
+    },
+    "can-define": {
+      "version": "1.0.17",
+      "resolved": "https://registry.npmjs.org/can-define/-/can-define-1.0.17.tgz",
+      "from": "can-define@1.0.17"
+    },
+    "can-define-stream": {
+      "version": "0.0.7",
+      "resolved": "https://registry.npmjs.org/can-define-stream/-/can-define-stream-0.0.7.tgz",
+      "from": "can-define-stream@0.0.7"
+    },
+    "can-define-validate-validatejs": {
+      "version": "0.0.3",
+      "resolved": "https://registry.npmjs.org/can-define-validate-validatejs/-/can-define-validate-validatejs-0.0.3.tgz",
+      "from": "can-define-validate-validatejs@0.0.3"
+    },
+    "can-ejs": {
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/can-ejs/-/can-ejs-3.0.4.tgz",
+      "from": "can-ejs@3.0.4"
+    },
+    "can-event": {
+      "version": "3.1.1",
+      "resolved": "https://registry.npmjs.org/can-event/-/can-event-3.1.1.tgz",
+      "from": "can-event@3.1.1"
+    },
+    "can-fixture": {
+      "version": "1.0.13",
+      "resolved": "https://registry.npmjs.org/can-fixture/-/can-fixture-1.0.13.tgz",
+      "from": "can-fixture@1.0.13"
+    },
+    "can-fixture-socket": {
+      "version": "0.6.2",
+      "resolved": "https://registry.npmjs.org/can-fixture-socket/-/can-fixture-socket-0.6.2.tgz",
+      "from": "can-fixture-socket@0.6.2"
+    },
+    "can-jquery": {
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/can-jquery/-/can-jquery-3.0.4.tgz",
+      "from": "can-jquery@3.0.4"
+    },
+    "can-legacy-view-helpers": {
+      "version": "0.5.0",
+      "resolved": "https://registry.npmjs.org/can-legacy-view-helpers/-/can-legacy-view-helpers-0.5.0.tgz",
+      "from": "can-legacy-view-helpers@>=0.5.0 <0.6.0"
+    },
+    "can-list": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/can-list/-/can-list-3.0.3.tgz",
+      "from": "can-list@3.0.3"
+    },
+    "can-map": {
+      "version": "3.0.6",
+      "resolved": "https://registry.npmjs.org/can-map/-/can-map-3.0.6.tgz",
+      "from": "can-map@3.0.6"
+    },
+    "can-map-backup": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/can-map-backup/-/can-map-backup-3.0.3.tgz",
+      "from": "can-map-backup@3.0.3"
+    },
+    "can-map-define": {
+      "version": "3.0.5",
+      "resolved": "https://registry.npmjs.org/can-map-define/-/can-map-define-3.0.5.tgz",
+      "from": "can-map-define@3.0.5"
+    },
+    "can-namespace": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/can-namespace/-/can-namespace-1.0.0.tgz",
+      "from": "can-namespace@1.0.0"
+    },
+    "can-observation": {
+      "version": "3.1.2",
+      "resolved": "https://registry.npmjs.org/can-observation/-/can-observation-3.1.2.tgz",
+      "from": "can-observation@3.1.2"
+    },
+    "can-route": {
+      "version": "3.0.8",
+      "resolved": "https://registry.npmjs.org/can-route/-/can-route-3.0.8.tgz",
+      "from": "can-route@3.0.8"
+    },
+    "can-route-pushstate": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/can-route-pushstate/-/can-route-pushstate-3.0.3.tgz",
+      "from": "can-route-pushstate@3.0.3"
+    },
+    "can-set": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/can-set/-/can-set-1.1.0.tgz",
+      "from": "can-set@1.1.0"
+    },
+    "can-simple-dom": {
+      "version": "1.0.5",
+      "resolved": "https://registry.npmjs.org/can-simple-dom/-/can-simple-dom-1.0.5.tgz",
+      "from": "can-simple-dom@1.0.5"
+    },
+    "can-simple-map": {
+      "version": "3.1.3",
+      "resolved": "https://registry.npmjs.org/can-simple-map/-/can-simple-map-3.1.3.tgz",
+      "from": "can-simple-map@3.1.3"
+    },
+    "can-stache": {
+      "version": "3.0.20",
+      "resolved": "https://registry.npmjs.org/can-stache/-/can-stache-3.0.20.tgz",
+      "from": "can-stache@3.0.20"
+    },
+    "can-stache-bindings": {
+      "version": "3.0.13",
+      "resolved": "https://registry.npmjs.org/can-stache-bindings/-/can-stache-bindings-3.0.13.tgz",
+      "from": "can-stache-bindings@3.0.13"
+    },
+    "can-stache-converters": {
+      "version": "3.0.7",
+      "resolved": "https://registry.npmjs.org/can-stache-converters/-/can-stache-converters-3.0.7.tgz",
+      "from": "can-stache-converters@3.0.7"
+    },
+    "can-stream": {
+      "version": "0.0.5",
+      "resolved": "https://registry.npmjs.org/can-stream/-/can-stream-0.0.5.tgz",
+      "from": "can-stream@>=0.0.5 <0.0.6"
+    },
+    "can-stream-kefir": {
+      "version": "0.1.2",
+      "resolved": "https://registry.npmjs.org/can-stream-kefir/-/can-stream-kefir-0.1.2.tgz",
+      "from": "can-stream-kefir@0.1.2"
+    },
+    "can-types": {
+      "version": "1.0.4",
+      "resolved": "https://registry.npmjs.org/can-types/-/can-types-1.0.4.tgz",
+      "from": "can-types@1.0.4"
+    },
+    "can-util": {
+      "version": "3.3.2",
+      "resolved": "https://registry.npmjs.org/can-util/-/can-util-3.3.2.tgz",
+      "from": "can-util@3.3.2"
+    },
+    "can-validate": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/can-validate/-/can-validate-1.0.2.tgz",
+      "from": "can-validate@1.0.2"
+    },
+    "can-validate-legacy": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/can-validate-legacy/-/can-validate-legacy-1.0.2.tgz",
+      "from": "can-validate-legacy@1.0.2"
+    },
+    "can-validate-validatejs": {
+      "version": "0.0.4",
+      "resolved": "https://registry.npmjs.org/can-validate-validatejs/-/can-validate-validatejs-0.0.4.tgz",
+      "from": "can-validate-validatejs@0.0.4"
+    },
+    "can-vdom": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/can-vdom/-/can-vdom-3.0.2.tgz",
+      "from": "can-vdom@3.0.2",
+      "dependencies": {
+        "can-simple-dom": {
+          "version": "0.4.8",
+          "resolved": "https://registry.npmjs.org/can-simple-dom/-/can-simple-dom-0.4.8.tgz",
+          "from": "can-simple-dom@>=0.4.0 <0.5.0"
+        }
+      }
+    },
+    "can-view-autorender": {
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/can-view-autorender/-/can-view-autorender-3.0.4.tgz",
+      "from": "can-view-autorender@3.0.4"
+    },
+    "can-view-callbacks": {
+      "version": "3.0.6",
+      "resolved": "https://registry.npmjs.org/can-view-callbacks/-/can-view-callbacks-3.0.6.tgz",
+      "from": "can-view-callbacks@3.0.6"
+    },
+    "can-view-href": {
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/can-view-href/-/can-view-href-3.0.4.tgz",
+      "from": "can-view-href@3.0.4"
+    },
+    "can-view-import": {
+      "version": "3.0.6",
+      "resolved": "https://registry.npmjs.org/can-view-import/-/can-view-import-3.0.6.tgz",
+      "from": "can-view-import@3.0.6"
+    },
+    "can-view-live": {
+      "version": "3.0.6",
+      "resolved": "https://registry.npmjs.org/can-view-live/-/can-view-live-3.0.6.tgz",
+      "from": "can-view-live@3.0.6"
+    },
+    "can-view-model": {
+      "version": "3.1.3",
+      "resolved": "https://registry.npmjs.org/can-view-model/-/can-view-model-3.1.3.tgz",
+      "from": "can-view-model@3.1.3"
+    },
+    "can-view-nodelist": {
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/can-view-nodelist/-/can-view-nodelist-3.0.4.tgz",
+      "from": "can-view-nodelist@3.0.4"
+    },
+    "can-view-parser": {
+      "version": "3.0.6",
+      "resolved": "https://registry.npmjs.org/can-view-parser/-/can-view-parser-3.0.6.tgz",
+      "from": "can-view-parser@3.0.6"
+    },
+    "can-view-scope": {
+      "version": "3.1.4",
+      "resolved": "https://registry.npmjs.org/can-view-scope/-/can-view-scope-3.1.4.tgz",
+      "from": "can-view-scope@3.1.4"
+    },
+    "can-view-target": {
+      "version": "3.0.7",
+      "resolved": "https://registry.npmjs.org/can-view-target/-/can-view-target-3.0.7.tgz",
+      "from": "can-view-target@3.0.7"
+    },
+    "can-zone": {
+      "version": "0.6.6",
+      "resolved": "https://registry.npmjs.org/can-zone/-/can-zone-0.6.6.tgz",
+      "from": "can-zone@0.6.6"
+    },
+    "can-zone-storage": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/can-zone-storage/-/can-zone-storage-1.0.0.tgz",
+      "from": "can-zone-storage@>=1.0.0 <2.0.0"
+    },
+    "debug": {
+      "version": "2.6.4",
+      "resolved": "https://registry.npmjs.org/debug/-/debug-2.6.4.tgz",
+      "from": "debug@>=2.2.0 <3.0.0"
+    },
+    "dependency-injection-es6": {
+      "version": "1.2.1",
+      "resolved": "https://registry.npmjs.org/dependency-injection-es6/-/dependency-injection-es6-1.2.1.tgz",
+      "from": "dependency-injection-es6@1.2.1"
+    },
     "es6-event-emitter": {
       "version": "1.8.2",
       "resolved": "https://registry.npmjs.org/es6-event-emitter/-/es6-event-emitter-1.8.2.tgz",
       "from": "es6-event-emitter@1.8.2"
+    },
+    "events": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/events/-/events-1.1.1.tgz",
+      "from": "events@>=1.1.1 <2.0.0"
+    },
+    "feathers-authentication-popups": {
+      "version": "0.1.2",
+      "resolved": "https://registry.npmjs.org/feathers-authentication-popups/-/feathers-authentication-popups-0.1.2.tgz",
+      "from": "feathers-authentication-popups@>=0.1.2 <0.2.0"
+    },
+    "feathers-errors": {
+      "version": "2.6.3",
+      "resolved": "https://registry.npmjs.org/feathers-errors/-/feathers-errors-2.6.3.tgz",
+      "from": "feathers-errors@>=2.4.0 <3.0.0"
+    },
+    "he": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/he/-/he-1.1.1.tgz",
+      "from": "he@>=1.1.0 <2.0.0"
+    },
+    "jquery": {
+      "version": "3.2.1",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.2.1.tgz",
+      "from": "jquery@>=2.0.0 <4.0.0"
+    },
+    "jwt-decode": {
+      "version": "2.2.0",
+      "resolved": "https://registry.npmjs.org/jwt-decode/-/jwt-decode-2.2.0.tgz",
+      "from": "jwt-decode@>=2.1.0 <3.0.0"
+    },
+    "kefir": {
+      "version": "3.7.1",
+      "resolved": "https://registry.npmjs.org/kefir/-/kefir-3.7.1.tgz",
+      "from": "kefir@>=3.5.1 <4.0.0"
+    },
+    "micro-location": {
+      "version": "0.1.5",
+      "resolved": "https://registry.npmjs.org/micro-location/-/micro-location-0.1.5.tgz",
+      "from": "micro-location@>=0.1.4 <0.2.0"
+    },
+    "ms": {
+      "version": "0.7.3",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-0.7.3.tgz",
+      "from": "ms@0.7.3"
+    },
+    "ms-signalr-client": {
+      "version": "2.2.5",
+      "resolved": "https://registry.npmjs.org/ms-signalr-client/-/ms-signalr-client-2.2.5.tgz",
+      "from": "ms-signalr-client@>=2.2.5 <3.0.0",
+      "dependencies": {
+        "jquery": {
+          "version": "2.2.4",
+          "resolved": "https://registry.npmjs.org/jquery/-/jquery-2.2.4.tgz",
+          "from": "jquery@>=2.2.0 <3.0.0"
+        }
+      }
+    },
+    "simple-html-tokenizer": {
+      "version": "0.2.6",
+      "resolved": "https://registry.npmjs.org/simple-html-tokenizer/-/simple-html-tokenizer-0.2.6.tgz",
+      "from": "simple-html-tokenizer@>=0.2.1 <0.3.0"
+    },
+    "steal-stache": {
+      "version": "3.0.5",
+      "resolved": "https://registry.npmjs.org/steal-stache/-/steal-stache-3.0.5.tgz",
+      "from": "steal-stache@>=3.0.3 <4.0.0"
+    },
+    "symbol-observable": {
+      "version": "1.0.4",
+      "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.0.4.tgz",
+      "from": "symbol-observable@>=1.0.1 <2.0.0"
+    },
+    "validate.js": {
+      "version": "0.11.1",
+      "resolved": "https://registry.npmjs.org/validate.js/-/validate.js-0.11.1.tgz",
+      "from": "validate.js@>=0.11.1 <0.12.0"
     }
   }
 }

@@ -1,5 +1,5 @@
 /**
- * Base Abstract class represents the generic
+ * Base Abstract class represents the generic view for add a view for  create list
  * Created by lucadario on 23/03/17.
  */
 
@@ -16,6 +16,7 @@ export class CreateListView extends GeneralView{
 			throw new TypeError("Cannot construct CreateListView instances directly");
 		}*/
 	}
+
 
 }
 
