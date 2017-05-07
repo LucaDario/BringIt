@@ -1,5 +1,6 @@
 /**
- * Created by lucadario on 27/03/17.
+ * Created by Luca Dario on 27/03/17
+ * Version 1.0.2 - Completed
  */
 
 import {InputListInfoViewImpl} from './InputListInfoViewImpl'
@@ -13,17 +14,23 @@ import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
  */
 Meteor.startup(function(){
     const inputListInfoView = container.resolve(InputListInfoViewImpl);
-    const popup = container.resolve(ShowPopupUseCase);
+    //const popup = container.resolve(ShowPopupUseCase);
     Template.input.events({
         'click .btn'(event){
-            const value = $("#nameList").val();
-            const img = $("#imageList").val();
-            if(value !== '') {
-                inputListInfoView.onSaveClicked(value, 'image');
+            let value = $("#nameList").val();
+            let img = $("#imageList").val();
+            //if(value !== '') {
+            if(value === '' || !(/\S/.test(value))){
+                value = 'List';
             }
-            else{
-                popup.showPopupWithFunction('You must add a name and an image to the list to create it!',()=>{},4);
+            if(img === ''){
+                img = null;
             }
+            inputListInfoView.onSaveClicked(value, img);
+            //}
+            //else{
+             //   popup.showPopupWithFunction('You must add a name and an image to the list to create it!',()=>{},4);
+            //}
         }
     });
 });
