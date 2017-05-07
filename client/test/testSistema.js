@@ -19,11 +19,11 @@ describe('System tests', function () {
         let permission = false;
         if (Meteor.isTest) {
             for (let i = 0; i < listData._users.length; i++) {
-                if (listData._users[i] == 'testID') {
+                if (listData._users[i] === 'testID') {
                     permission = true;
                 }
             }
-            return permission || (listData._creatorId == 'testCreator');
+            return permission || (listData._creatorId === 'testCreator');
         }
     }
 

@@ -53,9 +53,9 @@ function checkPermission(listData) {
     let permission = false;
 
     for(let i = 0; i < listData._users.length; i++){
-        if(listData._users[i] == Meteor.userId()){
+        if(listData._users[i] === Meteor.userId()){
             permission = true;
         }
     }
-    return permission || (listData._creatorId == Meteor.userId());
+    return permission || (listData._creatorId === Meteor.userId());
 }

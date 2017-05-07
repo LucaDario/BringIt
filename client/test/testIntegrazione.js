@@ -82,10 +82,7 @@ describe('Integration tests', function () {
         const listData = new ListData();
         listData.setName('Test');
         listData.setCreatorId(this.userId);
-        const json = {
-            "bubbleType": 'Bringit',
-            "listData": listData
-        }
+
         //create a function
         let f = function () {}
 

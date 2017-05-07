@@ -194,7 +194,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         let itemCheck = new Monolith.widgets.checklist.ChecklistWidgetItem(listItem.getName(),listItem.getStatus(),listItem.getId());
         //create and set image
         let itemImage = new Monolith.widgets.ImageWidget;
-        if(listItem.getImagePath() != '') {
+        if(listItem.getImagePath() !== '') {
             itemImage.setImage(listItem.getImagePath());
         }
         itemImage.setVisibility(false);
