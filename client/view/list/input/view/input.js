@@ -10,7 +10,6 @@ import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
 /**
  * This script set event when the button with  class '.btn' clicked, and the event
  *  call InputListInfoViewImpl.onSaveClicked
- *
  */
 Meteor.startup(function(){
     const inputListInfoView = container.resolve(InputListInfoViewImpl);
@@ -19,13 +18,15 @@ Meteor.startup(function(){
         'click .btn'(event){
             let value = $("#nameList").val();
             let img = $("#imageList").val();
-            //if(value !== '') {
+            // if the name is made up by whitespaces or it's empty it will be set the default value
             if(value === '' || !(/\S/.test(value))){
                 value = 'List';
             }
             if(img === ''){
                 img = null;
             }
+
+            //call the 'save' event
             inputListInfoView.onSaveClicked(value, img);
             //}
             //else{
