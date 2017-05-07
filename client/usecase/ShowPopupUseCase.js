@@ -97,6 +97,7 @@ export class ShowPopupUseCase{
             });
         }
         if (index === 1) {
+            // creating a confirm popup using bootbox
             bootbox.confirm({
                 size: 'small',
                 title: 'Add a new item',
@@ -109,6 +110,7 @@ export class ShowPopupUseCase{
                 closeButton: false,
                 onEscape: false,
                 callback: function(result) {
+                    //taking inputs
                     const img = $("#imageItem");
                     const name = $("#itemList");
                     const quantity = $("#itemQuantity");
@@ -120,6 +122,7 @@ export class ShowPopupUseCase{
                     if(result === false){
                         return true;
                     }
+                    // input are not inserted
                     if (result === true && img.val()!== '' && name.val() !== '' && quantity.val() !== '' && unity.val() !== '') {
                         fun();
                     }
@@ -145,7 +148,7 @@ export class ShowPopupUseCase{
                 }
             });
         }
-        //List Deleted
+        //it shows a popup which warns the user that the list is successfully deleted
         if (index === 2) {
             global.jQuery = require('bootstrap-jquery');
             window.$ = $;
@@ -228,6 +231,7 @@ export class ShowPopupUseCase{
             });
         }
         if (index === 1) {
+            //create a dialog pupup using bootbox
             bootbox.dialog({
                 message: content,
                 title: title,
@@ -285,6 +289,7 @@ export class ShowPopupUseCase{
                 if (result === true) {
                     Meteor.call('getIdUser', person, true, function (error, result) {
                         if(result) {
+                            // set the permissions for the user
                             Meteor.subscribe('sendPermissionsContact', json.listData._id, result);
                         }
                         else {
