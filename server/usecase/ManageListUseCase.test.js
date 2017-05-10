@@ -13,7 +13,6 @@ describe('ManageListUseCase', function () {
         expect(
             () => {
                 Meteor.isTest = true;
-                const util = require('util');
 
                 let useCase = container.resolve(ManageListsUseCase);
                 useCase._databaseSource.clear();

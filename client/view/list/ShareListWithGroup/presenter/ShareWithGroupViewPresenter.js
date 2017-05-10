@@ -35,7 +35,6 @@ export class ShareWithGroupViewPresenter{
             //Find the room's id
             Meteor.call('getRoomIdByNameOrId',group[i], function (error1,result1) {
                 if(result1) {
-
                     //find the room's user
                     Meteor.call('getUsersOfRoom', result1, true, function (error2, result2) {
                         if (result2) {
@@ -67,11 +66,10 @@ export class ShareWithGroupViewPresenter{
                                 for(let i=0; i<selected.length;i++) {
                                     Meteor.call('getIdUser', selected[i], true, function (error, result) {
                                         if(result) {
-                                            console.log(result);
                                             Meteor.subscribe('sendPermissionsContact', json.listData._id, result);
                                         }
                                         else{
-                                            console.log(error);
+                                            new Error(error);
                                         }
                                     });
                                 }
@@ -83,12 +81,12 @@ export class ShareWithGroupViewPresenter{
                             }
                         }
                         else {
-                            console.log(error2);
+                            new Error(error2);
                         }
                     });
                 }
                 else{
-                    console.log(error1);
+                    new Error(error1);
                 }
             });
         }

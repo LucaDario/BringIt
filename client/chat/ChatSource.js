@@ -13,7 +13,6 @@
  */
 
 import {container,inject} from 'dependency-injection-es6';
-const EventEmitter = require('events');
 export class ChatSource{
 
 
@@ -56,7 +55,7 @@ export class ChatSource{
                     Meteor.call('sendMessage', msgObject);
                 }
                 else {
-                    console.log(error);
+                    new Error(error);
                 }
             });
         }

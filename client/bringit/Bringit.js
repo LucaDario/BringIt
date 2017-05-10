@@ -200,20 +200,20 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         itemImage.setVisibility(false);
         //create and set quantity
         let widgetQuantity = new Monolith.widgets.TextWidget;
-        if(listItem.getQuantity() != undefined) {
+        if(listItem.getQuantity() !== undefined) {
             widgetQuantity.setText(listItem.getQuantity().toString());
         }
 
 
         //create and set unit
         let widgetUnity = new Monolith.widgets.TextWidget;
-        if(listItem.getMeasurementUnit() != undefined) {
+        if(listItem.getMeasurementUnit() !== undefined) {
             widgetUnity.setText(listItem.getMeasurementUnit().toString());
         }
 
         //create widget description
         let widgetDescription = new Monolith.widgets.TextWidget;
-        if(listItem.getDescription() != undefined) {
+        if(listItem.getDescription() !== undefined) {
             widgetDescription.setText(listItem.getDescription().toString());
         }
 

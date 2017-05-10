@@ -17,7 +17,6 @@ describe('GetItemInfoUseCase', function () {
     it('Verify GetItemInfoUseCase works properly with DatabaseSource [TI34]', function () {
 
         Meteor.isTest = true;
-        const util = require('util');
         let useCase = container.resolve(GetItemInfoUseCase);
 
         //console.log('Inserting some lists');

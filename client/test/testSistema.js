@@ -31,7 +31,7 @@ describe('System tests', function () {
         expect(
             () => {
                 let list = new ListData();
-                new Bringit(list.getName(),list.getId(),true);
+                new Bringit(list.getName(),list.getId(),true); //NOSONAR
             }).to.not.throw;
     });
 
@@ -47,7 +47,6 @@ describe('System tests', function () {
         // adding an element in the list
         bubble.addNewBringitItem(item);
         bubble.addItemFromDb(item);
-        console.log(bubble.getLayout().getItems());
         expect(bubble.getLayout().getItems().length).to.be.eq(3);
     });
 
@@ -63,7 +62,6 @@ describe('System tests', function () {
         bubble.addItemFromDb(item);
         bubble.deleteItem(item.getId());
         bubble.updateItem(item);
-        console.log(bubble.getLayout().getItems());
         expect(bubble.getLayout().getItems().length).to.be.eq(2);
     });
 */
@@ -138,7 +136,6 @@ describe('System tests', function () {
             "bubbleType": 'Bringit',
             "listData": listData
         }
-        console.log(checkPermission(json.listData));
         let bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
         expect(bubble._addItemButton).to.not.equal(undefined);
     });
@@ -171,7 +168,6 @@ describe('System tests', function () {
             "bubbleType": 'Bringit',
             "listData": listData
         }
-        console.log(listData);
         let bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
         expect(bubble._addItemButton).to.not.equal(undefined);
     });
