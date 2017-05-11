@@ -69,7 +69,7 @@ export class ShareWithGroupViewPresenter{
                                             Meteor.subscribe('sendPermissionsContact', json.listData._id, result);
                                         }
                                         else{
-                                            new Error(error);
+                                            throw new Error(error);
                                         }
                                     });
                                 }
@@ -81,12 +81,12 @@ export class ShareWithGroupViewPresenter{
                             }
                         }
                         else {
-                            new Error(error2);
+                            throw new Error(error2);
                         }
                     });
                 }
                 else{
-                    new Error(error1);
+                    throw new Error(error1);
                 }
             });
         }

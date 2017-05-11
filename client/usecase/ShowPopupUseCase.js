@@ -293,7 +293,7 @@ export class ShowPopupUseCase{
                             Meteor.subscribe('sendPermissionsContact', json.listData._id, result);
                         }
                         else {
-                            new Error(error);
+                            throw new Error(error);
                         }
                     });
                 }

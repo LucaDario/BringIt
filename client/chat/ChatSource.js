@@ -55,7 +55,7 @@ export class ChatSource{
                     Meteor.call('sendMessage', msgObject);
                 }
                 else {
-                    new Error(error);
+                    throw new Error(error);
                 }
             });
         }
