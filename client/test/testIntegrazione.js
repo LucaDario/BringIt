@@ -36,7 +36,7 @@ describe('Integration tests', function () { //NOSONAR
         const group = ['general'];
 
         //create a spy element which simulates the function you want to verify
-        let spy = sinon.spy(chat, "sendMessageToChatWithJson");
+        const spy = sinon.spy(chat, "sendMessageToChatWithJson");
 
         //specify the arguments of the function you want to simulate
         spy.withArgs(group[0],json);
@@ -61,7 +61,7 @@ describe('Integration tests', function () { //NOSONAR
         }
 
         //create a spy element which simulates the function you want to verify
-        let spy = sinon.spy(chat, "sendMessageToChatWithJson");
+        const spy = sinon.spy(chat, "sendMessageToChatWithJson");
 
         //specify the arguments of the function you want to simulate
         spy.withArgs('general',json);
@@ -81,10 +81,10 @@ describe('Integration tests', function () { //NOSONAR
         //create a Bringit message
         const listData = new ListData();
         listData.setName('Test');
-        listData.setCreatorId(this.userId);
+        listData.setCreatorId('test');
 
         //create a function
-        let f = function () {}
+        const f = function () {}
 
         //create a spy element which simulates the function you want to verify
         const spy = sinon.spy(show, "showPopupWithFunction");

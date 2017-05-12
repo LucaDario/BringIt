@@ -15,10 +15,10 @@ describe('ModifyListUseCase', function () {
         expect(
             () => {
                 Meteor.isTest = true;
-                let useCase = container.resolve(ModifyListUseCase);
-                let listData = new ListData();
+                const useCase = container.resolve(ModifyListUseCase);
+                const listData = new ListData();
                 listData.setName('The best list ever made');
-                let item = new ListItem();
+                const item = new ListItem();
                 useCase.addItemToList(listData.getId(), item);
             });
     });
@@ -27,10 +27,10 @@ describe('ModifyListUseCase', function () {
         expect(
             () => {
                 Meteor.isTest = true;
-                let useCase = container.resolve(ModifyListUseCase);
-                let listData = new ListData();
+                const useCase = container.resolve(ModifyListUseCase);
+                const listData = new ListData();
                 listData.setName('The best list ever made');
-                let item = new ListItem();
+                const item = new ListItem();
                 useCase.addItemToList(listData.getId(), item);
                 useCase.removeItemFromList(listData.getId(), item);
             });
@@ -40,10 +40,10 @@ describe('ModifyListUseCase', function () {
         expect(
             () => {
                 Meteor.isTest = true;
-                let useCase = container.resolve(ModifyListUseCase);
-                let listData = new ListData();
+                const useCase = container.resolve(ModifyListUseCase);
+                const listData = new ListData();
                 listData.setName('The best list ever made');
-                let item = new ListItem();
+                const item = new ListItem();
                 useCase.addItemToList(listData.getId(), item);
                 useCase.updateItemInsideList(listData.getId(), item);
             });
@@ -52,28 +52,23 @@ describe('ModifyListUseCase', function () {
     it('Verify ModifyListUseCase works properly with DatabaseSource [TI38]', function () {
         Meteor.isTest = true;
 
-        let useCase = container.resolve(ModifyListUseCase);
+        const useCase = container.resolve(ModifyListUseCase);
 
-        let listData = new ListData();
+        const listData = new ListData();
         listData.setName('Tryout');
 
         useCase.saveList(listData);
-        //console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
 
-
-        let listItem = new ListItem();
+        const listItem = new ListItem();
         listItem.setName('First item');
         listItem.setDescription('First item description');
 
         useCase.addItemToList(listData.getId(), listItem);
-        //console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
 
         listItem.setQuantity(10);
         listItem.addNote('Tryout');
         useCase.updateItemInsideList(listData.getId(), listItem);
-        //console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
 
         useCase.removeItemFromList(listData.getId(), listItem);
-        //console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
     });
 })

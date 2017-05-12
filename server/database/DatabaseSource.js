@@ -174,7 +174,6 @@ container.registerAsSingleton(DatabaseSource);
 
 /**
  * Tests.
- * TODO: Move this inside the proper testing environment
  */
 /*Meteor.startup(function () {
     if(Meteor.isServer){

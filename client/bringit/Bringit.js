@@ -105,7 +105,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
     showInputAddItem(){
         const inputItemInfoView = new InputItemInfoViewImpl(this._id);
 
-        let f = function () {
+        const f = function () {
             inputItemInfoView.onSaveClicked($("#itemList").val(), $("#itemQuantity").val(),
                 $("#itemdescription").val(),$("#itemMesaurement").val(),document.getElementById('imageItem').files[0]);
 

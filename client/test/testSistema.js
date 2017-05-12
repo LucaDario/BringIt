@@ -152,7 +152,7 @@ describe('System tests', function () { //NOSONAR
             "listData": listData
         }
 
-        let bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
+        const bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
         expect(bubble._addItemButton).to.be.eq(undefined);
     });
 

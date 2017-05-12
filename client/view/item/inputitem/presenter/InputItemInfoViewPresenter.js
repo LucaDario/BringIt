@@ -63,7 +63,7 @@ export class InputItemInfoViewPresenter {
         listItem.setMeasurementUnit(mesaurement_unit);
         listItem.setName(name);
 
-        //TODO aggiungere note sia view
+        //TODO: aggiungere note sia view //NOSONAR
         listItem._notes = [];
         listItem.setQuantity(quantity);
         listItem.setDescription(long_description);

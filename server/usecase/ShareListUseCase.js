@@ -37,9 +37,6 @@ export class ShareListUseCase{
         listData.addUser(contactId);
         this._databaseSource.saveList(listData);
 
-        // Share the message with the contact
-        // TODO: Share the message to the user's chat
-
     }
 
 }

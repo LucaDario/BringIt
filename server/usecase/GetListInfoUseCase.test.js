@@ -19,13 +19,13 @@ describe('GetListInfoUseCase', function () {
         expect(
             () => {
                 Meteor.isTest = true;
-                let useCase = container.resolve(GetListInfoUseCase);
+                const useCase = container.resolve(GetListInfoUseCase);
 
                 const listData = new ListData();
                 listData.setName('The best list ever made');
-                let item1 = new ListItem();
+                const item1 = new ListItem();
                 item1.setDescription("First item");
-                let item2 = new ListItem();
+                const item2 = new ListItem();
                 item1.setDescription("Second item");
 
                 listData.addItem(item1);

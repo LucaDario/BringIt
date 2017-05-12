@@ -17,23 +17,22 @@ describe('GetItemInfoUseCase', function () {
     it('Verify GetItemInfoUseCase works properly with DatabaseSource [TI34]', function () {
 
         Meteor.isTest = true;
-        let useCase = container.resolve(GetItemInfoUseCase);
+        const useCase = container.resolve(GetItemInfoUseCase);
 
-        //console.log('Inserting some lists');
         const listData = new ListData();
         listData.setName('The best list ever made');
-        let item1 = new ListItem();
+        const item1 = new ListItem();
         item1.setDescription("First item");
-        let item2 = new ListItem();
+        const item2 = new ListItem();
         item1.setDescription("Second item");
         listData.addItem(item1);
         listData.addItem(item2);
 
         const listData2 = new ListData();
         listData.setName('The best list ever made 2');
-        let item11 = new ListItem();
+        const item11 = new ListItem();
         item1.setDescription("First item 2");
-        let item21 = new ListItem();
+        const item21 = new ListItem();
         item1.setDescription("Second item 2");
         listData2.addItem(item11);
         listData2.addItem(item21);
@@ -41,7 +40,7 @@ describe('GetItemInfoUseCase', function () {
         useCase._databaseSource.saveList(listData);
         useCase._databaseSource.saveList(listData2);
 
-        let dbItem = useCase.getItemInfo(listData.getId(), item1.getId());
+        const dbItem = useCase.getItemInfo(listData.getId(), item1.getId());
         expect(dbItem).to.not.equal(undefined);
 
         });

@@ -14,8 +14,8 @@ describe('ShareListUseCase', function () {
         expect(
             () => {
                 Meteor.isTest = true;
-                let useCase = container.resolve(ShareListUseCase);
-                let listData = new ListData();
+                const useCase = container.resolve(ShareListUseCase);
+                const listData = new ListData();
                 useCase.shareListWithContact(listData.getId(), 'rocket.cat');
             });
     });

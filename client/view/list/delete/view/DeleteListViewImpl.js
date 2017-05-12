@@ -31,7 +31,6 @@ export class DeleteListViewImpl extends DeleteListView{
      */
     constructor(){
         super();
-        //TODO inject
         this._popup = container.resolve(ShowPopupUseCase);
         this._deleteEvent = container.resolve(DeleteListEventEmitter);
         this._deleteEvent.on('deleteEvent', (listId,nameList) => {

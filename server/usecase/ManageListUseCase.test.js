@@ -14,17 +14,14 @@ describe('ManageListUseCase', function () {
             () => {
                 Meteor.isTest = true;
 
-                let useCase = container.resolve(ManageListsUseCase);
+                const useCase = container.resolve(ManageListsUseCase);
                 useCase._databaseSource.clear();
                 useCase._databaseSource.getLists();
 
-                let listData = new ListData();
+                const listData = new ListData();
                 listData.setName('Tryout');
 
-
-                //console.log('List removing');
                 useCase.deleteList(insertedList1.getId());
-                //console.log(util.inspect(useCase._databaseSource.getLists(), false, null));
             });
     });
 });
