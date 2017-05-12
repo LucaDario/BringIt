@@ -20,9 +20,9 @@ describe('InputItemInfoViewPresenter', function () {
         expect(item._description).to.be.eq("Long desc");
     });
 
-    /*it('Check item notes [TU45]', function () {
-        throw new Error("NOT IMPLEMENTED");
-    });*/
+    /*it('Check item notes [TU45]', function () { //NOSONAR
+        throw new Error("NOT IMPLEMENTED"); //NOSONAR
+    });*/ //NOSONAR
 
     it('Check item quantity [TU46]', function () {
         const presenter = new InputItemInfoViewPresenter();
@@ -50,8 +50,8 @@ describe('InputItemInfoViewPresenter', function () {
         expect(item._measurementUnit).to.be.eq("");
     });
 
-    /*it('Check item remove [TU49]', function () {
-        throw new Error("NOT IMPLEMENTED");
-    });*/
+    /*it('Check item remove [TU49]', function () { //NOSONAR
+        throw new Error("NOT IMPLEMENTED"); //NOSONAR
+    });*/ //NOSONAR
 
 });

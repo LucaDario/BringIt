@@ -5,7 +5,6 @@
 
 import {InputListInfoViewImpl} from './InputListInfoViewImpl'
 import {container, inject} from 'dependency-injection-es6';
-import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
 
 /**
  * This script set event when the button with  class '.btn' clicked, and the event
@@ -13,9 +12,9 @@ import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
  */
 Meteor.startup(function(){
     const inputListInfoView = container.resolve(InputListInfoViewImpl);
-    //const popup = container.resolve(ShowPopupUseCase);
+
     Template.input.events({
-        'click .btn'(event){
+        'click .btn'(){
             let value = $("#nameList").val();
             let img = $("#imageList").val();
             // if the name is made up by whitespaces or it's empty it will be set the default value
@@ -28,10 +27,7 @@ Meteor.startup(function(){
 
             //call the 'save' event
             inputListInfoView.onSaveClicked(value, img);
-            //}
-            //else{
-             //   popup.showPopupWithFunction('You must add a name and an image to the list to create it!',()=>{},4);
-            //}
+
         }
     });
 });

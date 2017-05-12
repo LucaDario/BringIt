@@ -13,7 +13,7 @@ import {Bringit} from '../bringit/Bringit';
 import {container,inject} from 'dependency-injection-es6';
 
 
-describe('System tests', function () {
+describe('System tests', function () { //NOSONAR
 
     function checkPermission(listData) {
         let permission = false;
@@ -30,7 +30,7 @@ describe('System tests', function () {
     it('Check if it is possible to instantiate a Bringit bubble [TSFO18]', function () {
         expect(
             () => {
-                let list = new ListData();
+                const list = new ListData();
                 new Bringit(list.getName(),list.getId(),true); //NOSONAR
             }).to.not.throw;
     });
@@ -39,10 +39,10 @@ describe('System tests', function () {
 
 
         // create the bubble Bringit
-        let list = new ListData();
-        let bubble = new Bringit(list.getName(),list.getId(),true);
-        let input = new InputItemInfoViewImpl(list.getId());
-        let item = input._presenter.createListItem(list.getName(), '',
+        const list = new ListData();
+        const bubble = new Bringit(list.getName(),list.getId(),true);
+        const input = new InputItemInfoViewImpl(list.getId());
+        const item = input._presenter.createListItem(list.getName(), '',
             2, 'test', 'kg');
         // adding an element in the list
         bubble.addNewBringitItem(item);
@@ -50,7 +50,7 @@ describe('System tests', function () {
         expect(bubble.getLayout().getItems().length).to.be.eq(3);
     });
 
-/*    it('Check the correct deleting of an item in the list and it interacts correctly with the database' +
+/*    it('Check the correct deleting of an item in the list and it interacts correctly with the database' + //NOSONAR
         ' [TSFO20]', function () {
 
         let list = new ListData();
@@ -66,10 +66,10 @@ describe('System tests', function () {
     });
 */
     it('Check the correct checking of an item in the list [TSFO21]', function () {
-        let list = new ListData();
-        let bubble = new Bringit(list.getName(),list.getId(),true);
-        let input = new InputItemInfoViewImpl(list.getId());
-        let item = input._presenter.createListItem(list.getName(), '',
+        const list = new ListData();
+        const bubble = new Bringit(list.getName(),list.getId(),true);
+        const input = new InputItemInfoViewImpl(list.getId());
+        const item = input._presenter.createListItem(list.getName(), '',
             2, 'test', 'kg');
         bubble.addNewBringitItem(item);
         bubble.addItemFromDb(item);
@@ -82,7 +82,7 @@ describe('System tests', function () {
         const chat = container.resolve(ChatSource);
 
         //create a spy element which simulates the function you want to verify
-        let spy = sinon.spy(chat, "sendMessageToUser");
+        const spy = sinon.spy(chat, "sendMessageToUser");
 
         // creation of a Bringit message
         const listData = new ListData();
@@ -106,7 +106,7 @@ describe('System tests', function () {
         const chat = container.resolve(ChatSource);
 
         //create a spy element which simulates the function you want to verify
-        let spy = sinon.spy(chat, "sendMessageToChatWithJson");
+        const spy = sinon.spy(chat, "sendMessageToChatWithJson");
 
         // creation of a Bringit message
         const listData = new ListData();
@@ -136,7 +136,7 @@ describe('System tests', function () {
             "bubbleType": 'Bringit',
             "listData": listData
         }
-        let bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
+        const bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
         expect(bubble._addItemButton).to.not.equal(undefined);
     });
 
@@ -168,7 +168,7 @@ describe('System tests', function () {
             "bubbleType": 'Bringit',
             "listData": listData
         }
-        let bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
+        const bubble = new Bringit(listData.getName(),listData.getId(),checkPermission(json.listData));
         expect(bubble._addItemButton).to.not.equal(undefined);
     });
 });

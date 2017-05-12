@@ -33,14 +33,14 @@ export class ShareWithGroupViewPresenter{
         //show the popup which contains the list of the members of the group
         for(let i=0; i<group.length; i++) {
             //Find the room's id
-            Meteor.call('getRoomIdByNameOrId',group[i], function (error1,result1) {
+            Meteor.call('getRoomIdByNameOrId',group[i], function (error1,result1) { //NOSONAR
                 if(result1) {
                     //find the room's user
-                    Meteor.call('getUsersOfRoom', result1, true, function (error2, result2) {
+                    Meteor.call('getUsersOfRoom', result1, true, function (error2, result2) { //NOSONAR
                         if (result2) {
                             //true if there are users available in the channel
                             let cond = false;
-                            let show = container.resolve(ShowPopupUseCase);
+                            const show = container.resolve(ShowPopupUseCase);
 
                             //html of the popup
                             let html = '<h3> Channel: '+group[i]+'</h3>' +
@@ -64,7 +64,7 @@ export class ShareWithGroupViewPresenter{
                             let f = function () {
                                 let selected = $('#sites').val(); //get user's choice
                                 for(let i=0; i<selected.length;i++) {
-                                    Meteor.call('getIdUser', selected[i], true, function (error, result) {
+                                    Meteor.call('getIdUser', selected[i], true, function (error, result) { //NOSONAR
                                         if(result) {
                                             Meteor.subscribe('sendPermissionsContact', json.listData._id, result);
                                         }

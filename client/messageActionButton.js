@@ -53,13 +53,13 @@ Meteor.startup (function () {
         ],
         "action": (event, instance) => {
             //this function gets the list of channels which are open in your instance of Rocket.Chat
-            Meteor.call('channelsList', '', '', function (error, result) {
+            Meteor.call('channelsList', '', '', function (error, result) { //NOSONAR
                 if (result) {
 
                     let html = '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
                     for(let i=0; i<result.channels.length; i++) {
                         Meteor.call('getUsersOfRoom', result.channels[i]._id, true, (error2, result2) => {
-                            let cond = searchUser(Meteor.user().username, result2);
+                            const cond = searchUser(Meteor.user().username, result2);
                             if(cond){
                                 html = html + '<option data-tokens="' + result.channels[i].name + '">'
                                     + result.channels[i].name + '</option>';
@@ -71,18 +71,9 @@ Meteor.startup (function () {
                             }
                         });
                     }
-
-                    /*make the html which will be shown inside the popup
-                    let html = '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
-                    for (let i = 0; i < result.channels.length; i++) {
-                        html = html + '<option data-tokens="' + result.channels[i].name + '">'
-                            + result.channels[i].name + '</option>';
-                    }
-                    html = html + '</select>';
-                    pop.showPopupAndSend('Choose a channel', html, this.message);*/
                 }
                 if (error) {
-                    new Error(error);
+                    throw new Error(error);
                 }
             });
         },
@@ -118,7 +109,7 @@ Meteor.startup (function () {
         ],
         "action": (event, instance) => {
 
-            Meteor.call('getUsers',function(error,result){
+            Meteor.call('getUsers',function(error,result){ //NOSONAR
                 let cond = false; //true if there are users available
                 // this html will be shown inside the popup
                 let html = '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
@@ -144,10 +135,6 @@ Meteor.startup (function () {
         "validation": (message) => {
             //shows the button only if the message contains a listData field
             if(message.listData !== undefined){
-                /*let auth = true;
-                for(let i in message.listData._users) {
-                    auth = auth && (message.listData._users[i] === Meteor.userId());
-                }*/
                 // copy the message
                 this.message = {
                     listData: message.listData,
@@ -182,10 +169,6 @@ Meteor.startup (function () {
         },
         "validation": (message) => {
             if(message.listData !== undefined){
-                /*let auth = true;
-                for(let i in message.listData._users) {
-                    auth = auth && (message.listData._users[i] === Meteor.userId());
-                }*/
                 return (message.listData._creatorId === Meteor.userId());
             }
             return false;

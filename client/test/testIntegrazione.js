@@ -17,7 +17,7 @@ import {ChatSource} from '../chat/ChatSource';
 import {container,inject} from 'dependency-injection-es6';
 import {Meteor} from 'meteor/meteor';
 
-describe('Integration tests', function () {
+describe('Integration tests', function () { //NOSONAR
 
     it('Verify the ShareWithGroupPresenter works properly with ChatSource [TI23]', function () {
 

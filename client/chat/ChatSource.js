@@ -42,7 +42,7 @@ export class ChatSource{
     sendMessageToUser(user, json){
         for(let i=0; i < user.length; i++) {
             //creating a direct message
-            Meteor.call('createDirectMessage', user[i], function (error, result) {
+            Meteor.call('createDirectMessage', user[i], function (error, result) { //NOSONAR
                 if (result) {
                     const msgObject = {
                         "_id": Random.id(),
