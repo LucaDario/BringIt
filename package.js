@@ -101,8 +101,6 @@ Package.onTest(function(api) {
         'lmieulet:meteor-coverage@1.1.4'
     ]);
 
-   // api.imply('monolith', ['client','server']);
-
     api.use('templating', 'client');
     api.use('mongo',['client','server']);
 

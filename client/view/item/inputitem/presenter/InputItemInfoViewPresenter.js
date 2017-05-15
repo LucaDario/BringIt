@@ -46,7 +46,7 @@ export class InputItemInfoViewPresenter {
      */
 
     createListItem(name, image, quantity, long_description, mesaurement_unit = "") {
-        let listItem = new ListItem();
+        const listItem = new ListItem();
 
         //let widget_immagine= new Monolith.widgets.ImageWidget();
 
@@ -63,7 +63,7 @@ export class InputItemInfoViewPresenter {
         listItem.setMeasurementUnit(mesaurement_unit);
         listItem.setName(name);
 
-        //TODO: aggiungere note sia view //NOSONAR
+        //TODO: aggiungere note sia view
         listItem._notes = [];
         listItem.setQuantity(quantity);
         listItem.setDescription(long_description);

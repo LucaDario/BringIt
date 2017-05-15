@@ -30,7 +30,7 @@ export class ForwardListUseCase{
      * @param chatId {string}: Id of the chat to which forward the list.
      */
     forwardList(listId, chatId){
-        // TODO: Stub //NOSONAR
+        // TODO: Stub
     }
 
 }

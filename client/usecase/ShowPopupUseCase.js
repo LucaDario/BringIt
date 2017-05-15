@@ -22,9 +22,6 @@ import "../modal.css";
 import {ModifyListEvent} from '../event/ModifyListEventEmitter';
 import {DeleteItem} from '../event/DeleteItemEventEmitter';
 
-
-//const ReactiveModal = require('');
-
 export class ShowPopupUseCase{
 
     /**
@@ -62,8 +59,8 @@ export class ShowPopupUseCase{
             onEscape: false,
             callback: function (result) { // it will be executed after popup's closing
                 if (result === true) {
-                    let emitter = container.resolve(ShareEventEmitter);
-                    let selected = $('#sites').val(); //get user's choice
+                    const emitter = container.resolve(ShareEventEmitter);
+                    const selected = $('#sites').val(); //get user's choice
                     emitter.emitShareEvent(selected, json, title); // launch event
                 }
             }
@@ -152,8 +149,8 @@ export class ShowPopupUseCase{
         if (index === 2) {
             global.jQuery = require('bootstrap-jquery');
             window.$ = $;
-            let title = 'List ' + content;
-            let message = 'Successfully deleted!';
+            const title = 'List ' + content;
+            const message = 'Successfully deleted!';
             global.bootbox = require('bootbox');
             bootbox.alert({
                 size: "small",
@@ -240,7 +237,7 @@ export class ShowPopupUseCase{
                         label: "Modify item",
                         className: "btn btn-primary pull-left",
                         callback: function() {
-                            let emitter = container.resolve(ModifyListEvent);
+                            const emitter = container.resolve(ModifyListEvent);
                             emitter.emitModifyitem(listid,itemid);
                         }
                     },
@@ -248,7 +245,7 @@ export class ShowPopupUseCase{
                         label: "Delete item",
                         className: "btn btn-primary pull-left",
                         callback: function() {
-                            let emitter = container.resolve(DeleteItem);
+                            const emitter = container.resolve(DeleteItem);
                             emitter.emitDeleteItem(listId,item);
                         }
                     }

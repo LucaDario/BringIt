@@ -19,24 +19,23 @@ import {ListData} from '../../data/ListData';
 
 Meteor.publish('createList',function (listData) {
 
-    let manageList = container.resolve(ManageListsUseCase);
-    let list = fromJSONValue(listData);
+    const manageList = container.resolve(ManageListsUseCase);
+    const list = fromJSONValue(listData);
     manageList.createList(list.getId(),list);
-
-
-
-
     this.ready();
-
-
-
 
 });
 
 
+/**
+ * @function
+ * This function creates a list bubble from a json.
+ * @param json : it represents the message which has the parameters of the list inside.
+ * @return {ListData} : the list created after the parse of the message
+ */
 
 function fromJSONValue(json) {
-    let list = new ListData();
+    const list = new ListData();
     list.setId(json._id);
     list.setImagePath(json._imagePath);
     list.setName(json._name);

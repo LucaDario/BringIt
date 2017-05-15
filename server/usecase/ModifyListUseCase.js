@@ -42,7 +42,7 @@ export class ModifyListUseCase{
      * @param item {ListItem}: Item to add to the list.
      */
     addItemToList(listId, item){
-        let list = this._databaseSource.getListWithId(listId);
+        const list = this._databaseSource.getListWithId(listId);
         list.addItem(item);
         this._databaseSource.saveList(list);
     }
@@ -53,7 +53,7 @@ export class ModifyListUseCase{
      * @param item {ListItem}: Item to be removed from the list.
      */
     removeItemFromList(listId, item){
-        let list = this._databaseSource.getListWithId(listId);
+        const list = this._databaseSource.getListWithId(listId);
         list.removeItem(item);
         this._databaseSource.saveList(list);
     }
@@ -64,7 +64,7 @@ export class ModifyListUseCase{
      * @param item {ListItem}: Item which needs to be updated.
      */
     updateItemInsideList(listId, item){
-        let list = this._databaseSource.getListWithId(listId);
+        const list = this._databaseSource.getListWithId(listId);
         list.saveItem(item);
 
         this._databaseSource.saveList(list);

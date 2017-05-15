@@ -10,9 +10,8 @@
  */
 Meteor.publish('sendMessageWithJson', (roomName,json) =>{
 
-    let user = RocketChat.models.Users.findOneById('rocket.cat');
-    let roomId = getRoomId(roomName);
-
+    const user = RocketChat.models.Users.findOneById('rocket.cat');
+    const roomId = getRoomId(roomName);
 
     RocketChat.sendMessage(user, json, { _id: roomId});
 

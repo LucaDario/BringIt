@@ -7,8 +7,6 @@
 
 Meteor.methods({
     getUsers() {
-        let users = RocketChat.models.Users.find({}).fetch();
-
-        return users;
+        return RocketChat.models.Users.find({}).fetch();
     }
 });

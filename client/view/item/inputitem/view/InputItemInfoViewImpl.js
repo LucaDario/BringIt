@@ -54,16 +54,16 @@ export class InputItemInfoViewImpl extends InputItemInfoView {
 
             /*if image is not null covert in blob and encrypt in base64*/
             if (image) {
-                let fileReader = new FileReader();
+                const fileReader = new FileReader();
                 fileReader.onloadend = (e) => {
 
-                    let arrayBuffer = e.target.result;
-                    let fileType = 'image/*';
+                    const arrayBuffer = e.target.result;
+                    const fileType = 'image/*';
                     blobUtil.arrayBufferToBlob(arrayBuffer, fileType).then((blob) => {
-                        let reader = new FileReader();
+                        const reader = new FileReader();
                         reader.addEventListener("load", () => {
                             //create item with base64image
-                            let item = this._presenter.createListItem(name, reader.result, quantity, description, measurement);
+                            const item = this._presenter.createListItem(name, reader.result, quantity, description, measurement);
                             this._saveEvent.emitSaveEventItem(item, this._presenter.getListId());
                         }, false);
 
@@ -78,7 +78,7 @@ export class InputItemInfoViewImpl extends InputItemInfoView {
 
             else {
                 //create item without image
-                let item = this._presenter.createListItem(name, '', quantity, description, measurement);
+                const item = this._presenter.createListItem(name, '', quantity, description, measurement);
                 this._saveEvent.emitSaveEventItem(item, this._presenter.getListId());
             }
         }

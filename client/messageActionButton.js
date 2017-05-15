@@ -1,6 +1,6 @@
 /**
  * Created by Francesco Bazzerla on 26/04/2017
- * Version 3.0.0 - Completed
+ * Version 3.0.1 - SonarQube problems are resolved
  */
 import {container,inject} from 'dependency-injection-es6';
 import {DeleteListViewImpl} from './view/list/delete/view/DeleteListViewImpl';
@@ -38,7 +38,7 @@ Meteor.startup(()=> {
     }
 });
 
-Meteor.startup (function () {
+Meteor.startup (function () { //NOSONAR
     //the final receiver of the shareEvent emitted by the popup
     const shareGroup = new ShareWithGroupViewImpl(); //NOSONAR
     const pop = container.resolve(ShowPopupUseCase);
@@ -51,7 +51,7 @@ Meteor.startup (function () {
             'message',
             'message-mobile'
         ],
-        "action": (event, instance) => {
+        "action": () => {
             //this function gets the list of channels which are open in your instance of Rocket.Chat
             Meteor.call('channelsList', '', '', function (error, result) { //NOSONAR
                 if (result) {
@@ -80,11 +80,6 @@ Meteor.startup (function () {
         "validation": (message) => {
             //shows the button only if the message contains a listData field
             if (message.listData !== undefined) {
-                /*
-                let auth = true;
-                for(let i in message.listData._users) {
-                    auth = auth && (message.listData._users[i] === Meteor.userId());
-                }*/
                 // copy the message
                 this.message = {
                     listData: message.listData,
@@ -92,6 +87,7 @@ Meteor.startup (function () {
                 };
                 return (message.listData._creatorId === Meteor.userId());
             }
+            //if there is no 'listData' field returns false
             return false;
         }
     });
@@ -107,7 +103,7 @@ Meteor.startup (function () {
             'message',
             'message-mobile'
         ],
-        "action": (event, instance) => {
+        "action": () => {
 
             Meteor.call('getUsers',function(error,result){ //NOSONAR
                 let cond = false; //true if there are users available
@@ -124,6 +120,7 @@ Meteor.startup (function () {
                     }
                 }
                 html = html + '</select>';
+                //if there are users available, it shows them with a popup. Otherwise shows an alert.
                 if(cond) {
                     pop.showPopupAndSend('Choose a user',html, this.message);
                 }
@@ -161,7 +158,7 @@ Meteor.startup (function () {
             'message',
             'message-mobile'
         ],
-        "action": (event, instance) => {
+        "action": () => {
             const listId = message.listData._id;
             const nameList = message.listData._name;
             const delEvent = container.resolve(DeleteListEventEmitter);

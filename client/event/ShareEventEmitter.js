@@ -16,8 +16,6 @@ export class ShareEventEmitter extends EventEmitter{
      */
     constructor() {
         super();
-        //this._emitter = new ShareWithGroupViewImpl();
-
     }
 
     /**

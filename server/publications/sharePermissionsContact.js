@@ -11,7 +11,7 @@ import '../methods/getIdUser';
 import {container,inject} from 'dependency-injection-es6';
 
 Meteor.publish('sendPermissionsContact', (idList,idContact) =>{
-    let sharePermission = container.resolve(ShareListUseCase);
+    const sharePermission = container.resolve(ShareListUseCase);
     sharePermission.shareListWithContact(idList, idContact);
 
 });

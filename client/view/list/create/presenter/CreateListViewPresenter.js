@@ -78,7 +78,7 @@ export class CreateListViewPresenter {
      */
 	createList(listData){
 
-		let roomName = $('.room-title').text();
+		const roomName = $('.room-title').text();
 
 		this._chatSourse.sendMessageToChatWithJson(roomName, createJsonList(listData));
 

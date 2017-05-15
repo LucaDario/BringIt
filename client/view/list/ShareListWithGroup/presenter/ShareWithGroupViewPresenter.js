@@ -61,8 +61,8 @@ export class ShareWithGroupViewPresenter{
                             html = html + '</select>';
 
                             //callback that will be executed after popup's closing
-                            let f = function () {
-                                let selected = $('#sites').val(); //get user's choice
+                            const f = function () {
+                                const selected = $('#sites').val(); //get user's choice
                                 for(let i=0; i<selected.length;i++) {
                                     Meteor.call('getIdUser', selected[i], true, function (error, result) { //NOSONAR
                                         if(result) {

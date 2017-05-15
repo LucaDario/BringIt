@@ -14,8 +14,8 @@ import {ManageListsUseCase} from '../usecase/ManageListsUseCase';
 
 
 Meteor.publish('deleteList',function (listId) {
-    let id = listId;
-    let manageList = container.resolve(ManageListsUseCase);
+    const id = listId;
+    const manageList = container.resolve(ManageListsUseCase);
     manageList.deleteList(listId);
     this.ready(id);
 });
