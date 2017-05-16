@@ -1,8 +1,6 @@
 /**
  * Created by lucadario on 24/03/17.
- *  * version 2.0.0 - Miss the notes on the popuop
- *   * version 4.1.0 - completed
-
+ * version 4.1.0 - completed
  */
 
 import {container, inject} from 'dependency-injection-es6';
@@ -14,7 +12,7 @@ import {input} from '../../list/input/view/input.html';
  */
 Meteor.startup(function () {
     Tracker.autorun(function () {
-        let view = container.getInstanceOf(CreateListViewImpl);
+        const view = container.getInstanceOf(CreateListViewImpl);
         RocketChat.TabBar.addButton(
             view.renderView()
         )

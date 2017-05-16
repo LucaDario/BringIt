@@ -27,7 +27,7 @@ export class CreateListViewImpl extends CreateListView {
 		/*instance a function and it allows to call this presenter with the argument not defined in this moment
 		* this will be defined when the function will be called from this._saveEvent.on
 		* the not defined parameter must have ListData type*/
-        let callFunction = function () {
+        const callFunction = function () {
 			if(arguments[1] instanceof ListData) {
                 this._presenter.createList(arguments[1]);
             }

@@ -83,6 +83,7 @@ Package.onUse(function(api) {
             'server/publications/updateItemInDb.js',
             'server/publications/deleteList.js',
             'server/publications/addItemInList.js',
+            'server/publications/sendMessageToUser.js',
             'server/publications/deleteItem.js'
         ],
         'server');

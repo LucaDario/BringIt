@@ -38,7 +38,7 @@ export class InputListInfoViewPresenter{
      * @returns {ListData}
      */
     createListData(name, image){
-        let listData = new ListData();
+        const listData = new ListData();
         listData.setName(name);
         listData.setImagePath(image);
         if(Meteor.isTest){

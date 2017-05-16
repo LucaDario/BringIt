@@ -78,7 +78,7 @@ export class ListData {
     }
 
     getItembById(itemId){
-        let position = this._getItemPositionById(itemId);
+        const position = this._getItemPositionById(itemId);
         return this._items[position];
     }
 

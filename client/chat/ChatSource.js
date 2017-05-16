@@ -44,15 +44,7 @@ export class ChatSource{
             //creating a direct message
             Meteor.call('createDirectMessage', user[i], function (error, result) { //NOSONAR
                 if (result) {
-                    const msgObject = {
-                        "_id": Random.id(),
-                        "rid": result.rid,
-                        "bubbleType": json.bubbleType,
-                        "listData": json.listData,
-                        "msg": '',
-                    };
-                    //sending the message just created
-                    Meteor.call('sendMessage', msgObject);
+                    Meteor.subscribe('sendMessageToUser',result.rid,json);
                 }
                 else {
                     throw new Error(error);

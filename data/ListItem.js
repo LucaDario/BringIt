@@ -92,7 +92,7 @@ export class ListItem {
     getNotes() {
         return this._notes;
     }
-    getNote(postion){
+    getNote(position){
         return this._notes[position];
     }
 

@@ -43,7 +43,7 @@ export class InputListInfoViewImpl extends InputListInfoView {
      * @param photoList path {string}
      */
     onSaveClicked(name,photoList){
-        let list = this._presenter.createListData(name,photoList);
+        const list = this._presenter.createListData(name,photoList);
         this._saveEvent.emitSaveEvent(list);
 
     }
