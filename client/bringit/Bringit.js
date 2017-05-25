@@ -10,6 +10,10 @@ import {SaveItemEvent} from '../event/SaveItemEventEmitter';
 import {Showinfoitem}  from '../view/item/showinfoitem/ShowInfoItem';
 import {CompleteListEventEmitter} from '../event/CompleteListEventEmitter';
 import {DeleteItem} from '../event/DeleteItemEventEmitter';
+import {ModifyListEvent} from '../event/ModifyListEventEmitter';
+import {modifyitem} from '../view/item/modifyitem/modifyitem';
+
+
 import {InputItemInfoViewImpl} from '../view/item/inputitem/view/InputItemInfoViewImpl';
 
 
@@ -31,6 +35,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this._completeEvent = container.resolve(CompleteListEventEmitter);
         this._shoPopupUseCase = container.resolve(ShowPopupUseCase);
         this._deleteItemEvent = container.resolve(DeleteItem);
+        this._modifyItemEvent= container.resolve(ModifyListEvent);
 
         //add a callback at a complete list event
         this._completeEvent.on('completeEvent',(listId,listName) => {
@@ -43,6 +48,67 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         //add callback at a delete item event
         this._deleteItemEvent.on('DeleteItem',(listId,item) => {
             Meteor.subscribe('deleteItem',listId,item);
+        });
+
+        this._modifyItemEvent.on('ModifyItem',(listId,item) => {
+            if(this._id == listId) {
+                const description = item.getDescription();
+                const quantity = item.getQuantity();
+                parseInt(quantity);
+                const name = item.getName();
+                const unity = item.getMeasurementUnit();
+                const image = item.getImagePath();
+                const a = parseInt(quantity);
+                console.log("prima"+image);
+
+
+                const f = function () {
+                    this._modifyitem = container.resolve(modifyitem);
+                    if (document.getElementById('imageItem').files[0] != undefined) {
+                        this._modifyitem.modifyitemclicked($("#itemList").val(), $("#itemQuantity").val(),
+                            $("#itemdescription").val(), $("#itemMesaurement").val(), document.getElementById('imageItem').files[0],
+                            item, listId,true);
+
+
+                    }
+                    else {
+                        this._modifyitem.modifyitemclicked($("#itemList").val(), $("#itemQuantity").val(),
+                            $("#itemdescription").val(), $("#itemMesaurement").val(), image,
+                            item, listId,false);
+
+                    }
+
+
+                };
+
+                this._shoPopupUseCase.showPopupWithFunction(
+                    '<div class="subject">' +
+                    '<form>' +
+                    '<div id="input_item_img">' +
+                    'Modify the image for the list:<br>' +
+                    '<input  id="imageItem" type="file" name="item_image" accept="image/*" >' +
+                    '</div>' +
+                    '<div id="input_name_item">' +
+                    'Modify the name of the item:<br>' +
+                    '<input id="itemList" type="text" name="item_name"  value="name"><br>' +
+                    '</div>' +
+                    '<div id="input_quantity_item">' +
+                    'Modify the quantity of the item:<br>' +
+                    '<input id="itemQuantity" type="number" name="item_quantity" value="' + a + '" ><br>' +
+                    '</div>' +
+                    '<div id="input_description_item">' +
+                    description + '<br>' +
+                    '<input id="itemdescription" type="text" name="item_description" value="description"><br>' +
+                    '</div>' +
+                    '<div id="input_mesaurement_unit">' +
+                    'Modify the measure unit for the item:<br>' +
+                    '<input id="itemMesaurement" type="text" name="item_mesaurement" value="unity"><br>' +
+                    '</div>' +
+                    '</form>' +
+                    '</div>'
+                    , f, 5);
+            }
+
         });
 
 
@@ -251,7 +317,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
        // set action fot long click
         itemCheck.setOnLongClick(() => {
             let popup_info_item = container.resolve(Showinfoitem);
-            popup_info_item.showlayoutadd(this._id,listItem,this._permission);
+            popup_info_item.showlayoutadd(this._id,listItem,this._permission,this._checklist);
         });
 
         super.addComponent(layoutContainer);

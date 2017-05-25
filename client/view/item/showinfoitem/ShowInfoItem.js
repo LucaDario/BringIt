@@ -62,6 +62,7 @@ export class Showinfoitem {
 
 
         if(permission === true){
+
             this._popup.showPopup(name,new_layout.renderView(),listId,item,1);
 
         }

@@ -14,6 +14,7 @@ import {ListItem} from '../../data/ListItem';
 Meteor.publish('updateItem',function (listId, listItem) {
 
     //recreate a listItem serialized
+
     const modifyListUseCase = container.resolve(ModifyListUseCase);
     let objectListItem = new ListItem();
     objectListItem.setId(listItem._id);

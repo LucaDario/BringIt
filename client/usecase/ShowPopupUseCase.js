@@ -194,6 +194,26 @@ export class ShowPopupUseCase{
                 callback: fun
             });
         }
+        if (index === 5) {
+            bootbox.confirm({
+                size: 'small',
+                title: 'Modify  item',
+                message: content,
+                buttons: {
+                    confirm: {
+                        label: 'Confirm',
+                        className: 'btn-primary'
+                    }
+                },
+                closeButton: false,
+                onEscape: false,
+                callback: function (result) {
+                    if (result === true) {
+                        fun();
+                    }
+                }
+            });
+        }
     }
 
     /**
@@ -205,7 +225,16 @@ export class ShowPopupUseCase{
      * @param item {Object}
      * @param index {number}
      */
-    showPopup(title,content, listId = 0, item = 0,index=0){
+
+
+
+
+
+
+
+
+
+    showPopup(title,content, listId = 0, item = 0,index=0,bubble){
 
 
         //necessary to use jQuery and Bootstrap
@@ -237,8 +266,10 @@ export class ShowPopupUseCase{
                         label: "Modify item",
                         className: "btn btn-primary pull-left",
                         callback: function() {
+                            console.log("emittazione");
                             const emitter = container.resolve(ModifyListEvent);
-                            emitter.emitModifyitem(listid,itemid);
+
+                            emitter.emitModifyitem(listId,item);
                         }
                     },
                     {
