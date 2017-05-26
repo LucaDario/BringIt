@@ -37,6 +37,12 @@ export class ShareListUseCase{
 
     }
 
+    removeListPermission(listId, contactId){
+        const listData = this._databaseSource.getListWithId(listId);
+        listData.removeUser(contactId);
+        this._databaseSource.saveList(listData);
+    }
+
 }
 
 // Be sure that each instance of this class that will be injected is always the same

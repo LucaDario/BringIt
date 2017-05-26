@@ -74,6 +74,7 @@ Package.onUse(function(api) {
             'server/publications/addList.js',
             'server/publications/sendMessage.js',
             'server/publications/sharePermissionsContact.js',
+            'server/publications/removePermissionContact.js',
             'server/usecase/ManageListsUseCase.js',
             'server/usecase/ShareListUseCase.js',
             'server/methods/getUsers.js',

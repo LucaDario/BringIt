@@ -157,6 +157,11 @@ export class ListData {
         this._users.push(user);
     }
 
+    removeUser(user){
+        const index = this._users.indexOf(user);
+        this._users.splice(index,1);
+    }
+
     /**
      * method that check if a user have permission
      * @param {string} user: user that we want check if have permission

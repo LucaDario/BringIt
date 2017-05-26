@@ -75,7 +75,7 @@ export class ShowPopupUseCase{
      * @param index  : this indice set the type of modal .
 
      */
-    showPopupWithFunction(content, fun, index = 0){
+    showPopupWithFunction(content, fun, index = 0,json){
         //necessary to use jQuery and Bootstrap
         const $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
@@ -84,13 +84,22 @@ export class ShowPopupUseCase{
         //calling the library bootbox to make popups
         global.bootbox = require('bootbox');
         if (index === 0) {
-            bootbox.alert({
+            bootbox.confirm({
                 size: "small",
                 message: content,
                 backdrop: true,
                 closeButton: true,
                 onEscape: false,
-                callback: fun
+                callback: (result)=>{
+                    if(result === true){
+                        if(json !== undefined){
+                            fun(json);
+                        }
+                        else {
+                            fun();
+                        }
+                    }
+                }
             });
         }
         if (index === 1) {

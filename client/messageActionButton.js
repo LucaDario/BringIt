@@ -28,7 +28,7 @@ function searchUser(user, array){
 Meteor.startup(()=> {
     const btn = RocketChat.MessageAction.getButtons(null,null);
     for(let i in btn) {
-        if (btn[i].validation !== undefined && btn[i].id !== 'reaction-message') {
+        if (btn[i].validation !== undefined && btn[i].id !== 'reaction-message' && btn[i].id !== 'delete-message') {
             let oldVal = btn[i].validation.toString();
             oldVal = oldVal.substring(20);
             btn[i].validation = new Function("message", "{if (message.listData !== undefined" + //NOSONAR
@@ -80,6 +80,156 @@ Meteor.startup (function () { //NOSONAR
         "validation": (message) => {
             //shows the button only if the message contains a listData field
             if (message.listData !== undefined) {
+                // copy the message
+                this.message = {
+                    listData: message.listData,
+                    bubbleType: message.bubbleType
+                };
+                return (message.listData._creatorId === Meteor.userId());
+            }
+            //if there is no 'listData' field returns false
+            return false;
+        }
+    });
+
+    //add the button to share the ToDoListBubble with a group
+    RocketChat.MessageAction.addButton({
+        "id": 'givePermission-pin',
+        "icon": 'icon-lock-open',
+        "i18nLabel": 'Give permissions to user',
+        "context": [
+            'message',
+            'message-mobile'
+        ],
+        "action": () => {
+            //this function gets the list of channels which are open in your instance of Rocket.Chat
+            const roomNow = Session.get('openedRoom');
+            //Find the room's id
+            //find the room's user
+            Meteor.call('getUsersOfRoom', roomNow, true, function (error2, result2) { //NOSONAR
+                if (result2) {
+                    //true if there are users available in the channel
+                    let condPerm = false;
+                    //html of the popup
+                    let html = '<h3> Channel: ' + roomNow + '</h3>' +
+                        '<h4 style="color: #FFFFFF">Choose a member who give permission to modify ' +
+                        'the list to</h4>' +
+                        '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
+                    for (let i = 0; i < result2.records.length; i++) {
+                        //add the member if he is not the user who makes the request
+                        if (result2.records[i] !== Meteor.user().username && result2.records[i] !== 'rocket.cat') {
+                            if (condPerm === false) {
+                                condPerm = true;
+                            }
+                            html = html + '<option data-tokens="' + result2.records[i] + '">'
+                                + result2.records[i] + '</option>';
+                        }
+                    }
+                    html = html + '</select>';
+
+                    //callback that will be executed after popup's closing
+                    const f = function (json) {
+                        const selected = $('#sites').val(); //get user's choice
+                        for (let i = 0; i < selected.length; i++) {
+                            Meteor.call('getIdUser', selected[i], true, function (error, result) { //NOSONAR
+                                if (result) {
+                                    Meteor.subscribe('sendPermissionsContact', json.listData._id, result);
+                                }
+                                else {
+                                    throw new Error(error);
+                                }
+                            });
+                        }
+                    };
+
+                    //show the popup
+                    if (condPerm) {
+                        pop.showPopupWithFunction(html, f,0,this.message);
+                    }
+                }
+                else {
+                    throw new Error(error2);
+                }
+            });
+        },
+        "validation": (message) => {
+            //shows the button only if the message contains a listData field
+            if (message.listData !== undefined) {
+                // copy the message
+                this.message = {
+                    listData: message.listData,
+                    bubbleType: message.bubbleType
+                };
+                return (message.listData._creatorId === Meteor.userId());
+            }
+            //if there is no 'listData' field returns false
+            return false;
+        }
+    });
+
+    //add the button to share the ToDoListBubble with a group
+    RocketChat.MessageAction.addButton({
+        "id": 'removePermission-pin',
+        "icon": 'icon-lock',
+        "i18nLabel": 'Remove permissions to user',
+        "context": [
+            'message',
+            'message-mobile'
+        ],
+        "action": () => {
+            //this function gets the list of channels which are open in your instance of Rocket.Chat
+            const roomNow = Session.get('openedRoom');
+            //Find the room's id
+            //find the room's user
+            Meteor.call('getUsersOfRoom', roomNow, true, function (error2, result2) { //NOSONAR
+                if (result2) {
+                    //true if there are users available in the channel
+                    let condPerm = true;
+                    //html of the popup
+                    let html = '<h3> Channel: ' + roomNow + '</h3>' +
+                        '<h4 style="color: #FFFFFF">Choose a member who remove permission to modify ' +
+                        'the list to</h4>' +
+                        '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
+                    for (let i = 0; i < result2.records.length; i++) {
+                        //add the member if he is not the user who makes the request
+                        if (result2.records[i] !== Meteor.user().username && result2.records[i] !== 'rocket.cat') {
+                            if (condPerm === false) {
+                                condPerm = true;
+                            }
+                            html = html + '<option data-tokens="' + result2.records[i] + '">'
+                                + result2.records[i] + '</option>';
+                        }
+                    }
+                    html = html + '</select>';
+
+                    //callback that will be executed after popup's closing
+                    const f = function (json) {
+                        const selected = $('#sites').val(); //get user's choice
+                        for (let i = 0; i < selected.length; i++) {
+                            Meteor.call('getIdUser', selected[i], true, function (error, result) { //NOSONAR
+                                if (result) {
+                                    Meteor.subscribe('removePermissionContact', json.listData._id, result);
+                                }
+                                else {
+                                    throw new Error(error);
+                                }
+                            });
+                        }
+                    };
+
+                    //show the popup
+                    if (condPerm) {
+                        pop.showPopupWithFunction(html, f,0,this.message);
+                    }
+                }
+                else {
+                    throw new Error(error2);
+                }
+            });
+        },
+        "validation": (message) => {
+            //shows the button only if the message contains a listData field
+            if (message.listData !== undefined && message.listData._users.length !== 0) {
                 // copy the message
                 this.message = {
                     listData: message.listData,
