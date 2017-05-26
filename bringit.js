@@ -18,6 +18,7 @@ Meteor.startup(function () {
             const nameList = message.listData._name;
             const bubble = new Bringit(nameList,idList,checkPermission(message.listData));
             cloneItemFromJson(bubble,message.listData._items);
+            console.log(message);
 
             return bubble;
 

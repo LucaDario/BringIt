@@ -59,17 +59,15 @@ export class Bringit extends Monolith.bubble.BaseBubble {
                 const unity = item.getMeasurementUnit();
                 const image = item.getImagePath();
                 const a = parseInt(quantity);
-                console.log("prima"+image);
 
 
                 const f = function () {
                     this._modifyitem = container.resolve(modifyitem);
+
                     if (document.getElementById('imageItem').files[0] != undefined) {
                         this._modifyitem.modifyitemclicked($("#itemList").val(), $("#itemQuantity").val(),
                             $("#itemdescription").val(), $("#itemMesaurement").val(), document.getElementById('imageItem').files[0],
                             item, listId,true);
-
-
                     }
                     else {
                         this._modifyitem.modifyitemclicked($("#itemList").val(), $("#itemQuantity").val(),
@@ -82,6 +80,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
                 };
 
                 this._shoPopupUseCase.showPopupWithFunction(
+                    '<script src="//wzrd.in/standalone/blob-util@latest"></script>' +
                     '<div class="subject">' +
                     '<form>' +
                     '<div id="input_item_img">' +

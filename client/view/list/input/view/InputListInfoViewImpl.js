@@ -47,5 +47,7 @@ export class InputListInfoViewImpl extends InputListInfoView {
         this._saveEvent.emitSaveEvent(list);
 
     }
+
+
 }
 
