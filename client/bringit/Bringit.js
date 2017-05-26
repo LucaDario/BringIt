@@ -181,7 +181,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
             '<div class="subject">' +
             '<form>'+
             '<div id="input_item_img">' +
-            'Add an image for the list:<br>' +
+            'Add an image for the item:<br>' +
             '<input  id="imageItem" type="file" name="item_image" accept="image/*">' +
             '</div>' +
             '<div id="input_name_item">' +

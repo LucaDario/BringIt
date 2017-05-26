@@ -75,7 +75,7 @@ export class ShowPopupUseCase{
      * @param index  : this indice set the type of modal .
 
      */
-    showPopupWithFunction(content, fun, index = 0,json){
+    showPopupWithFunction(content, fun, index = 0,json = undefined){
         //necessary to use jQuery and Bootstrap
         const $ = require('jquery');
         global.jQuery = require("bootstrap-jquery");
