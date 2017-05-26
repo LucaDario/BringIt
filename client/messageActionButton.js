@@ -111,7 +111,7 @@ Meteor.startup (function () { //NOSONAR
                     //true if there are users available in the channel
                     let condPerm = false;
                     //html of the popup
-                    let html = '<h3> Channel: ' + roomNow + '</h3>' +
+                    let html = '<h3> Give permission to user in the channel ' + roomNow + '</h3>' +
                         '<h4 style="color: #FFFFFF">Choose a member who give permission to modify ' +
                         'the list to</h4>' +
                         '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
@@ -186,7 +186,7 @@ Meteor.startup (function () { //NOSONAR
                     //true if there are users available in the channel
                     let condPerm = true;
                     //html of the popup
-                    let html = '<h3> Channel: ' + roomNow + '</h3>' +
+                    let html = '<h3> Remove permission to user in the channel ' + roomNow +'</h3>' +
                         '<h4 style="color: #FFFFFF">Choose a member who remove permission to modify ' +
                         'the list to</h4>' +
                         '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
