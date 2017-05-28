@@ -8,8 +8,8 @@ export class modifyitem{
 
     }
 
-    modifyitemclicked(name,quantity,description,unity,image,itemid,listid,flag){
-        //itemid.setImagePath(image);
+    modifyitemclicked(name,quantity,description,unity,image,item,listid,flag){
+        let imagePath = undefined;
 
         if (flag) {
             const fileReader = new FileReader();
@@ -21,8 +21,12 @@ export class modifyitem{
                     const reader = new FileReader();
                     reader.addEventListener("load", () => {
                         //create item with base64image
-                        itemid.setImagePath(reader.result);
-                        console.log("dopo"+reader.result);
+                        item.setQuantity(quantity);
+                        item.setDescription(description);
+                        item.setMeasurementUnit(unity);
+                        item.setName(name);
+                        item.setImagePath(reader.result);
+                        Meteor.subscribe('updateItem',listid,item);
 
                     }, false);
 
@@ -34,14 +38,16 @@ export class modifyitem{
             };
             fileReader.readAsArrayBuffer(image);
         }
+        else{
 
-        //console.log("dopo"+reader.result);
-        console.log("infine"+ itemid.getImagePath() );
-        itemid.setQuantity(quantity);
-        itemid.setDescription(description);
-        itemid.setMeasurementUnit(unity);
-        itemid.setName(name);
-        Meteor.subscribe('updateItem',listid,itemid);
+            item.setQuantity(quantity);
+            item.setDescription(description);
+            item.setMeasurementUnit(unity);
+            item.setName(name);
+            Meteor.subscribe('updateItem',listid,item);
+
+        }
+
     }
 }
 
