@@ -123,8 +123,8 @@ Meteor.startup (function () { //NOSONAR
             //find the room's user
             Meteor.call('getUsersOfRoom', roomNow, true, function (error2,result2,html) { //NOSONAR
                 if (result2) {
-                    let html = '<h3> Remove permission to user in the channel ' + roomNow +'</h3>' +
-                        '<h4 style="color: #FFFFFF">Choose a member who remove permission to modify ' +
+                    let html = '<h3> Remove permission to user</h3>' +
+                        '<h4 style="color: #FFFFFF">Choose a member who give permission to modify ' +
                         'the list to</h4>' +
                         '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
                     //true if there are users available in the channel
@@ -205,7 +205,7 @@ Meteor.startup (function () { //NOSONAR
             };
             Meteor.call('getUsersOfRoom', roomNow, true, function (error2,result2,html) { //NOSONAR
                 if (result2) {
-                    let html = '<h3> Remove permission to user in the channel ' + roomNow +'</h3>' +
+                    let html = '<h3> Remove permission to user in the channel</h3>' +
                         '<h4 style="color: #FFFFFF">Choose a member who remove permission to modify ' +
                         'the list to</h4>' +
                         '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
