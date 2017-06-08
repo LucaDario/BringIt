@@ -123,7 +123,7 @@ Meteor.startup (function () { //NOSONAR
             //find the room's user
             Meteor.call('getUsersOfRoom', roomNow, true, function (error2,result2,html) { //NOSONAR
                 if (result2) {
-                    let html = '<h3> Remove permission to user</h3>' +
+                    let html = '<h3> Give permission to user</h3>' +
                         '<h4 style="color: #FFFFFF">Choose a member who give permission to modify ' +
                         'the list to</h4>' +
                         '<select id="sites" name="sites[]" class="form-control" multiple="multiple">';
