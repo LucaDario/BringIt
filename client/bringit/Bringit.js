@@ -89,19 +89,19 @@ export class Bringit extends Monolith.bubble.BaseBubble {
                     '</div>' +
                     '<div id="input_name_item">' +
                     'Modify the name of the item:<br>' +
-                    '<input id="itemList" type="text" name="item_name"  value="name"><br>' +
+                    '<input id="itemList" type="text" name="item_name"  value="'+name+'"><br>' +
                     '</div>' +
                     '<div id="input_quantity_item">' +
                     'Modify the quantity of the item:<br>' +
                     '<input id="itemQuantity" type="number" name="item_quantity" value="' + a + '" ><br>' +
                     '</div>' +
                     '<div id="input_description_item">' +
-                    description + '<br>' +
-                    '<input id="itemdescription" type="text" name="item_description" value="description"><br>' +
+                    'Description<br>' +
+                    '<input id="itemdescription" type="text" name="item_description" value="'+ description +'"><br>' +
                     '</div>' +
                     '<div id="input_mesaurement_unit">' +
                     'Modify the measure unit for the item:<br>' +
-                    '<input id="itemMesaurement" type="text" name="item_mesaurement" value="unity"><br>' +
+                    '<input id="itemMesaurement" type="text" name="item_mesaurement" value="'+unity+'"><br>' +
                     '</div>' +
                     '</form>' +
                     '</div>'
