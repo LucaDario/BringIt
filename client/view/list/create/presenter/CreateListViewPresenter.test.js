@@ -42,5 +42,16 @@ describe('CreateListViewPresenter', function () {
         presenter._chatSourse.sendMessageToChatWithJson.restore();
     });
 
+    it('Check that the list image is set correctly [TI24]', function () {
+        const presenter = new CreateListViewPresenter();
+        const listData = new ListData();
+        sinon.spy(presenter._chatSourse, "sendMessageToChatWithJson");
+        presenter.createList(listData);
+        expect(presenter._chatSourse.sendMessageToChatWithJson.called).to.be.ok;
+        const jsonList = presenter._chatSourse.sendMessageToChatWithJson.getCall(0).args[1];
+        expect(jsonList.bubbleType).to.be.eq("Bringit");
+        expect(jsonList.listData).to.be.eq(listData);
+        presenter._chatSourse.sendMessageToChatWithJson.restore();
+    });
 
 });
