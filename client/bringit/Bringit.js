@@ -96,7 +96,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
                     '<input id="itemQuantity" type="number" name="item_quantity" value="' + a + '" ><br>' +
                     '</div>' +
                     '<div id="input_description_item">' +
-                    'Description<br>' +
+                    'Modify the description of the item<br>' +
                     '<input id="itemdescription" type="text" name="item_description" value="'+ description +'"><br>' +
                     '</div>' +
                     '<div id="input_mesaurement_unit">' +
