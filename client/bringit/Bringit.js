@@ -84,7 +84,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
                     '<div class="subject">' +
                     '<form>' +
                     '<div id="input_item_img">' +
-                    'Modify the image for the list:<br>' +
+                    'Modify the image of the item:<br>' +
                     '<input  id="imageItem" type="file" name="item_image" accept="image/*" >' +
                     '</div>' +
                     '<div id="input_name_item">' +
@@ -100,7 +100,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
                     '<input id="itemdescription" type="text" name="item_description" value="'+ description +'"><br>' +
                     '</div>' +
                     '<div id="input_mesaurement_unit">' +
-                    'Modify the measure unit for the item:<br>' +
+                    'Modify the measure unit of the item:<br>' +
                     '<input id="itemMesaurement" type="text" name="item_mesaurement" value="'+unity+'"><br>' +
                     '</div>' +
                     '</form>' +

@@ -129,7 +129,7 @@ export class ShowPopupUseCase{
                         return true;
                     }
                     // input are not inserted
-                    if (result === true && img.val()!== '' && name.val() !== '' && quantity.val() !== '' && unity.val() !== '') {
+                    if (result === true && img.val()!== '' && name.val() !== '') {
                         fun();
                     }
                     else{
@@ -140,14 +140,6 @@ export class ShowPopupUseCase{
                         if(name.val() === ''){
                             nameText.css({ 'color': '#f90'});
                             name.css({'border:1px solid':'#f90'});
-                        }
-                        if(quantity.val() === ''){
-                            quantityText.css({ 'color': '#f90'});
-                            quantity.css({'border:1px solid':'#f90'});
-                        }
-                        if(unity.val() === ''){
-                            unityText.css({ 'color': '#f90'});
-                            unity.css({'border:1px solid':'#f90'});
                         }
                         return false;
                     }
