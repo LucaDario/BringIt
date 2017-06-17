@@ -261,7 +261,11 @@ export class Bringit extends Monolith.bubble.BaseBubble {
      */
 
     addItemFromDb(listItem){
-
+        if(!this._permission) {
+            //create a button for add the show a inputItem
+            this._addItemButton = new Monolith.widgets.ButtonWidget;
+            super.addComponent(this._addItemButton);
+        }
         super.removeLastComponent();
         //create check
         let itemCheck = new Monolith.widgets.checklist.ChecklistWidgetItem(listItem.getName(),listItem.getStatus(),listItem.getId());
