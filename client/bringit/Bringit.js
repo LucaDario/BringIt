@@ -127,8 +127,11 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         //create and set the title of the list
         this._textNameList = new Monolith.widgets.TextWidget;
         this._textNameList.setText(listName);
+        this._textNameList.setTextColor('#FFFFFF');
         this._textNameList.setFormatText(true);
         this._textNameList.setTextSize(20);
+        const titleCentered = this._textNameList.renderView();
+        titleCentered.style.textAlign = 'center';
         super.addComponent(this._textNameList);
 
         //set a array for contains the list of the itemWidget
@@ -143,13 +146,17 @@ export class Bringit extends Monolith.bubble.BaseBubble {
             this._textAddItemButton = 'Add Item';
             const btn = this._addItemButton.renderView();
             btn.style.borderRadius = '5px';
-            btn.style.marginBottom = '.5em';
+            btn.style.marginBottom = '.2em';
             this._addItemButton.setText(this._textAddItemButton);
 
             this._addItemButton.setOnClickAction(() => {
                 this.showInputAddItem();
             });
+            this._addItemButton.setBackgroundColor('#5AB5E6');
+            const buttonCentered = this._addItemButton.renderView();
+            buttonCentered.style.width = '100%';
             super.addComponent(this._addItemButton);
+
         }
 
         this._saveItemEvent.on('saveEventItem',(item,listId) => {
@@ -255,9 +262,13 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
     addItemFromDb(listItem){
 
+        super.removeLastComponent();
         //create check
         let itemCheck = new Monolith.widgets.checklist.ChecklistWidgetItem(listItem.getName(),listItem.getStatus(),listItem.getId());
         //create and set image
+        itemCheck.setSelectionColor('#2A54A0');
+        itemCheck.setNotSelectedColor('#2A54A0');
+        itemCheck.setTextColor('#FFFFFF');
         let itemImage = new Monolith.widgets.ImageWidget;
         if(listItem.getImagePath() !== '') {
             itemImage.setImage(listItem.getImagePath());
@@ -265,6 +276,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         itemImage.setVisibility(false);
         //create and set quantity
         let widgetQuantity = new Monolith.widgets.TextWidget;
+        widgetQuantity.setTextColor('#FFFFFF');
         if(listItem.getQuantity() !== undefined) {
             widgetQuantity.setText(listItem.getQuantity().toString());
         }
@@ -272,6 +284,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
         //create and set unit
         let widgetUnity = new Monolith.widgets.TextWidget;
+        widgetUnity.setTextColor('#FFFFFF');
         if(listItem.getMeasurementUnit() !== undefined) {
             widgetUnity.setText(listItem.getMeasurementUnit().toString());
         }
@@ -320,6 +333,24 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         });
 
         super.addComponent(layoutContainer);
+        if(this._permission) {
+            //create a button for add the show a inputItem
+            this._addItemButton = new Monolith.widgets.ButtonWidget;
+            this._textAddItemButton = 'Add Item';
+            const btn = this._addItemButton.renderView();
+            btn.style.borderRadius = '5px';
+            btn.style.marginBottom = '.2em';
+            this._addItemButton.setText(this._textAddItemButton);
+
+            this._addItemButton.setOnClickAction(() => {
+                this.showInputAddItem();
+            });
+            this._addItemButton.setBackgroundColor('#5AB5E6');
+            const buttonCentered = this._addItemButton.renderView();
+            buttonCentered.style.width = '100%';
+            super.addComponent(this._addItemButton);
+
+        }
 
     }
 
@@ -330,10 +361,10 @@ export class Bringit extends Monolith.bubble.BaseBubble {
      */
     isComplete(){
 
-        const FIRST_LAYOUT_ITEM = 2;
+        const FIRST_LAYOUT_ITEM = 1;
         let isPossibleComplete = true;
-
-        for(let i= FIRST_LAYOUT_ITEM; i < super.getLayout().getItems().length && isPossibleComplete; i++){
+        console.log(super.getLayout());
+        for(let i= FIRST_LAYOUT_ITEM; i < (super.getLayout().getItems().length)-1 && isPossibleComplete; i++){
             if(!super.getLayout().getItems()[i].getItems()[0].isChecked()){
                 isPossibleComplete = false;
             }

@@ -60,6 +60,7 @@ Package.onUse(function(api) {
         'client/view/list/shareListWithContact/ShareWithContactView.js',
         'client/view/list/shareListWithContact/presenter/ShareWithContactViewPresenter.js',
         'client/usecase/ShowPopupUseCase.js',
+        'client/bringit/bringit.less',
         'client/view/list/delete/DeleteListView.js',
         'client/view/list/delete/presenter/DeleteListViewPresenter.js',
         'client/view/list/delete/view/DeleteListViewImpl.js',
