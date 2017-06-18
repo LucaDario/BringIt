@@ -44,7 +44,7 @@ export class DatabaseSource {
         else {
             const cursor = this._listCollection.find({'listData._id': listId});
             cursor.forEach(function (message) {
-                Meteor.runAsUser('rocket.cat', () => {
+                Meteor.runAsUser(message.listData._creatorId, () => {
                     Meteor.call('deleteMessage', {_id: message._id})
 
                 });
@@ -74,7 +74,7 @@ export class DatabaseSource {
         else {
             const cursor = this._listCollection.find({'listData._id': listData._id});
             cursor.forEach(function (message) {
-                Meteor.runAsUser('rocket.cat', () => {
+                Meteor.runAsUser(message.listData._creatorId, () => {
 
                     Meteor.call('updateMessage', {_id: message._id, msg: '', listData: listData, rid: message.rid})
 
