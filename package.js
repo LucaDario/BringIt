@@ -24,8 +24,6 @@ Package.onUse(function(api) {
         'session',
         'less',
         'random',
-        'rocketchat:lib',
-        'rocketchat:ui-message',
         'fourseven:scss@3.9.0',
         'ejson',
         'monolith'
