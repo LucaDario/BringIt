@@ -367,8 +367,12 @@ export class Bringit extends Monolith.bubble.BaseBubble {
 
         const FIRST_LAYOUT_ITEM = 1;
         let isPossibleComplete = true;
+        let length = super.getLayout().getItems().length - 1;
+        if(!this._permission) {
+            length = length+1;
+        }
         console.log(super.getLayout());
-        for(let i= FIRST_LAYOUT_ITEM; i < (super.getLayout().getItems().length)-1 && isPossibleComplete; i++){
+        for(let i= FIRST_LAYOUT_ITEM; i < length && isPossibleComplete; i++){
             if(!super.getLayout().getItems()[i].getItems()[0].isChecked()){
                 isPossibleComplete = false;
             }
