@@ -27,7 +27,7 @@ export class CreateListViewPresenter {
         /**
          	 * @type{Object} this represents the list of the groups that have access a button
               */
-		this._groups = ['channel', 'group', 'direct'];
+		this._groups = ['channel', 'group'];
 
         /**
          	 * @type{string} this represent a unique of the button
