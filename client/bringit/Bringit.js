@@ -128,7 +128,7 @@ export class Bringit extends Monolith.bubble.BaseBubble {
         this._textNameList = new Monolith.widgets.TextWidget;
         this._textNameList.setText(listName);
         this._textNameList.setTextColor('#FFFFFF');
-        this._textNameList.setFormatText(true);
+        this._textNameList.setFormatText(false);
         this._textNameList.setTextSize(20);
         const titleCentered = this._textNameList.renderView();
         titleCentered.style.textAlign = 'center';
