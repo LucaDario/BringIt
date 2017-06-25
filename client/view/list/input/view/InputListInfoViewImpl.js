@@ -11,12 +11,13 @@
  *
  *
  * Created by lucadario on 27/03/17.
+ * version 3.0.0 - bug fixes, on hold for other component
  */
 
 import {InputListInfoView} from '../InputListInfoView';
 import {InputListInfoViewPresenter} from '../presenter/InputListInfoViewPresenter';
 import {container,inject} from 'dependency-injection-es6';
-import {SaveListEvent} from '../../../../event/SaveListEvent'
+import {SaveListEvent} from '../../../../event/SaveListEventEmitter'
 
 export class InputListInfoViewImpl extends InputListInfoView {
 
@@ -26,7 +27,13 @@ export class InputListInfoViewImpl extends InputListInfoView {
      */
     constructor() {
         super();
+        /**
+         * @type {InputListInfoViewPresenter}: the reference of presenter
+         */
         this._presenter = container.resolve(InputListInfoViewPresenter);
+        /**
+         * @type {SaveListEvent}: the singleto that emit the input for the list info
+         */
         this._saveEvent = container.resolve(SaveListEvent);
     }
 
@@ -36,9 +43,11 @@ export class InputListInfoViewImpl extends InputListInfoView {
      * @param photoList path {string}
      */
     onSaveClicked(name,photoList){
-        let list = this._presenter.createListData(name,photoList);
+        const list = this._presenter.createListData(name,photoList);
         this._saveEvent.emitSaveEvent(list);
 
     }
+
+
 }
 

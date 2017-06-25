@@ -9,12 +9,11 @@
  *  var shareListUseCase = container.resolve(ShareListUseCase);
  * <code/>
  * Created by Riccardo Montagnin on 29/03/2017.
- * Version 1.0.0 - Initial version
+ * Version 2.0.0 - completed
  */
 
 import {container,inject} from 'dependency-injection-es6';
-import {DatabaseSource} from '../server/database/DatabaseSource';
-import {ChatSource} from '../client/chat/ChatSource';
+import {DatabaseSource} from "../database/DatabaseSource";
 
 export class ShareListUseCase{
 
@@ -23,7 +22,6 @@ export class ShareListUseCase{
      */
     constructor(){
         this._databaseSource = container.resolve(DatabaseSource);
-        this._chatSource = container.resolve(ChatSource);
     }
 
     /**
@@ -37,9 +35,12 @@ export class ShareListUseCase{
         listData.addUser(contactId);
         this._databaseSource.saveList(listData);
 
-        // Share the message with the contact
-        // TODO: Share the message to the user's chat
+    }
 
+    removeListPermission(listId, contactId){
+        const listData = this._databaseSource.getListWithId(listId);
+        listData.removeUser(contactId);
+        this._databaseSource.saveList(listData);
     }
 
 }

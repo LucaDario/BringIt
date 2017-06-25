@@ -2,13 +2,10 @@
  * A class Event, this extends from EventEmitter (es6-event-emitter). It represents the share event which is emitted when
  * someone has chosen the group (or groups) which they want to send message to.
  * Created by Stefano Lia on 31/03/2017
- * Version 1.0.0 - Initial version
- * Version 1.0.1 - added a method for the emitting
+ * Version 2.0.0 - completed
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
-import {ShareWithGroupViewImpl} from '../view/list/ShareListWithGroup/view/ShareWithGroupViewImpl';
-import {ShareWithGroupView} from '../view/list/ShareListWithGroup/ShareWithGroupView';
 
 const EventEmitter = require('events');
 
@@ -19,18 +16,17 @@ export class ShareEventEmitter extends EventEmitter{
      */
     constructor() {
         super();
-        //this._emitter = new ShareWithGroupViewImpl();
-
     }
 
     /**
      * @method
-     * this method emits a share event.
-     * @param group {array} contains the group which you want to share something to
-     * @param message {JSON} the message that you want to share
+     * This method emits the 'shareEvent', which represents the sharing of a bringit list
+     * @param group {array}: contains the group which you want to share something to
+     * @param message {JSON}: the message that you want to share
+     * @param title {string}: the title of the popup
      */
-    emitShareEvent(group, message){
-        this.emit('shareEvent', group, message);
+    emitShareEvent(group, message, title){
+        this.emit('shareEvent', group, message, title);
     }
 
 

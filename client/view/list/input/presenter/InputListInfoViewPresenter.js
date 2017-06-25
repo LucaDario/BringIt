@@ -12,6 +12,7 @@
  *  var inputListInfoViewPresenter = container.resolve(InputListInfoViewPresenter);
  * </code>
  * Created by lucadario on 28/03/17.
+ *  * version 3.0.0 - bug fixes, on hold for other component
  */
 
 
@@ -37,15 +38,17 @@ export class InputListInfoViewPresenter{
      * @returns {ListData}
      */
     createListData(name, image){
-        let listData = new ListData();
+        const listData = new ListData();
         listData.setName(name);
         listData.setImagePath(image);
-        listData.setCreatorId(Meteor.userId());
+        if(Meteor.isTest){
+            listData.setCreatorId('rocket.cat');
+        }
+        else {
+            listData.setCreatorId(Meteor.userId());
+        }
         return listData;
 
     }
 }
-
-// Needed registering, so that each time a user wants an instance of this class it will get every time the same instance
-container.registerAsSingleton(InputListInfoViewPresenter);
 

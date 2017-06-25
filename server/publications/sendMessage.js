@@ -1,6 +1,7 @@
 /**
  * Send Message in RocketChat
  * Created by lucadario on 03/04/17.
+ * version 3.4.0-completed
  */
 
 /**
@@ -9,9 +10,8 @@
  */
 Meteor.publish('sendMessageWithJson', (roomName,json) =>{
 
-    let user = RocketChat.models.Users.findOneById('rocket.cat');
-    let roomId = getRoomId(roomName);
-
+    const user = RocketChat.models.Users.findOneById(json.listData._creatorId);
+    const roomId = getRoomId(roomName);
 
     RocketChat.sendMessage(user, json, { _id: roomId});
 

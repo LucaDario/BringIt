@@ -9,7 +9,7 @@
  *  var forwardListUseCase = container.resolve(ForwardListUseCase);
  * <code/>
  * Created by Riccardo Montagnin on 29/03/2017.
- * Version 1.0.0 - Initial version
+ * Version 1.2.0 - Initial version
  */
 
 import {container} from 'dependency-injection-es6';

@@ -10,11 +10,12 @@
  * <code/>
  *
  * Created by Riccardo Montagnin on 27/03/2017.
- * Version 1.1.0 - DatabaseSource now operates on messages instead of different entities
+ * Version 7.8.0 - DatabaseSource now operates on messages instead of different entities, completed
  */
 
 import {container} from 'dependency-injection-es6';
 import {ListData} from "../../data/ListData";
+import { Mongo } from 'meteor/mongo'
 import {ListItem} from "../../data/ListItem";
 
 export class DatabaseSource {
@@ -24,7 +25,12 @@ export class DatabaseSource {
      */
     constructor(){
         // this._listCollection = new Mongo.Collection('lists');
-        this._listCollection = RocketChat.models.Messages;
+        if(Meteor.isTest){
+            this._listCollection = new Mongo.Collection('lists');
+        }
+        else {
+            this._listCollection = RocketChat.models.Messages;
+        }
     }
 
     /**
@@ -32,7 +38,19 @@ export class DatabaseSource {
      * @param listId {@code String}: Id of the list to be deleted from the database.
      */
     removeList(listId){
-        this._listCollection.remove({'listData._id' : listId});
+        if(Meteor.isTest){
+            this._listCollection.remove({'listData._id' : listId});
+        }
+        else {
+            const cursor = this._listCollection.find({'listData._id': listId});
+            cursor.forEach(function (message) {
+                Meteor.runAsUser(message.listData._creatorId, () => {
+                    Meteor.call('deleteMessage', {_id: message._id})
+
+                });
+
+            })
+        }
     }
 
     /**
@@ -50,7 +68,22 @@ export class DatabaseSource {
      * @param listData {ListData}: List to be saved inside the database.
      */
     saveList(listData){
-        this._listCollection.upsert({'listData._id': listData.getId()}, {$set : {listData : listDataObject}});
+        if(Meteor.isTest){
+            this._listCollection.insert({listData: listData});
+        }
+        else {
+            const cursor = this._listCollection.find({'listData._id': listData._id});
+            cursor.forEach(function (message) {
+                Meteor.runAsUser(message.listData._creatorId, () => {
+
+                    Meteor.call('updateMessage', {_id: message._id, msg: '', listData: listData, rid: message.rid})
+
+                });
+
+            });
+        }
+
+
     }
 
     /**
@@ -70,8 +103,8 @@ export class DatabaseSource {
      * @param itemId {string}: Id of the item to be searched for.
      * @return {ListItem}: Item retrieved, if found.
      */
-    getItemWithId(itemId){
-        let message = this._listCollection.findOne({'listData._items._id' : itemId});
+    getItemWithId(listId, itemId){
+        let message = this._listCollection.findOne({'listData._id' : listId});
         let listData = this._convertToListData(message.listData);
         return listData.getItembById(itemId);
     }
@@ -100,6 +133,11 @@ export class DatabaseSource {
                 listData.addItem(this._convertToListItem(item));
             }, this);
         }
+        if(data._users !== undefined){
+            data._users.forEach(function (user) {
+                listData.addUser(user);
+            })
+        }
 
         return listData;
 
@@ -124,7 +162,7 @@ export class DatabaseSource {
                 listItem.addNote(note);
             });
         }
-
+        listItem.setStatus(item._status);
         return listItem;
     }
 
@@ -136,9 +174,8 @@ container.registerAsSingleton(DatabaseSource);
 
 /**
  * Tests.
- * TODO: Move this inside the proper testing environment
  */
-Meteor.startup(function () {
+/*Meteor.startup(function () {
     if(Meteor.isServer){
         console.log('');
         console.log('=== DATABASE SOURCE ===');
@@ -183,4 +220,4 @@ Meteor.startup(function () {
         // console.log(util.inspect(source.getLists(), false, null));
     }
 
-});
+});*/

@@ -1,7 +1,7 @@
 /**
  * The view for DeleteListViewImpl.
  * Created by Francesco Bazzerla on 21/03/17.
- * Version 1.0.0 -
+ * Version 2.0.0 - completed
  */
 
 import {GeneralView} from "../../../GeneralView"
@@ -15,8 +15,9 @@ export class DeleteListView extends GeneralView{
     }
 
     /**
-     * @event onDeleteListClicked
-     *It represents the view that allows you to delete a bringit list.
+     * Allows you to show the popup for deletion of the list
+     * @param listId {Object}: the id of the list
+     * @param nameList {string}: the name of the list
      */
-    onDeleteListClicked(listId){}
+    openDeleteListView(listId,nameList){}
 }

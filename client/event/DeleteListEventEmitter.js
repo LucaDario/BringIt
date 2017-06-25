@@ -2,7 +2,7 @@
  * A class Event, this exstends from EventEmitter (es6-event-emitter) and this represents the event
  * for emit the event when click button delete list
  * Created by Francesco Bazzerla on 20/04/17.
- * Version 1.0.1 - Completed
+ * Version 2.0.0 - Completed
  */
 
 const EventEmitter = require('events');
@@ -12,20 +12,30 @@ import {container, singleton, inject} from 'dependency-injection-es6';
 export class DeleteListEventEmitter extends EventEmitter{
 
     /**
-     * @constructor
-     *
+     * Public constructor
      */
     constructor() {
         super();
     }
 
     /**
-     *@method
-     *This method emit a event with 'deleteEvent'
-     * @param listId {Object} listId to pass pass through in emit method
+     * @method
+     * This method emit a event with 'deleteEvent'
+     * @param listId {Object}: listId to pass through in emit method
+     * @param nameList {string}: listName to pass through in emit method
      */
-    emitDeleteEvent(listId){
-        this.emit('deleteEvent', listId);
+    emitDeleteEvent(listId,nameList){
+        this.emit('deleteEvent', listId,nameList);
+    }
+
+    /**
+     * @method
+     * This method emits the 'deleteThisEvent'
+     * @param listId {Object}: listId to pass through in emit method
+     * @param nameList {string}: listName to pass through in emit method
+     */
+    emitDeleteThis(listId,nameList){
+        this.emit('deleteThisEvent', listId,nameList);
     }
 }
 

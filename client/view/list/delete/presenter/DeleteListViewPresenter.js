@@ -1,36 +1,43 @@
 /**
  * The presenter of DeleteListViewImpl.
  * Created by Francesco Bazzerla on 21/03/17.
- * Version 1.0.0 -
+ * Version 2.0.0 - completed
  */
 
-import {DeleteListEventEmitter} from '../../../../event/DeleteListEventEmitter';
+import {ShowPopupUseCase} from '../../../../usecase/ShowPopupUseCase';
+import {container,inject} from 'dependency-injection-es6';
 import {DeleteListViewImpl} from '../view/DeleteListViewImpl';
-import {container, singleton, inject, dependencies} from 'dependency-injection-es6';
-import {ManageListsUseCase} from '../../../../../server/usecase/ManageListsUseCase';
 
 export class DeleteListViewPresenter{
+
     /**
-     * @type {Object}: DeleteListViewImpl element for the presenter
+     * @type {Object}: A ShowPopupUseCase object used to create a new modal
+     */
+    _popup;
+
+    /**
+     * @type {Object}: the view associated to the presenter
      */
     _view;
 
     /**
-     * @type {Object}: Component required for communication between presenter and databases.
-     */
-    _manageList;
-
-    /**
-     * @constructor
-     * Constructor of DeleteListViewPresenter
-     * @param view {Object}
+     * Public constructor
      */
     constructor(view){
+        this._popup = container.resolve(ShowPopupUseCase);
         this._view = view;
-        this._manageList = container.resolve(ManageListsUseCase);
     }
 
-    openDeleteListView(listId){
-        this._manageList.deleteList(listId);
+    /**
+     * @method
+     * Allows you to show the popup for deletion of the list
+     * @param listId {Object}: the id of the list
+     * @param nameList {string}: the name of the list
+     */
+    openDeleteListView(listId,nameList){
+        const fun = (viewDel = this._view)=>{
+            viewDel.getDeleteEvent().emitDeleteEvent(listId,nameList)
+        };
+        this._popup.showPopupWithFunction(nameList,fun,3);
     }
 }

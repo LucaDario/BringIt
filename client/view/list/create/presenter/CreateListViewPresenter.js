@@ -9,6 +9,7 @@
  *  var createListViewPresenter = container.resolve(CreateListViewPresenter);
  * </code>
  * Created by lucadario on 29/03/17.
+ *  * version 3.3.0 - Bug fixed
  */
 
 import {container, singleton, inject} from 'dependency-injection-es6';
@@ -26,7 +27,7 @@ export class CreateListViewPresenter {
         /**
          	 * @type{Object} this represents the list of the groups that have access a button
               */
-		this._groups = ['channel', 'group', 'direct'];
+		this._groups = ['channel', 'group'];
 
         /**
          	 * @type{string} this represent a unique of the button
@@ -72,17 +73,15 @@ export class CreateListViewPresenter {
 	}
 
     /**Public
-	 * Subscribe method with name 'createList' with listData as a parameter
+	 * sendMessage with a jSon object contains listData
      * @param listData {ListData}
      */
 	createList(listData){
-		Meteor.subscribe('createList',listData, {
-            onReady: () => {
-                let roomName = $('.room-title').text();
 
-				this._chatSourse.sendMessageToChatWithJson(roomName, createJsonList(listData));
-            }
-        });
+		const roomName = $('.room-title').text();
+
+		this._chatSourse.sendMessageToChatWithJson(roomName, createJsonList(listData));
+
 	}
 
 
@@ -96,7 +95,7 @@ function createJsonList(listData) {
     return {
 		listData,
 
-        bubbleType:'todo'
+        bubbleType:'Bringit'
     };
 
 }
